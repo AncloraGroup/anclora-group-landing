@@ -60,7 +60,6 @@ and the right exposure limits for an open repository.
 | [`src/`](./src) | React + Vite landing source (components, sections, i18n, styles) |
 | [`public/`](./public) | Static assets served as-is (logo, og-image) |
 | [`brand/`](./brand) | Brand book, master prompt, logo/favicon assets and the brand book reference render |
-| [`tools/`](./tools) | `impeccable` toolkit used as a design/quality assistant during the build |
 | [`.claude/`](./.claude) | Local agent memory and configuration |
 
 ## Technology

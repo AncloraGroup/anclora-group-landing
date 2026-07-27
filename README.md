@@ -60,7 +60,6 @@ Anclora y los limites de exposicion adecuados para un repositorio abierto.
 | [`src/`](./src) | Codigo React + Vite de la landing (componentes, secciones, i18n, estilos) |
 | [`public/`](./public) | Assets estaticos servidos tal cual (logo, og-image) |
 | [`brand/`](./brand) | Brand book, prompt maestro, assets de logo/favicons y render de referencia del brand book |
-| [`tools/`](./tools) | Toolkit `impeccable` usado como asistente de diseno/calidad durante la construccion |
 | [`.claude/`](./.claude) | Memoria y configuracion local de agentes |
 
 ## Tecnologia
