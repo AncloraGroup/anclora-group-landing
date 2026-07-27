@@ -76,6 +76,10 @@
   gap: var(--space-3);
 }
 
+.ecosystem-grid > * {
+  grid-column: span 4;
+}
+
 @media (min-width: 900px) {
   .ecosystem-grid {
     grid-template-columns: repeat(12, 1fr);
@@ -103,6 +107,10 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: var(--space-3);
+}
+
+.products-grid > * {
+  grid-column: span 4;
 }
 
 @media (min-width: 900px) {
@@ -186,6 +194,10 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: var(--space-3);
+}
+
+.principles-list > * {
+  grid-column: span 4;
 }
 
 @media (min-width: 900px) {
