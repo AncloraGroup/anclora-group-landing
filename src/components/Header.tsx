@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useLocale } from '../i18n/LocaleContext'
 import LanguageSwitcher from './LanguageSwitcher'
-import lockupHorizontalDark from '../assets/logo/anclora-group-lockup-horizontal-sobre-oscuro.png'
+import lockupHorizontalDark from '../assets/logo/anclora-group-lockup-horizontal-sobre-oscuro-64.webp'
 
 const NAV_ITEMS = [
   { href: '#ecosystem', key: 'ecosystem' as const },
@@ -55,7 +55,7 @@ export default function Header() {
 
         <div className="site-header__actions">
           <LanguageSwitcher />
-          <a href="#contact" className="btn btn-primary">
+          <a href="#contact" className="btn btn-primary site-header__cta">
             {t.nav.contactCta}
           </a>
           <button
@@ -67,7 +67,7 @@ export default function Header() {
             aria-label={isMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
             onClick={toggleMenu}
           >
-            {isMenuOpen ? '✕' : '☰'}
+            <span aria-hidden="true">{isMenuOpen ? '✕' : '☰'}</span>
           </button>
         </div>
       </div>

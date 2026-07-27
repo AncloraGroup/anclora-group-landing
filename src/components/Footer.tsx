@@ -1,6 +1,6 @@
 import { useLocale } from '../i18n/LocaleContext'
 import LanguageSwitcher from './LanguageSwitcher'
-import monocromoClaro from '../assets/logo/anclora-group-monocromo-claro.png'
+import monocromoClaro from '../assets/logo/anclora-group-monocromo-claro-48.webp'
 
 export default function Footer() {
   const { t } = useLocale()

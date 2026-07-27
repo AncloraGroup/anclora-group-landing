@@ -3,6 +3,8 @@
   --anchor-navy: #0A1F3D;
   --deep-ocean: #111827;
   --command-purple: #6C63FF;
+  --command-purple-on-light-text: #5F57E0; /* command-purple oscurecido para fondo de botón: 5.11:1 con --white-deck como texto (AA) */
+  --command-purple-on-light-text-hover: #544DC7; /* 6.15:1 con --white-deck */
   --signal-blue: #5FA8FF;
   --anclora-silver: #E5E7EB;
   --anclora-gold: #C5A059;

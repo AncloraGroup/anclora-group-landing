@@ -64,12 +64,12 @@
 }
 
 .btn-primary {
-  background: var(--command-purple);
+  background: var(--command-purple-on-light-text);
   color: var(--white-deck);
 }
 
 .btn-primary:hover {
-  background: #7a71ff;
+  background: var(--command-purple-on-light-text-hover);
 }
 
 .btn-secondary {

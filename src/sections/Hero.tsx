@@ -1,5 +1,5 @@
 import { useLocale } from '../i18n/LocaleContext'
-import medalla from '../assets/logo/anclora-group-medalla-1024.webp'
+import medalla from '../assets/logo/anclora-group-medalla-1024-192.webp'
 
 export default function Hero() {
   const { t } = useLocale()
