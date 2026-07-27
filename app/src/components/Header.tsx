@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useLocale } from '../i18n/LocaleContext'
 import LanguageSwitcher from './LanguageSwitcher'
 import lockupHorizontalDark from '../assets/logo/anclora-group-lockup-horizontal-sobre-oscuro.png'
@@ -14,15 +14,29 @@ const NAV_ITEMS = [
 export default function Header() {
   const { t } = useLocale()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const menuToggleRef = useRef<HTMLButtonElement>(null)
+
+  const closeMenu = useCallback(() => {
+    setIsMenuOpen(false)
+    menuToggleRef.current?.focus()
+  }, [])
+
+  const toggleMenu = () => {
+    if (isMenuOpen) {
+      closeMenu()
+    } else {
+      setIsMenuOpen(true)
+    }
+  }
 
   useEffect(() => {
     if (!isMenuOpen) return
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setIsMenuOpen(false)
+      if (event.key === 'Escape') closeMenu()
     }
     document.addEventListener('keydown', onKeyDown)
     return () => document.removeEventListener('keydown', onKeyDown)
-  }, [isMenuOpen])
+  }, [isMenuOpen, closeMenu])
 
   return (
     <header className="site-header">
@@ -45,12 +59,13 @@ export default function Header() {
             {t.nav.contactCta}
           </a>
           <button
+            ref={menuToggleRef}
             type="button"
             className="site-header__menu-toggle"
             aria-expanded={isMenuOpen}
             aria-controls="mobile-nav"
             aria-label={isMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
-            onClick={() => setIsMenuOpen((open) => !open)}
+            onClick={toggleMenu}
           >
             {isMenuOpen ? '✕' : '☰'}
           </button>
@@ -60,7 +75,7 @@ export default function Header() {
       {isMenuOpen && (
         <nav id="mobile-nav" className="site-header__mobile-nav container" aria-label="Navegación móvil">
           {NAV_ITEMS.map((item) => (
-            <a key={item.key} href={item.href} onClick={() => setIsMenuOpen(false)}>
+            <a key={item.key} href={item.href} onClick={closeMenu}>
               {t.nav[item.key]}
             </a>
           ))}
