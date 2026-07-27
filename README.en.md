@@ -2,11 +2,11 @@
 
 <div align="center">
 
-<img src="./app/public/logo.png" alt="Anclora Group" width="120" />
+<img src="./public/logo.png" alt="Anclora Group" width="120" />
 
 # Anclora Group — Landing
 
-### Public landing page of the Anclora Group ecosystem, documented as a matrix-family repository
+### Public landing page of the Anclora Group ecosystem, documented as a portfolio-showcase-family repository
 
 [Español](./README.md) · **English**
 
@@ -37,7 +37,7 @@
 ```text
 Brand book / brand tokens
         ↓
-React + Vite landing (app/)
+React + Vite landing (src/)
         ↓
 Sections: Hero, Ecosystem, Products, Method, Founder, Contact
         ↓
@@ -48,7 +48,7 @@ Public deployment (group.anclora.com)
 
 ## What this repository shows
 
-Public landing page of the Anclora Group ecosystem, documented as a matrix-family repository.
+Public landing page of the Anclora Group ecosystem, documented as a portfolio-showcase-family repository.
 
 This README documents the public scope of the product, its position in the Anclora ecosystem
 and the right exposure limits for an open repository.
@@ -57,7 +57,8 @@ and the right exposure limits for an open repository.
 
 | Folder | Content |
 | --- | --- |
-| [`app/`](./app) | React + Vite landing application (components, sections, i18n, styles, tests) |
+| [`src/`](./src) | React + Vite landing source (components, sections, i18n, styles) |
+| [`public/`](./public) | Static assets served as-is (logo, og-image) |
 | [`brand/`](./brand) | Brand book, master prompt, logo/favicon assets and the brand book reference render |
 | [`tools/`](./tools) | `impeccable` toolkit used as a design/quality assistant during the build |
 | [`.claude/`](./.claude) | Local agent memory and configuration |
@@ -81,7 +82,7 @@ and the right exposure limits for an open repository.
 ## Brand
 
 - Canonical product: `anclora-group-landing`
-- Family: `matrix`
+- Family: `portfolio_showcase`
 - Target visibility: `public`
 - Brand asset: `present`
 

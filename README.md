@@ -2,11 +2,11 @@
 
 <div align="center">
 
-<img src="./app/public/logo.png" alt="Anclora Group" width="120" />
+<img src="./public/logo.png" alt="Anclora Group" width="120" />
 
 # Anclora Group — Landing
 
-### Landing page publica del ecosistema Anclora Group, documentada como repositorio de familia matrix
+### Landing page publica del ecosistema Anclora Group, documentada como repositorio de familia portfolio showcase
 
 **Español** · [English](./README.en.md)
 
@@ -37,7 +37,7 @@
 ```text
 Brand book / tokens de marca
         ↓
-Landing React + Vite (app/)
+Landing React + Vite (src/)
         ↓
 Secciones: Hero, Ecosistema, Productos, Metodo, Founder, Contacto
         ↓
@@ -48,7 +48,7 @@ Despliegue publico (group.anclora.com)
 
 ## Que muestra este repositorio
 
-Landing page publica del ecosistema Anclora Group, documentada como repositorio de familia matrix.
+Landing page publica del ecosistema Anclora Group, documentada como repositorio de familia portfolio showcase.
 
 El README presenta el alcance publico del producto, su posicionamiento dentro del ecosistema
 Anclora y los limites de exposicion adecuados para un repositorio abierto.
@@ -57,7 +57,8 @@ Anclora y los limites de exposicion adecuados para un repositorio abierto.
 
 | Carpeta | Contenido |
 | --- | --- |
-| [`app/`](./app) | Aplicacion React + Vite de la landing (componentes, secciones, i18n, estilos, tests) |
+| [`src/`](./src) | Codigo React + Vite de la landing (componentes, secciones, i18n, estilos) |
+| [`public/`](./public) | Assets estaticos servidos tal cual (logo, og-image) |
 | [`brand/`](./brand) | Brand book, prompt maestro, assets de logo/favicons y render de referencia del brand book |
 | [`tools/`](./tools) | Toolkit `impeccable` usado como asistente de diseno/calidad durante la construccion |
 | [`.claude/`](./.claude) | Memoria y configuracion local de agentes |
@@ -81,7 +82,7 @@ Anclora y los limites de exposicion adecuados para un repositorio abierto.
 ## Marca
 
 - Producto canonico: `anclora-group-landing`
-- Familia: `matrix`
+- Familia: `portfolio_showcase`
 - Visibilidad objetivo: `public`
 - Asset de marca: `presente`
 
