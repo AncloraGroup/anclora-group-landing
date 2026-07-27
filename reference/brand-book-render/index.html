@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<!--
+DIRECTION CONTRACT — Anclora Group Brand Book v2.0
+THESIS: El brand book no describe la cabina de mando: ES la cabina de mando. Documento de referencia oscuro donde la medalla actúa como sello físico y las reglas se leen como especificaciones de un sistema naval, no como una galería de cards genéricas.
+OWN-WORLD: Anchor Navy como campo dominante, superficies Deep Ocean, hairlines plateadas al 12–20%, JetBrains Mono solo para datos (hex, ratios, estados), DM Sans 400/600/800 como voz, la medalla y sus variantes como artefactos reales, nunca iconos de relleno.
+STORY: Un visitante (desarrollador, diseñador, colaborador) entiende en un vistazo qué es Anclora Group, ve el sistema de logo completo, copia los tokens verificados y sale sabiendo exactamente qué hacer y qué no hacer con la marca.
+FIRST VIEWPORT: Medalla a gran escala flotando sobre navy profundo con brillo metálico sutil, wordmark "Anclora Group" en DM Sans 800, tagline, y una línea de datos en mono (dominio · versión · contacto) que ancla el documento como especificación viva.
+FORM: Documento de referencia de modo Read con capítulos numerados (la secuencia es wayfinding real), navegación lateral pegajosa en desktop, composición variable: galería de logo en fondos reales, paleta como bandas con datos de contraste, tipografía como especímenes vivos, componentes UI demostrados en funcionamiento.
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anclora Group — Brand Book v2.0</title>
+<meta name="description" content="Sistema de identidad de marca de Anclora Group: logo, color, tipografía, tokens y voz. Fuente única de verdad para group.anclora.com.">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="anclora-group-favicon-32.png" sizes="32x32">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700;9..40,800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --anchor-navy: #0A1F3D;
+  --deep-ocean: #111827;
+  --hull: #0C1730;
+  --command-purple: #6C63FF;
+  --signal-blue: #5FA8FF;
+  --anclora-silver: #E5E7EB;
+  --anclora-gold: #C5A059;
+  --harbor-mist: #CBD5E1;
+  --white-deck: #F8FAFC;
+  --hairline: rgba(229,231,235,0.12);
+  --hairline-strong: rgba(229,231,235,0.2);
+  --space-1: 8px; --space-2: 16px; --space-3: 24px; --space-4: 32px;
+  --space-6: 48px; --space-8: 64px; --space-12: 96px;
+  --radius-control: 8px; --radius-card: 14px;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 160ms; --dur-base: 220ms;
+  --mono: 'JetBrains Mono', monospace;
+  --sans: 'DM Sans', system-ui, sans-serif;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--anchor-navy);
+  color: var(--white-deck);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+::selection { background: rgba(95,168,255,0.3); }
+
+/* ---------- shell ---------- */
+.shell { display: grid; grid-template-columns: 240px 1fr; max-width: 1360px; margin: 0 auto; }
+nav.chapters {
+  position: sticky; top: 0; height: 100vh; overflow-y: auto;
+  padding: var(--space-8) var(--space-3) var(--space-6);
+  border-right: 1px solid var(--hairline);
+  display: flex; flex-direction: column; gap: 2px;
+}
+nav.chapters .nav-logo { display: flex; align-items: center; gap: 12px; margin-bottom: var(--space-6); }
+nav.chapters .nav-logo img { width: 40px; height: 40px; }
+nav.chapters .nav-logo span { font-weight: 800; font-size: 15px; letter-spacing: -0.01em; }
+nav.chapters a {
+  display: flex; align-items: baseline; gap: 10px;
+  padding: 7px 10px; border-radius: var(--radius-control);
+  color: var(--harbor-mist); text-decoration: none; font-size: 13.5px; font-weight: 600;
+  transition: color var(--dur-fast) var(--ease-out), background var(--dur-fast) var(--ease-out);
+}
+nav.chapters a:hover { color: var(--white-deck); background: rgba(229,231,235,0.06); }
+nav.chapters a .num { font-family: var(--mono); font-size: 11px; color: var(--signal-blue); font-weight: 500; }
+nav.chapters .nav-foot {
+  margin-top: auto; padding-top: var(--space-4);
+  font-family: var(--mono); font-size: 10.5px; color: var(--harbor-mist); opacity: 0.7; line-height: 1.8;
+}
+main { min-width: 0; }
+.chapter { padding: var(--space-12) var(--space-8); border-bottom: 1px solid var(--hairline); max-width: 1020px; }
+.chapter-head { display: flex; align-items: baseline; gap: 18px; margin-bottom: var(--space-3); }
+.chapter-head .num { font-family: var(--mono); font-size: 13px; font-weight: 500; color: var(--signal-blue); }
+h2 { font-size: clamp(26px, 3vw, 34px); font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; }
+h3 { font-size: 19px; font-weight: 700; letter-spacing: -0.01em; margin: var(--space-6) 0 var(--space-2); }
+.chapter > p, .lede { color: var(--harbor-mist); max-width: 68ch; }
+.lede { font-size: 18px; margin-bottom: var(--space-4); }
+p + p { margin-top: var(--space-2); }
+strong { color: var(--white-deck); }
+
+/* ---------- cover ---------- */
+.cover {
+  min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+  padding: var(--space-8); position: relative; overflow: hidden;
+  background:
+    radial-gradient(1100px 600px at 78% 18%, rgba(108,99,255,0.10), transparent 60%),
+    radial-gradient(900px 700px at 12% 85%, rgba(95,168,255,0.08), transparent 55%),
+    linear-gradient(180deg, #0B2142 0%, var(--anchor-navy) 45%, #081833 100%);
+}
+.cover-inner { max-width: 1020px; margin: 0 auto; width: 100%; position: relative; }
+.cover .medalla-wrap { position: relative; width: min(240px, 42vw); margin-bottom: var(--space-6); }
+.cover .medalla-wrap::after {
+  content: ""; position: absolute; inset: -18%; border-radius: 50%;
+  background: radial-gradient(circle, rgba(229,231,235,0.10), transparent 62%);
+  z-index: -1;
+}
+.cover img.medalla { width: 100%; display: block; animation: float 7s var(--ease-out) infinite alternate; }
+@keyframes float { from { transform: translateY(0); } to { transform: translateY(-10px); } }
+.cover h1 {
+  font-size: clamp(44px, 7vw, 84px); font-weight: 800; letter-spacing: -0.03em;
+  line-height: 1.02; max-width: 12ch;
+}
+.cover .tagline {
+  margin-top: var(--space-3); font-size: clamp(18px, 2.2vw, 24px);
+  color: var(--harbor-mist); max-width: 44ch; font-weight: 400;
+}
+.cover .doc-meta {
+  margin-top: var(--space-8); display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-6);
+  font-family: var(--mono); font-size: 12.5px; color: var(--harbor-mist);
+  border-top: 1px solid var(--hairline); padding-top: var(--space-3);
+}
+.cover .doc-meta b { color: var(--signal-blue); font-weight: 500; }
+.cover .doc-meta .gold { color: var(--anclora-gold); }
+.reveal { opacity: 0; transform: translateY(14px); animation: rise 0.9s var(--ease-out) forwards; }
+.reveal.d1 { animation-delay: 0.08s; } .reveal.d2 { animation-delay: 0.2s; }
+.reveal.d3 { animation-delay: 0.34s; } .reveal.d4 { animation-delay: 0.5s; }
+@keyframes rise { to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .cover img.medalla { animation: none; opacity: 1; transform: none; }
+}
+
+/* ---------- logo gallery ---------- */
+.logo-hero {
+  background: var(--deep-ocean); border: 1px solid var(--hairline); border-radius: var(--radius-card);
+  padding: var(--space-8); display: flex; align-items: center; justify-content: center;
+  margin: var(--space-6) 0 var(--space-4);
+}
+.logo-hero img { width: min(300px, 60vw); }
+.variant-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); margin-top: var(--space-3); }
+.variant {
+  border-radius: var(--radius-card); overflow: hidden; border: 1px solid var(--hairline);
+  display: flex; flex-direction: column;
+}
+.variant .stage { display: flex; align-items: center; justify-content: center; padding: var(--space-6) var(--space-4); min-height: 170px; }
+.variant .stage img { max-width: 82%; max-height: 130px; }
+.variant.dark .stage { background: var(--deep-ocean); }
+.variant.light .stage { background: var(--white-deck); }
+.variant figcaption {
+  padding: 12px 16px; background: var(--hull); border-top: 1px solid var(--hairline);
+  font-family: var(--mono); font-size: 11.5px; color: var(--harbor-mist); line-height: 1.6;
+}
+.variant figcaption b { color: var(--white-deck); font-weight: 500; display: block; font-family: var(--sans); font-size: 13.5px; font-weight: 700; }
+.rules-2col { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); margin-top: var(--space-6); }
+.rule-block { border: 1px solid var(--hairline); border-radius: var(--radius-card); padding: var(--space-4); background: var(--hull); }
+.rule-block h4 { font-size: 14px; font-weight: 800; letter-spacing: 0.02em; margin-bottom: var(--space-2); }
+.rule-block.ok h4 { color: var(--signal-blue); }
+.rule-block.ko h4 { color: var(--anclora-gold); }
+.rule-block ul { list-style: none; }
+.rule-block li { color: var(--harbor-mist); font-size: 14.5px; padding: 4px 0 4px 20px; position: relative; }
+.rule-block.ok li::before { content: "✓"; position: absolute; left: 0; color: var(--signal-blue); font-size: 12px; top: 7px; }
+.rule-block.ko li::before { content: "✕"; position: absolute; left: 0; color: var(--anclora-gold); font-size: 12px; top: 7px; }
+.spec-strip {
+  display: flex; flex-wrap: wrap; gap: var(--space-4); margin-top: var(--space-4);
+  padding: var(--space-3) var(--space-4); border: 1px dashed var(--hairline-strong); border-radius: var(--radius-card);
+  font-family: var(--mono); font-size: 12px; color: var(--harbor-mist);
+}
+.spec-strip b { color: var(--signal-blue); font-weight: 500; }
+
+/* ---------- palette ---------- */
+.swatch-stack { margin-top: var(--space-6); border-radius: var(--radius-card); overflow: hidden; border: 1px solid var(--hairline); }
+.swatch {
+  display: grid; grid-template-columns: 88px 1fr auto; align-items: center; gap: var(--space-3);
+  padding: 18px var(--space-4);
+}
+.swatch + .swatch { border-top: 1px solid rgba(10,31,61,0.35); }
+.swatch .chip { width: 88px; height: 44px; border-radius: var(--radius-control); border: 1px solid rgba(255,255,255,0.14); }
+.swatch .name { font-weight: 800; font-size: 15.5px; }
+.swatch .role { font-size: 13.5px; opacity: 0.85; }
+.swatch .hex { font-family: var(--mono); font-size: 13px; font-weight: 500; }
+.swatch.on-dark { color: var(--white-deck); }
+.swatch.on-dark .role { color: inherit; }
+.swatch.on-light { color: var(--anchor-navy); }
+.contrast-table { width: 100%; border-collapse: collapse; margin-top: var(--space-4); font-size: 14px; }
+.contrast-table th {
+  text-align: left; font-family: var(--mono); font-size: 11px; font-weight: 500; color: var(--signal-blue);
+  padding: 10px 12px; border-bottom: 1px solid var(--hairline-strong); letter-spacing: 0.04em;
+}
+.contrast-table td { padding: 10px 12px; border-bottom: 1px solid var(--hairline); color: var(--harbor-mist); }
+.contrast-table td:first-child { color: var(--white-deck); }
+.contrast-table .mono { font-family: var(--mono); font-size: 12.5px; }
+.pill { display: inline-block; padding: 2px 10px; border-radius: 999px; font-family: var(--mono); font-size: 11px; font-weight: 500; }
+.pill.aa { background: rgba(95,168,255,0.14); color: var(--signal-blue); }
+.pill.large { background: rgba(197,160,89,0.16); color: var(--anclora-gold); }
+
+/* ---------- type ---------- */
+.type-spec { border: 1px solid var(--hairline); border-radius: var(--radius-card); overflow: hidden; margin-top: var(--space-6); }
+.type-row { padding: var(--space-4); background: var(--hull); }
+.type-row + .type-row { border-top: 1px solid var(--hairline); }
+.type-row .meta { font-family: var(--mono); font-size: 11px; color: var(--signal-blue); margin-bottom: 6px; letter-spacing: 0.04em; }
+.type-row .sample { color: var(--white-deck); }
+.t-display .sample { font-size: clamp(36px, 5vw, 56px); font-weight: 800; letter-spacing: -0.025em; line-height: 1.05; }
+.t-h2 .sample { font-size: 32px; font-weight: 700; letter-spacing: -0.02em; }
+.t-h3 .sample { font-size: 22px; font-weight: 600; }
+.t-body .sample { font-size: 17px; font-weight: 400; color: var(--harbor-mist); max-width: 65ch; }
+.t-mono .sample { font-family: var(--mono); font-size: 14px; color: var(--signal-blue); }
+.font-face { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); margin-top: var(--space-4); }
+.face { border: 1px solid var(--hairline); border-radius: var(--radius-card); padding: var(--space-6); background: var(--hull); }
+.face .aa { font-size: 72px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
+.face.mono-face .aa { font-family: var(--mono); font-weight: 500; letter-spacing: 0; }
+.face h4 { margin-top: var(--space-3); font-size: 16px; }
+.face p { font-size: 13.5px; color: var(--harbor-mist); margin-top: 4px; }
+.face .weights { margin-top: var(--space-3); font-family: var(--mono); font-size: 11.5px; color: var(--signal-blue); }
+
+/* ---------- components demo ---------- */
+.demo-surface {
+  margin-top: var(--space-6); background: var(--deep-ocean); border: 1px solid var(--hairline);
+  border-radius: var(--radius-card); padding: var(--space-8);
+  display: flex; flex-direction: column; gap: var(--space-6);
+}
+.demo-row { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; }
+.demo-label { font-family: var(--mono); font-size: 11px; color: var(--signal-blue); letter-spacing: 0.04em; margin-bottom: -8px; width: 100%; }
+.btn {
+  font-family: var(--sans); font-weight: 700; font-size: 15px; border-radius: var(--radius-control);
+  padding: 12px 22px; border: none; cursor: pointer;
+  transition: background var(--dur-base) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+}
+.btn-primary { background: var(--command-purple); color: var(--white-deck); }
+.btn-primary:hover { background: #7d77ff; }
+.btn-secondary { background: transparent; color: var(--signal-blue); border: 1px solid rgba(95,168,255,0.45); }
+.btn-secondary:hover { background: rgba(95,168,255,0.1); }
+.badge { font-family: var(--mono); font-size: 11.5px; font-weight: 500; padding: 4px 12px; border-radius: 999px; letter-spacing: 0.04em; }
+.badge.blue { background: rgba(95,168,255,0.14); color: var(--signal-blue); }
+.badge.purple { background: rgba(108,99,255,0.16); color: #a39fff; }
+.badge.gold { background: rgba(197,160,89,0.15); color: var(--anclora-gold); }
+.badge.silver { background: rgba(229,231,235,0.1); color: var(--anclora-silver); }
+.demo-card {
+  flex: 1 1 240px; background: var(--hull); border: 1px solid var(--hairline);
+  border-radius: var(--radius-card); padding: var(--space-4);
+  transition: border-color var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+}
+.demo-card:hover { border-color: rgba(95,168,255,0.35); box-shadow: 0 8px 30px rgba(95,168,255,0.08); }
+.demo-card .line { font-family: var(--mono); font-size: 10.5px; color: var(--signal-blue); letter-spacing: 0.06em; }
+.demo-card h5 { font-size: 17px; font-weight: 700; margin: 8px 0 4px; }
+.demo-card p { font-size: 14px; color: var(--harbor-mist); }
+.divider-demo { height: 1px; background: var(--anclora-silver); opacity: 0.18; }
+
+/* ---------- voice ---------- */
+.voice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); margin-top: var(--space-6); }
+.quote-block { border: 1px solid var(--hairline); border-radius: var(--radius-card); padding: var(--space-4); background: var(--hull); }
+.quote-block h4 { font-size: 13px; font-family: var(--mono); font-weight: 500; letter-spacing: 0.05em; margin-bottom: var(--space-3); }
+.quote-block.yes h4 { color: var(--signal-blue); }
+.quote-block.no h4 { color: var(--anclora-gold); }
+.quote-block p { font-size: 15.5px; padding: 8px 0; border-bottom: 1px solid var(--hairline); color: var(--white-deck); }
+.quote-block.no p { color: var(--harbor-mist); text-decoration: line-through; text-decoration-color: rgba(197,160,89,0.5); text-decoration-thickness: 1px; }
+.quote-block p:last-child { border-bottom: none; }
+.traits { display: flex; flex-wrap: wrap; gap: 10px; margin-top: var(--space-4); }
+.trait { font-weight: 600; font-size: 14px; color: var(--white-deck); border: 1px solid var(--hairline-strong); border-radius: 999px; padding: 6px 16px; }
+
+/* ---------- ecosystem ---------- */
+.eco-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-3); margin-top: var(--space-6); }
+.eco-line {
+  border-top: 1px solid var(--hairline-strong); padding-top: var(--space-3);
+}
+.eco-line .idx { font-family: var(--mono); font-size: 11px; color: var(--signal-blue); }
+.eco-line h4 { font-size: 15.5px; font-weight: 800; margin: 6px 0 4px; letter-spacing: -0.01em; }
+.eco-line p { font-size: 13.5px; color: var(--harbor-mist); line-height: 1.55; }
+.tier { margin-top: var(--space-6); }
+.tier-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: var(--space-2); }
+.tier-head .t-num { font-family: var(--mono); font-size: 11px; color: var(--anclora-gold); }
+.tier-head h4 { font-size: 16px; font-weight: 800; }
+.product { display: flex; align-items: baseline; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--hairline); }
+.product .p-name { font-weight: 700; font-size: 15.5px; min-width: 210px; }
+.product .p-desc { color: var(--harbor-mist); font-size: 14.5px; flex: 1; }
+.product.tier2 .p-name { color: var(--harbor-mist); font-weight: 600; }
+
+/* ---------- footer ---------- */
+.colophon { padding: var(--space-12) var(--space-8); max-width: 1020px; }
+.colophon .lockup { width: min(280px, 70vw); margin-bottom: var(--space-4); }
+.colophon .fine { font-family: var(--mono); font-size: 11.5px; color: var(--harbor-mist); line-height: 2; }
+.colophon .fine b { color: var(--signal-blue); font-weight: 500; }
+.colophon .gold-line { width: 64px; height: 1px; background: var(--anclora-gold); margin: var(--space-4) 0; opacity: 0.8; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 960px) {
+  .shell { grid-template-columns: 1fr; }
+  nav.chapters {
+    position: static; height: auto; flex-direction: row; flex-wrap: wrap;
+    border-right: none; border-bottom: 1px solid var(--hairline);
+    padding: var(--space-3); align-items: center;
+  }
+  nav.chapters .nav-logo { margin-bottom: 0; margin-right: var(--space-3); }
+  nav.chapters a { padding: 6px 8px; font-size: 12.5px; }
+  nav.chapters a .num { display: none; }
+  nav.chapters .nav-foot { display: none; }
+  .chapter, .colophon { padding: var(--space-8) var(--space-3); }
+  .variant-grid, .rules-2col, .voice-grid, .font-face { grid-template-columns: 1fr; }
+  .product { flex-direction: column; gap: 2px; }
+  .product .p-name { min-width: 0; }
+  .swatch { grid-template-columns: 64px 1fr; }
+  .swatch .hex { grid-column: 2; }
+  .demo-surface { padding: var(--space-4); }
+}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="cover-inner">
+    <div class="medalla-wrap reveal d1">
+      <img class="medalla" src="assets/anclora-group-medalla-1024.png" alt="Medalla circular de Anclora Group: anillo metálico plateado y tres ondas sobre fondo navy texturizado">
+    </div>
+    <h1 class="reveal d2">Anclora Group</h1>
+    <p class="tagline reveal d3">Tecnología aplicada para operar con más claridad, control e inteligencia.</p>
+    <div class="doc-meta reveal d4">
+      <span>BRAND BOOK <b>v2.0</b> · DEFINITIVO</span>
+      <span>DOMINIO <b>group.anclora.com</b></span>
+      <span>CONTACTO <b>antonio@anclora.com</b></span>
+      <span class="gold">DIRECCIÓN CREATIVA · PREMIUM NAVAL TECH</span>
+    </div>
+  </div>
+</header>
+
+<div class="shell">
+
+<nav class="chapters" aria-label="Capítulos del brand book">
+  <div class="nav-logo">
+    <img src="assets/anclora-group-medalla-1024.png" alt="">
+    <span>Anclora Group</span>
+  </div>
+  <a href="#esencia"><span class="num">01</span>Esencia</a>
+  <a href="#logo"><span class="num">02</span>Logo</a>
+  <a href="#color"><span class="num">03</span>Color</a>
+  <a href="#tipografia"><span class="num">04</span>Tipografía</a>
+  <a href="#ui"><span class="num">05</span>Estilo de UI</a>
+  <a href="#voz"><span class="num">06</span>Voz</a>
+  <a href="#ecosistema"><span class="num">07</span>Ecosistema</a>
+  <a href="#metodo"><span class="num">08</span>Método y principios</a>
+  <a href="#colophon"><span class="num">09</span>Colofón</a>
+  <div class="nav-foot">ANCLORA_GROUP · IDENTITY SYSTEM<br>STATUS: CLOSED · v2.0<br>ES / CAT / EN / DE / FR / IT</div>
+</nav>
+
+<main>
+
+<section class="chapter" id="esencia">
+  <div class="chapter-head"><span class="num">01</span><h2>Esencia y posicionamiento</h2></div>
+  <p class="lede">Anclora Group es una boutique tecnológica founder-led que crea productos digitales premium para fiscalidad, automatización, inteligencia inmobiliaria, eficiencia, contenido y operaciones empresariales.</p>
+  <p>La marca transmite <strong>claridad, control, inteligencia aplicada, dirección, confianza y ejecución</strong>. No es una agencia improvisada de IA ni una colección dispersa de experimentos: es un ecosistema tecnológico premium, construido con criterio, método y visión de producto.</p>
+  <p>El ángulo fuerte no es «hacemos IA». El ángulo fuerte es: <strong>construimos sistemas digitales claros para operar mejor</strong>.</p>
+  <h3>Territorio de marca</h3>
+  <p>Anclora Group vive en un territorio distinto al de Anclora Insights: <strong>navy oscuro, plata, metal, precisión, sistemas y navegación</strong>. La estética editorial — papel, tinta, serif, oro dominante — queda reservada en exclusiva a Anclora Insights. La metáfora central del grupo es <strong>anclaje + navegación + control operativo</strong>: la marca se siente como una cabina de mando.</p>
+</section>
+
+<section class="chapter" id="logo">
+  <div class="chapter-head"><span class="num">02</span><h2>Logo</h2></div>
+  <p class="lede">Medalla circular: fondo navy texturizado, anillo metálico plateado biselado y tres ondas plateadas en relieve. El círculo es el ecosistema; el metal, la solidez; las ondas, el flujo controlado.</p>
+
+  <div class="logo-hero">
+    <img src="assets/anclora-group-medalla-1024.png" alt="Medalla de Anclora Group">
+  </div>
+
+  <div class="variant-grid">
+    <figure class="variant dark">
+      <div class="stage"><img src="assets/anclora-group-lockup-horizontal-sobre-oscuro.png" alt="Lockup horizontal sobre fondo oscuro"></div>
+      <figcaption><b>Lockup horizontal · oscuro</b>Header de landing sobre navy</figcaption>
+    </figure>
+    <figure class="variant light">
+      <div class="stage"><img src="assets/anclora-group-lockup-horizontal-sobre-claro.png" alt="Lockup horizontal sobre fondo claro"></div>
+      <figcaption><b>Lockup horizontal · claro</b>Documentos y headers sobre White Deck</figcaption>
+    </figure>
+    <figure class="variant dark">
+      <div class="stage"><img src="assets/anclora-group-lockup-vertical-sobre-oscuro.png" alt="Lockup vertical sobre fondo oscuro"></div>
+      <figcaption><b>Lockup vertical · oscuro</b>Portadas y piezas oscuras</figcaption>
+    </figure>
+    <figure class="variant light">
+      <div class="stage"><img src="assets/anclora-group-lockup-vertical-sobre-claro.png" alt="Lockup vertical sobre fondo claro"></div>
+      <figcaption><b>Lockup vertical · claro</b>Documentos sobre fondo claro</figcaption>
+    </figure>
+    <figure class="variant dark">
+      <div class="stage"><img src="assets/anclora-group-monocromo-claro.png" alt="Monocromo claro: trazo plata sin relleno navy"></div>
+      <figcaption><b>Monocromo claro</b>Una tinta, marcas de agua, escala reducida</figcaption>
+    </figure>
+    <figure class="variant light">
+      <div class="stage"><img src="assets/anclora-group-monocromo-oscuro.png" alt="Monocromo oscuro: trazo navy puro"></div>
+      <figcaption><b>Monocromo oscuro</b>Una tinta sobre fondos claros</figcaption>
+    </figure>
+  </div>
+
+  <div class="spec-strip">
+    <span>WORDMARK <b>DM Sans 800</b></span>
+    <span>MARGEN DE SEGURIDAD <b>≥ 20% del diámetro</b></span>
+    <span>TAMAÑO MÍNIMO <b>24px</b></span>
+    <span>FAVICONS <b>32 / 64 / 180 / 512px + .ico</b></span>
+  </div>
+
+  <div class="rules-2col">
+    <div class="rule-block ok">
+      <h4>USO CORRECTO</h4>
+      <ul>
+        <li>Margen de seguridad mínimo del 20% del diámetro</li>
+        <li>Sobre fondos navy u oscuros neutros (versión oscura)</li>
+        <li>Como sello de confianza en footer y favicon</li>
+        <li>Monocromos para una tinta y marcas de agua</li>
+      </ul>
+    </div>
+    <div class="rule-block ko">
+      <h4>USO INCORRECTO</h4>
+      <ul>
+        <li>Deformar el círculo o recortar el anillo metálico</li>
+        <li>Recolorear las ondas fuera de plata/blanco sobre navy</li>
+        <li>Añadir sombras al relieve metálico existente</li>
+        <li>Usar sobre fondos con bajo contraste</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="chapter" id="color">
+  <div class="chapter-head"><span class="num">03</span><h2>Sistema de color</h2></div>
+  <p class="lede">El navy y el oro heredan del Skill Máster del ecosistema; el acento tecnológico diferencia al grupo. El oro eleva, nunca domina.</p>
+
+  <div class="swatch-stack">
+    <div class="swatch on-dark" style="background:#0A1F3D">
+      <div class="chip" style="background:#0A1F3D;border-color:rgba(255,255,255,0.25)"></div>
+      <div><div class="name">Anchor Navy</div><div class="role">Fondo principal</div></div>
+      <div class="hex">#0A1F3D</div>
+    </div>
+    <div class="swatch on-dark" style="background:#111827">
+      <div class="chip" style="background:#111827"></div>
+      <div><div class="name">Deep Ocean</div><div class="role">Secciones y superficies</div></div>
+      <div class="hex">#111827</div>
+    </div>
+    <div class="swatch on-dark" style="background:#6C63FF">
+      <div class="chip" style="background:#6C63FF"></div>
+      <div><div class="name">Command Purple</div><div class="role">Acento tecnológico principal</div></div>
+      <div class="hex">#6C63FF</div>
+    </div>
+    <div class="swatch on-dark" style="background:#5FA8FF">
+      <div class="chip" style="background:#5FA8FF"></div>
+      <div><div class="name">Signal Blue</div><div class="role">Enlaces, acciones, estados activos</div></div>
+      <div class="hex">#5FA8FF</div>
+    </div>
+    <div class="swatch" style="background:#E5E7EB;color:#0A1F3D">
+      <div class="chip" style="background:#E5E7EB"></div>
+      <div><div class="name">Anclora Silver</div><div class="role">Líneas, brillos, logo, detalles</div></div>
+      <div class="hex">#E5E7EB</div>
+    </div>
+    <div class="swatch on-dark" style="background:#C5A059">
+      <div class="chip" style="background:#C5A059"></div>
+      <div><div class="name">Anclora Gold</div><div class="role">Énfasis premium mínimo, uso restringido</div></div>
+      <div class="hex">#C5A059</div>
+    </div>
+    <div class="swatch" style="background:#CBD5E1;color:#0A1F3D">
+      <div class="chip" style="background:#CBD5E1"></div>
+      <div><div class="name">Harbor Mist</div><div class="role">Texto secundario</div></div>
+      <div class="hex">#CBD5E1</div>
+    </div>
+    <div class="swatch" style="background:#F8FAFC;color:#0A1F3D">
+      <div class="chip" style="background:#F8FAFC;border-color:rgba(10,31,61,0.2)"></div>
+      <div><div class="name">White Deck</div><div class="role">Fondos claros, texto principal sobre navy</div></div>
+      <div class="hex">#F8FAFC</div>
+    </div>
+  </div>
+
+  <h3>Contraste verificado (WCAG)</h3>
+  <table class="contrast-table">
+    <thead><tr><th>COMBINACIÓN</th><th>RATIO</th><th>USO</th></tr></thead>
+    <tbody>
+      <tr><td>White Deck sobre Anchor Navy</td><td class="mono">15.7:1</td><td><span class="pill aa">TODO TEXTO</span></td></tr>
+      <tr><td>Harbor Mist sobre Anchor Navy</td><td class="mono">11.1:1</td><td><span class="pill aa">TODO TEXTO</span></td></tr>
+      <tr><td>Harbor Mist sobre Deep Ocean</td><td class="mono">11.9:1</td><td><span class="pill aa">TODO TEXTO</span></td></tr>
+      <tr><td>Signal Blue sobre Anchor Navy</td><td class="mono">6.7:1</td><td><span class="pill aa">TEXTO Y ENLACES</span></td></tr>
+      <tr><td>Anclora Gold sobre Anchor Navy</td><td class="mono">6.7:1</td><td><span class="pill aa">ACENTOS</span></td></tr>
+      <tr><td>Command Purple sobre Anchor Navy</td><td class="mono">3.8:1</td><td><span class="pill large">SOLO TEXTO GRANDE Y GRÁFICOS</span></td></tr>
+      <tr><td>Anchor Navy sobre White Deck</td><td class="mono">15.7:1</td><td><span class="pill aa">SECCIONES CLARAS</span></td></tr>
+    </tbody>
+  </table>
+
+  <h3>Uso del oro</h3>
+  <div class="rules-2col">
+    <div class="rule-block ok">
+      <h4>CORRECTO</h4>
+      <ul>
+        <li>Pequeños acentos y badges premium puntuales</li>
+        <li>Líneas finas y detalles de confianza en el footer</li>
+      </ul>
+    </div>
+    <div class="rule-block ko">
+      <h4>INCORRECTO</h4>
+      <ul>
+        <li>Botones grandes o fondos extensos en oro</li>
+        <li>Cualquier uso que compita con Anclora Insights</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="chapter" id="tipografia">
+  <div class="chapter-head"><span class="num">04</span><h2>Tipografía</h2></div>
+  <p class="lede">DM Sans lleva la voz de la interfaz y los titulares. JetBrains Mono se reserva a datos, código y señales — nunca como decoración. Sin serif editorial: ese territorio es de Anclora Insights.</p>
+
+  <div class="font-face">
+    <div class="face">
+      <div class="aa">Aa</div>
+      <h4>DM Sans</h4>
+      <p>Interfaz general, navegación, botones, cards, formularios, texto y titulares.</p>
+      <div class="weights">400 · 600 · 700 · 800</div>
+    </div>
+    <div class="face mono-face">
+      <div class="aa">Aa</div>
+      <h4>JetBrains Mono</h4>
+      <p>Métricas, etiquetas técnicas, IDs, badges y datos operativos.</p>
+      <div class="weights">400 · 500</div>
+    </div>
+  </div>
+
+  <div class="type-spec">
+    <div class="type-row t-display">
+      <div class="meta">DISPLAY · 800 · −0.025em · máx. 6rem</div>
+      <div class="sample">Sistemas claros para operar mejor</div>
+    </div>
+    <div class="type-row t-h2">
+      <div class="meta">H2 SECCIÓN · 700–800 · −0.02em</div>
+      <div class="sample">El ecosistema Anclora</div>
+    </div>
+    <div class="type-row t-h3">
+      <div class="meta">H3 / CARD · 600</div>
+      <div class="sample">Anclora Fiscal</div>
+    </div>
+    <div class="type-row t-body">
+      <div class="meta">CUERPO · 400 · 16–18px · medida 65–75ch</div>
+      <div class="sample">Creamos productos digitales propios para transformar procesos complejos en sistemas claros, útiles y escalables.</div>
+    </div>
+    <div class="type-row t-mono">
+      <div class="meta">DATO / BADGE · JetBrains Mono 500 · 12–13px</div>
+      <div class="sample">ANCLORA_GROUP · STATUS: ACTIVE · v2.0</div>
+    </div>
+  </div>
+</section>
+
+<section class="chapter" id="ui">
+  <div class="chapter-head"><span class="num">05</span><h2>Estilo de UI</h2></div>
+  <p class="lede">Superficies Deep Ocean con hairlines plateadas al 12%, radio 8px en controles y 14px en cards, movimiento discreto de 160–220ms con ease-out exponencial. Los componentes de abajo funcionan: pruébalos.</p>
+
+  <div class="demo-surface">
+    <div class="demo-row">
+      <span class="demo-label">BOTONES</span>
+      <button class="btn btn-primary">Explorar el ecosistema</button>
+      <button class="btn btn-secondary">Contactar con Antonio</button>
+    </div>
+    <div class="demo-row">
+      <span class="demo-label">BADGES</span>
+      <span class="badge blue">ACTIVO</span>
+      <span class="badge purple">MVP</span>
+      <span class="badge gold">PREMIUM</span>
+      <span class="badge silver">PILOTO</span>
+    </div>
+    <div class="divider-demo"></div>
+    <div class="demo-row">
+      <span class="demo-label">CARDS DE PRODUCTO</span>
+      <div class="demo-card">
+        <div class="line">FISCAL &amp; COMPLIANCE</div>
+        <h5>Anclora Fiscal</h5>
+        <p>Facturación, fiscalidad y Verifactu para operaciones digitales.</p>
+      </div>
+      <div class="demo-card">
+        <div class="line">OPERATIONAL AUTOMATION</div>
+        <h5>Anclora SyncXML</h5>
+        <p>Automatización documental y generación XML oficial.</p>
+      </div>
+      <div class="demo-card">
+        <div class="line">REAL ESTATE INTELLIGENCE</div>
+        <h5>Private Estates</h5>
+        <p>Línea inmobiliaria premium en Mallorca y activos selectos.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="spec-strip">
+    <span>GRID <b>12 col desktop · 4 mobile</b></span>
+    <span>RADIO <b>8px controles · 14px cards</b></span>
+    <span>TRANSICIÓN <b>160–220ms</b></span>
+    <span>EASING <b>cubic-bezier(0.16, 1, 0.3, 1)</b></span>
+    <span>ICONOS <b>lineales · 1.5px stroke</b></span>
+  </div>
+</section>
+
+<section class="chapter" id="voz">
+  <div class="chapter-head"><span class="num">06</span><h2>Personalidad y voz</h2></div>
+  <p class="lede">El Arquitecto Operativo construye sistemas y ordena complejidad; el Navegante aporta dirección y criterio. Anclora Group suena como una marca que sabe construir, no como una que solo promete.</p>
+  <div class="traits">
+    <span class="trait">Clara</span><span class="trait">Estratégica</span><span class="trait">Sobria</span>
+    <span class="trait">Precisa</span><span class="trait">Premium</span><span class="trait">Humana</span>
+    <span class="trait">Orientada a ejecución</span>
+  </div>
+  <div class="voice-grid">
+    <div class="quote-block yes">
+      <h4>ASÍ SUENA ANCLORA</h4>
+      <p>Diseñamos productos digitales para reducir fricción operativa.</p>
+      <p>Convertimos procesos complejos en sistemas claros.</p>
+      <p>Creamos herramientas propias para operar con más control.</p>
+      <p>Construimos tecnología aplicada, no ruido.</p>
+    </div>
+    <div class="quote-block no">
+      <h4>ASÍ NO</h4>
+      <p>Revolucionamos el futuro de la IA.</p>
+      <p>Somos líderes mundiales en transformación digital.</p>
+      <p>Automatizamos todo con inteligencia artificial.</p>
+      <p>La solución definitiva para todos los negocios.</p>
+    </div>
+  </div>
+</section>
+
+<section class="chapter" id="ecosistema">
+  <div class="chapter-head"><span class="num">07</span><h2>Arquitectura de marca</h2></div>
+  <p class="lede">Anclora Group actúa como paraguas y punto de entrada institucional. Cinco líneas estratégicas, una jerarquía pública de tres niveles: foco, madurez percibida y claridad comercial.</p>
+
+  <div class="eco-row">
+    <div class="eco-line"><div class="idx">L·01</div><h4>Fiscal &amp; Compliance</h4><p>Facturación, fiscalidad, Verifactu y control documental.</p></div>
+    <div class="eco-line"><div class="idx">L·02</div><h4>Operational Automation</h4><p>Intake, documentos, señales y operaciones internas.</p></div>
+    <div class="eco-line"><div class="idx">L·03</div><h4>Energy &amp; Efficiency</h4><p>Análisis de eficiencia, ahorro y oportunidades energéticas.</p></div>
+    <div class="eco-line"><div class="idx">L·04</div><h4>Real Estate Intelligence</h4><p>Mercado inmobiliario premium, captación, datos y operaciones.</p></div>
+    <div class="eco-line"><div class="idx">L·05</div><h4>Publishing &amp; Knowledge</h4><p>Contenido digital y productos editoriales de pensamiento aplicado.</p></div>
+  </div>
+
+  <div class="tier">
+    <div class="tier-head"><span class="t-num">NIVEL 1</span><h4>Productos principales</h4></div>
+    <div class="product"><span class="p-name">Anclora Fiscal</span><span class="p-desc">Fiscalidad, facturación y cumplimiento para operaciones digitales.</span></div>
+    <div class="product"><span class="p-name">Anclora SyncXML</span><span class="p-desc">Automatización documental para hospedajes y generación XML oficial.</span></div>
+    <div class="product"><span class="p-name">Anclora EnergyScan</span><span class="p-desc">Informes digitales para analizar ahorro y eficiencia energética.</span></div>
+    <div class="product"><span class="p-name">Anclora Private Estates</span><span class="p-desc">Línea inmobiliaria premium centrada en Mallorca y activos selectos.</span></div>
+    <div class="product"><span class="p-name">Anclora Insights</span><span class="p-desc">Sello editorial y productos digitales de conocimiento aplicado.</span></div>
+  </div>
+
+  <div class="tier">
+    <div class="tier-head"><span class="t-num">NIVEL 2</span><h4>Infraestructura del ecosistema</h4></div>
+    <div class="product tier2"><span class="p-name">Anclora Nexus</span><span class="p-desc">Capa de intake, señales y orquestación del ecosistema.</span></div>
+    <div class="product tier2"><span class="p-name">Anclora Command Center</span><span class="p-desc">Cabina central para visualizar operaciones, productos y prioridades.</span></div>
+    <div class="product tier2"><span class="p-name">Anclora Synergi</span><span class="p-desc">Inteligencia comercial y automatización aplicada al entorno inmobiliario.</span></div>
+    <div class="product tier2"><span class="p-name">Anclora Data LAB</span><span class="p-desc">Análisis de datos e inteligencia aplicada para decisiones estratégicas.</span></div>
+  </div>
+  <p style="margin-top: var(--space-4); font-size: 14px;">Nivel 3: el resto del ecosistema permanece oculto en la landing pública, para proteger foco, madurez percibida y claridad comercial.</p>
+</section>
+
+<section class="chapter" id="metodo">
+  <div class="chapter-head"><span class="num">08</span><h2>Método y principios</h2></div>
+  <p class="lede">El Método Anclora convierte observación en sistemas operativos en cuatro pasos.</p>
+
+  <div class="eco-row">
+    <div class="eco-line"><div class="idx">01</div><h4>Observe</h4><p>Entender la fricción real antes de escribir una línea.</p></div>
+    <div class="eco-line"><div class="idx">02</div><h4>Design</h4><p>Convertir la observación en un sistema claro y usable.</p></div>
+    <div class="eco-line"><div class="idx">03</div><h4>Anchor</h4><p>Anclar el producto a operaciones reales y datos fiables.</p></div>
+    <div class="eco-line"><div class="idx">04</div><h4>Scale</h4><p>Escalar lo que funciona sin perder claridad ni control.</p></div>
+  </div>
+
+  <h3>Principios</h3>
+  <table class="contrast-table">
+    <tbody>
+      <tr><td>Claridad antes que complejidad</td><td>La tecnología debe ordenar, no añadir ruido.</td></tr>
+      <tr><td>IA aplicada, no decorativa</td><td>Solo tiene sentido cuando mejora una decisión, una tarea o un proceso.</td></tr>
+      <tr><td>Producto antes que promesa</td><td>Cada iniciativa resuelve una fricción concreta.</td></tr>
+      <tr><td>Privacidad y control por diseño</td><td>Trazabilidad y gobernanza forman parte del producto.</td></tr>
+      <tr><td>Ejecución antes que narrativa</td><td>Los productos demuestran; la marca no promete.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+</main>
+</div>
+
+<footer class="colophon" id="colophon">
+  <img class="lockup" src="assets/anclora-group-lockup-horizontal-sobre-oscuro.png" alt="Anclora Group">
+  <div class="gold-line"></div>
+  <p class="fine">
+    BRAND BOOK <b>v2.0 · DEFINITIVO</b> — CONSOLIDA Y SUSTITUYE LAS VERSIONES ANTERIORES<br>
+    SISTEMA CERRADO · SIN BLOQUEOS PARA LA LANDING DE <b>group.anclora.com</b><br>
+    ES / CAT / EN / DE / FR / IT · CONTACTO <b>antonio@anclora.com</b><br>
+    DESDE MALLORCA · FOUNDER-LED, PRODUCT-DRIVEN
+  </p>
+</footer>
+
+</body>
+</html>

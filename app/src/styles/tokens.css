@@ -1,0 +1,36 @@
+:root {
+  /* Color (brand book v2.0 — sección 6) */
+  --anchor-navy: #0A1F3D;
+  --deep-ocean: #111827;
+  --command-purple: #6C63FF;
+  --signal-blue: #5FA8FF;
+  --anclora-silver: #E5E7EB;
+  --anclora-gold: #C5A059;
+  --harbor-mist: #CBD5E1;
+  --white-deck: #F8FAFC;
+
+  /* Espaciado (base 8 — sección 8) */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-6: 48px;
+  --space-8: 64px;
+  --space-12: 96px;
+
+  /* Radio */
+  --radius-control: 8px;   /* botones, inputs, badges */
+  --radius-card: 14px;     /* cards y superficies (12-16px) */
+
+  /* Movimiento */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 160ms;
+  --dur-base: 220ms;
+
+  /* Elevación (una sola declaración: borde O sombra, no ambas) */
+  --border-subtle: 1px solid rgba(229, 231, 235, 0.12);
+
+  /* Tipografía */
+  --font-sans: 'DM Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
+}

@@ -1,0 +1,232 @@
+/* Hero */
+.hero {
+  position: relative;
+  padding-block: var(--space-12) var(--space-8);
+  text-align: center;
+  overflow: hidden;
+  background:
+    radial-gradient(60% 50% at 50% 0%, rgba(108, 99, 255, 0.08), transparent),
+    radial-gradient(50% 40% at 80% 100%, rgba(95, 168, 255, 0.06), transparent);
+}
+
+.hero__medallion {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto var(--space-3);
+  animation: hero-rise var(--dur-base) var(--ease-out) both;
+}
+
+.hero__medallion img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.hero h1 {
+  margin-bottom: var(--space-2);
+}
+
+.hero__tagline {
+  margin: 0 auto var(--space-2);
+  font-size: 1.25rem;
+  color: var(--white-deck);
+  max-width: 42ch;
+}
+
+.hero__subtitle {
+  margin: 0 auto var(--space-4);
+  color: var(--harbor-mist);
+  max-width: 56ch;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.hero__microcopy {
+  color: var(--harbor-mist);
+  font-size: 0.8125rem;
+}
+
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__medallion {
+    animation: none;
+  }
+}
+
+/* Ecosystem */
+.ecosystem-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-3);
+}
+
+@media (min-width: 900px) {
+  .ecosystem-grid {
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--space-4);
+  }
+  .ecosystem-grid > *:nth-child(1) {
+    grid-column: span 7;
+  }
+  .ecosystem-grid > *:nth-child(2) {
+    grid-column: span 5;
+  }
+  .ecosystem-grid > *:nth-child(3) {
+    grid-column: span 5;
+  }
+  .ecosystem-grid > *:nth-child(4) {
+    grid-column: span 7;
+  }
+  .ecosystem-grid > *:nth-child(5) {
+    grid-column: span 12;
+  }
+}
+
+/* Products */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-3);
+}
+
+@media (min-width: 900px) {
+  .products-grid {
+    grid-template-columns: repeat(12, 1fr);
+  }
+  .products-grid > * {
+    grid-column: span 4;
+  }
+}
+
+/* Infrastructure */
+.infrastructure-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+/* Method */
+.method-sequence {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+@media (min-width: 900px) {
+  .method-sequence {
+    flex-direction: row;
+    align-items: stretch;
+  }
+}
+
+.method-step {
+  flex: 1;
+  position: relative;
+  padding: var(--space-3);
+  border: var(--border-subtle);
+  border-radius: var(--radius-card);
+  background: var(--deep-ocean);
+}
+
+.method-step__index {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--signal-blue);
+  letter-spacing: 0.02em;
+}
+
+.method-step p {
+  color: var(--harbor-mist);
+  font-size: 0.9375rem;
+  margin-top: var(--space-1);
+}
+
+@media (min-width: 900px) {
+  .method-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: calc(var(--space-3) * -1);
+    width: var(--space-3);
+    height: 1px;
+    background: rgba(229, 231, 235, 0.2);
+  }
+}
+
+/* Founder */
+.founder {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-width: 68ch;
+}
+
+.founder p {
+  color: var(--harbor-mist);
+}
+
+/* Principles */
+.principles-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-3);
+}
+
+@media (min-width: 900px) {
+  .principles-list {
+    grid-template-columns: repeat(12, 1fr);
+  }
+  .principles-list > * {
+    grid-column: span 4;
+  }
+}
+
+.principle {
+  border-top: var(--border-subtle);
+  padding-top: var(--space-2);
+}
+
+.principle p {
+  color: var(--harbor-mist);
+  font-size: 0.9375rem;
+  margin-top: 4px;
+}
+
+/* Contact */
+.contact {
+  text-align: center;
+  max-width: 60ch;
+  margin-inline: auto;
+}
+
+.contact p {
+  color: var(--harbor-mist);
+  margin-inline: auto;
+}
+
+.contact__email {
+  margin-top: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: 0.9375rem;
+  color: var(--signal-blue);
+}
+
+.contact__cta {
+  margin-top: var(--space-3);
+}
