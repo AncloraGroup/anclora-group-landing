@@ -52,6 +52,7 @@ export interface Dictionary {
   founder: {
     title: string
     body: string
+    portraitAlt: string
   }
   principles: {
     title: string

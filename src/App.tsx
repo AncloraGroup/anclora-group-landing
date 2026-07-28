@@ -6,7 +6,6 @@ import Footer from './components/Footer'
 import Hero from './sections/Hero'
 import Ecosystem from './sections/Ecosystem'
 import Products from './sections/Products'
-import Infrastructure from './sections/Infrastructure'
 import Method from './sections/Method'
 import Founder from './sections/Founder'
 import Principles from './sections/Principles'
@@ -35,7 +34,6 @@ function AppRoutes() {
             <Hero />
             <Ecosystem />
             <Products />
-            <Infrastructure />
             <Method />
             <Founder />
             <Principles />

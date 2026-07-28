@@ -229,12 +229,28 @@
   }
 }
 
-/* Ecosystem — carriles, no cards: la densidad de cada fila (número de
-   productos, longitud de la descripción) es información real, no relleno
-   uniforme. */
+/* Ecosystem — carriles de señal conectados: cada línea estratégica es un nodo
+   sobre una línea vertical de transmisión. En hover, el nodo se ilumina como
+   un contacto de radar y los productos del carril responden. La densidad de
+   cada fila (número de productos, longitud de la descripción) es información
+   real, no relleno uniforme. */
 .ecosystem-rail-list {
+  position: relative;
   display: flex;
   flex-direction: column;
+}
+
+/* Línea de transmisión vertical que conecta los nodos (desktop) */
+@media (min-width: 900px) {
+  .ecosystem-rail-list::before {
+    content: '';
+    position: absolute;
+    top: var(--space-4);
+    bottom: var(--space-4);
+    left: 27px;
+    width: 1px;
+    background: linear-gradient(180deg, transparent, rgba(95, 168, 255, 0.22) 12%, rgba(95, 168, 255, 0.22) 88%, transparent);
+  }
 }
 
 .ecosystem-rail {
@@ -254,13 +270,40 @@
   border-top-color: rgba(95, 168, 255, 0.35);
 }
 
+.ecosystem-rail__node {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 2px;
+}
+
+/* Contacto del nodo: punto plateado que se enciende en signal-blue al hover */
+.ecosystem-rail__node::before {
+  content: '';
+  flex-shrink: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(229, 231, 235, 0.45);
+  transition: background var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+}
+
+.ecosystem-rail:hover .ecosystem-rail__node::before {
+  background: var(--signal-blue);
+  box-shadow: var(--glow-signal);
+}
+
 .ecosystem-rail__index {
   color: var(--signal-blue);
-  padding-top: 2px;
 }
 
 .ecosystem-rail__body h3 {
   color: var(--white-deck);
+  transition: color var(--dur-base) var(--ease-out);
+}
+
+.ecosystem-rail:hover .ecosystem-rail__body h3 {
+  color: var(--signal-blue);
 }
 
 .ecosystem-rail__body p {
@@ -283,11 +326,17 @@
   border: var(--border-subtle);
   border-radius: var(--radius-control);
   padding: 4px 10px;
+  transition: color var(--dur-base) var(--ease-out), border-color var(--dur-base) var(--ease-out);
+}
+
+.ecosystem-rail:hover .ecosystem-rail__products span {
+  color: var(--white-deck);
+  border-color: rgba(95, 168, 255, 0.3);
 }
 
 @media (min-width: 900px) {
   .ecosystem-rail {
-    grid-template-columns: 48px minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: 56px minmax(0, 1fr) minmax(0, 1fr);
     align-items: start;
     gap: var(--space-4);
   }
@@ -317,8 +366,27 @@
   }
 }
 
-/* Infrastructure — agrupado por línea estratégica: el nombre de categoría aparece una sola
-   vez por grupo, no repetido por fila (evita el efecto de lista rota con etiquetas duplicadas). */
+/* Infrastructure — subbloque de la sección Products (nivel 2 del ecosistema):
+   agrupado por línea estratégica, el nombre de categoría aparece una sola vez
+   por grupo, no repetido por fila. */
+.products-infra {
+  margin-top: var(--space-8);
+  padding-top: var(--space-6);
+  border-top: var(--border-subtle);
+}
+
+.products-infra__header {
+  max-width: 60ch;
+  margin-bottom: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.products-infra__header p {
+  color: var(--harbor-mist);
+}
+
 .infrastructure-list {
   display: flex;
   flex-direction: column;
@@ -342,7 +410,7 @@
   border-bottom: var(--border-subtle);
 }
 
-.infrastructure-row h3 {
+.infrastructure-row h4 {
   margin: 0;
   font-size: 1rem;
   font-weight: 600;
@@ -352,28 +420,83 @@
   border-bottom: none;
 }
 
-/* Method */
+/* Method — línea de tiempo, no cajas: los cuatro pasos cuelgan de una línea
+   de progresión que se ilumina en signal-blue cuando la secuencia entra en
+   viewport (.is-revealed la pone useRevealOnScroll). Cada paso es un nodo:
+   punto de contacto + índice mono + título. */
 .method-sequence {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
+  gap: var(--space-4);
 }
 
-@media (min-width: 900px) {
-  .method-sequence {
-    flex-direction: row;
-    align-items: stretch;
-  }
+/* Línea base (plateada) y línea de progresión (signal-blue) */
+.method-sequence::before,
+.method-sequence::after {
+  content: '';
+  position: absolute;
+}
+
+.method-sequence::before {
+  background: rgba(229, 231, 235, 0.14);
+}
+
+.method-sequence::after {
+  background: var(--signal-blue);
+  box-shadow: var(--glow-signal);
+  transition: transform 1400ms var(--ease-out) 240ms;
+}
+
+/* Móvil: línea vertical a la izquierda */
+.method-sequence::before {
+  top: var(--space-2);
+  bottom: var(--space-2);
+  left: 4px;
+  width: 1px;
+}
+
+.method-sequence::after {
+  top: var(--space-2);
+  bottom: var(--space-2);
+  left: 4px;
+  width: 1px;
+  transform: scaleY(0);
+  transform-origin: top;
+}
+
+.method-sequence.is-revealed::after {
+  transform: scaleY(1);
 }
 
 .method-step {
-  flex: 1;
   position: relative;
-  padding: var(--space-3);
-  border: var(--border-subtle);
-  border-radius: var(--radius-card);
-  background: var(--deep-ocean);
+  padding-left: var(--space-3);
 }
+
+/* Nodo de contacto del paso */
+.method-step::before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 0;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(229, 231, 235, 0.45);
+  transition: background var(--dur-slow) var(--ease-out), box-shadow var(--dur-slow) var(--ease-out);
+}
+
+.method-sequence.is-revealed .method-step::before {
+  background: var(--signal-blue);
+  box-shadow: var(--glow-signal);
+}
+
+/* Los nodos se encienden en secuencia, siguiendo la línea de progresión */
+.method-sequence.is-revealed .method-step:nth-child(1)::before { transition-delay: 240ms; }
+.method-sequence.is-revealed .method-step:nth-child(2)::before { transition-delay: 560ms; }
+.method-sequence.is-revealed .method-step:nth-child(3)::before { transition-delay: 880ms; }
+.method-sequence.is-revealed .method-step:nth-child(4)::before { transition-delay: 1200ms; }
 
 .method-step__index {
   font-family: var(--font-mono);
@@ -382,25 +505,57 @@
   letter-spacing: 0.02em;
 }
 
+.method-step h3 {
+  margin-top: 4px;
+}
+
 .method-step p {
   color: var(--harbor-mist);
   font-size: 0.9375rem;
   margin-top: var(--space-1);
 }
 
+/* Desktop: línea horizontal en la parte superior */
 @media (min-width: 900px) {
-  .method-step:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    right: calc(var(--space-3) * -1);
-    width: var(--space-3);
+  .method-sequence {
+    flex-direction: row;
+    align-items: stretch;
+    gap: var(--space-4);
+  }
+
+  .method-sequence::before {
+    top: 4px;
+    left: 0;
+    right: 0;
+    width: auto;
     height: 1px;
-    background: rgba(229, 231, 235, 0.2);
+  }
+
+  .method-sequence::after {
+    top: 4px;
+    left: 0;
+    right: 0;
+    bottom: auto;
+    width: auto;
+    height: 1px;
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  .method-step {
+    flex: 1;
+    padding-left: 0;
+    padding-top: var(--space-3);
+  }
+
+  .method-step::before {
+    top: 0;
   }
 }
 
-/* Founder */
+/* Founder — retrato duotono navy/plata en layout asimétrico: la foto no es un
+   avatar, es una placa de autoridad con marco de instrumento (esquinas HUD) y
+   la luminancia de la imagen mapeada sobre el degradado de la cabina. */
 .founder-grid {
   display: grid;
   gap: var(--space-4);
@@ -408,7 +563,7 @@
 
 @media (min-width: 900px) {
   .founder-grid {
-    grid-template-columns: 1fr 240px;
+    grid-template-columns: minmax(0, 1fr) 320px;
     align-items: start;
     gap: var(--space-8);
   }
@@ -421,8 +576,67 @@
   max-width: 68ch;
 }
 
-.founder p {
+.founder__lead {
   color: var(--harbor-mist);
+  font-size: 1.125rem;
+}
+
+.founder-portrait {
+  position: relative;
+  margin: 0;
+  max-width: 320px;
+  background: linear-gradient(160deg, #12294E 0%, var(--anchor-navy) 60%, #0D2444 100%);
+  border: var(--border-subtle);
+  border-radius: var(--radius-card);
+  box-shadow: var(--panel-depth);
+  overflow: hidden;
+}
+
+/* Esquinas de instrumento: marco HUD sobrio, no decoración libre */
+.founder-portrait::before,
+.founder-portrait::after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid rgba(95, 168, 255, 0.55);
+}
+
+.founder-portrait::before {
+  top: 10px;
+  left: 10px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.founder-portrait::after {
+  bottom: 10px;
+  right: 10px;
+  border-left: none;
+  border-top: none;
+}
+
+/* Duotono: la imagen aporta solo luminancia sobre el degradado navy/plata */
+.founder-portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: grayscale(1) contrast(1.08);
+  mix-blend-mode: luminosity;
+}
+
+.founder-portrait figcaption {
+  position: absolute;
+  left: var(--space-2);
+  bottom: var(--space-2);
+  padding: 4px 10px;
+  background: rgba(10, 31, 61, 0.78);
+  backdrop-filter: blur(6px);
+  border: var(--border-subtle);
+  border-radius: var(--radius-control);
+  color: var(--white-deck);
+  font-size: 0.75rem;
 }
 
 .founder-signals {
@@ -433,14 +647,6 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
-}
-
-@media (min-width: 900px) {
-  .founder-signals {
-    padding: 0 0 0 var(--space-4);
-    border-top: none;
-    border-left: var(--border-subtle);
-  }
 }
 
 .founder-signals li {

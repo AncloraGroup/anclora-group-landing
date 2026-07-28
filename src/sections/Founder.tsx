@@ -13,16 +13,26 @@ export default function Founder() {
         <SectionHeader title={t.founder.title} />
         <div ref={revealRef} className="founder-grid is-reveal-group">
           <div className="founder">
-            <p>{t.founder.body}</p>
+            <p className="founder__lead">{t.founder.body}</p>
+            <ul className="founder-signals mono">
+              {signals.map((line, index) => (
+                <li key={line}>
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  {line}
+                </li>
+              ))}
+            </ul>
           </div>
-          <ul className="founder-signals mono" aria-hidden="true">
-            {signals.map((line, index) => (
-              <li key={line}>
-                <span>{String(index + 1).padStart(2, '0')}</span>
-                {line}
-              </li>
-            ))}
-          </ul>
+          <figure className="founder-portrait">
+            <img
+              src="/professional_headshot_portrait.webp"
+              alt={t.founder.portraitAlt}
+              width={800}
+              height={800}
+              loading="lazy"
+            />
+            <figcaption className="mono">Antonio Ballesteros</figcaption>
+          </figure>
         </div>
       </div>
     </section>

@@ -126,23 +126,33 @@
   color: var(--anchor-navy);
 }
 
-/* Product card — nivel 1 (flagship): superficie propia, borde superior en
-   signal-blue al 40% para diferenciarse a simple vista del nivel 2. */
+/* Product card — panel de aleación ligera: superficie con profundidad interna
+   (--panel-depth), borde superior en signal-blue al 40% (nivel 1) y, en hover,
+   el borde se ilumina como un indicador de cabina con un glow controlado. */
 .product-card {
   position: relative;
-  background: var(--deep-ocean);
+  background:
+    linear-gradient(180deg, rgba(229, 231, 235, 0.035), transparent 42%),
+    var(--deep-ocean);
   border: var(--border-subtle);
   border-top: 2px solid rgba(95, 168, 255, 0.4);
   border-radius: var(--radius-card);
+  box-shadow: var(--panel-depth);
   padding: var(--space-4) var(--space-3) var(--space-3);
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
-  transition: border-color var(--dur-base) var(--ease-out);
+  transition:
+    border-color var(--dur-base) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease-out),
+    transform var(--dur-base) var(--ease-out);
 }
 
 .product-card:hover {
-  border-top-color: rgba(95, 168, 255, 0.8);
+  border-color: rgba(95, 168, 255, 0.28);
+  border-top-color: rgba(95, 168, 255, 0.85);
+  box-shadow: var(--panel-depth), var(--glow-signal);
+  transform: translateY(-2px);
 }
 
 .product-card__head {

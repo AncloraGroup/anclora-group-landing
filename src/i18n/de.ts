@@ -69,6 +69,7 @@ const de: Dictionary = {
     title: 'Founder-led, product-driven.',
     body:
       'Anclora Group wird von Antonio Ballesteros geleitet, Senior-Berater mit Schwerpunkt auf Oracle-Systemen, technischer Architektur, Automatisierung und angewandter künstlicher Intelligenz. Von Mallorca aus entwickelt er ein Ökosystem eigener digitaler Produkte mit einer klaren Prämisse: komplexe Prozesse in nützliche, visuelle und operative Werkzeuge zu verwandeln.',
+    portraitAlt: 'Porträt von Antonio Ballesteros, Founder der Anclora Group',
   },
   principles: {
     title: 'Prinzipien',

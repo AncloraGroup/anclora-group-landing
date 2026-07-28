@@ -12,7 +12,9 @@ export default function EcosystemCard({ line, index = 0 }: EcosystemCardProps) {
 
   return (
     <article className="ecosystem-rail">
-      <span className="ecosystem-rail__index mono">{String(index + 1).padStart(2, '0')}</span>
+      <span className="ecosystem-rail__node" aria-hidden="true">
+        <span className="ecosystem-rail__index mono">{String(index + 1).padStart(2, '0')}</span>
+      </span>
       <div className="ecosystem-rail__body">
         <h3>{copy?.name ?? line.name}</h3>
         <p>{copy?.description ?? line.description}</p>
