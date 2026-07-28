@@ -176,6 +176,25 @@
   transform: translateY(-2px);
 }
 
+/* Variante celda: dentro del chasis de productos la tarjeta pierde borde,
+   sombra y radio propios — el acento superior signal-blue queda como pestaña
+   de instrumento y el hover tiñe la celda sin desplazarla. */
+.product-card--cell,
+.product-card--cell:hover {
+  border: none;
+  border-top: 2px solid rgba(95, 168, 255, 0.4);
+  border-radius: 0;
+  box-shadow: none;
+  background: var(--deep-ocean);
+  padding: var(--space-3);
+  transform: none;
+}
+
+.product-card--cell:hover {
+  border-top-color: rgba(95, 168, 255, 0.85);
+  background: rgba(95, 168, 255, 0.06);
+}
+
 .product-card__head {
   display: flex;
   flex-wrap: wrap;

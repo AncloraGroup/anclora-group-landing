@@ -72,6 +72,14 @@ export default function Hero() {
 
       <div className="hero__status container">
         <p className="hero__status-caption">{t.hero.instrumentCaption}</p>
+        <ul className="hero__status-list">
+          {ecosystemLines.map((line, index) => (
+            <li key={line.id}>
+              <span className="mono">{String(index + 1).padStart(2, '0')}</span>
+              {t.ecosystem.lines[line.id]?.name ?? line.name}
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   )

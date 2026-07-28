@@ -42,7 +42,6 @@ export interface Dictionary {
     items: Record<string, { description: string; status: string }>
   }
   infrastructure: {
-    title: string
     text: string
   }
   method: {

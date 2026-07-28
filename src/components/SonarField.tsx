@@ -118,7 +118,7 @@ export default function SonarField({ pointerRef, className }: SonarFieldProps) {
       const p = pointerRef.current ?? { x: 0, y: 0 }
       return {
         x: width / 2 + p.x * 10,
-        y: height * 0.43 + p.y * 10,
+        y: height * 0.44 + p.y * 10,
       }
     }
 

@@ -183,8 +183,8 @@ export default function SystemRing({
             textAnchor="middle"
             dominantBaseline="middle"
             fontFamily="'JetBrains Mono', monospace"
-            fontSize={size * 0.026}
-            fill={i === activeIndex ? '#5FA8FF' : 'rgba(203, 213, 225, 0.7)'}
+            fontSize={size * 0.032}
+            fill={i === activeIndex ? '#5FA8FF' : 'rgba(229, 231, 235, 0.85)'}
           >
             {String(i + 1).padStart(2, '0')}
           </text>

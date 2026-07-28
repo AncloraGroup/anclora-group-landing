@@ -5,9 +5,12 @@ import { useLocale } from '../i18n/LocaleContext'
 interface ProductCardProps {
   product: Product
   ctaLabel?: string
+  /** 'card' (panel independiente) o 'cell' (celda plana dentro del chasis
+      de productos, sin borde ni sombra propios). */
+  variant?: 'card' | 'cell'
 }
 
-export default function ProductCard({ product, ctaLabel }: ProductCardProps) {
+export default function ProductCard({ product, ctaLabel, variant = 'card' }: ProductCardProps) {
   const { t } = useLocale()
   const line = ecosystemLines.find((candidate) => candidate.id === product.lineId)
   const lineCopy = line ? t.ecosystem.lines[line.id] : undefined
@@ -16,7 +19,7 @@ export default function ProductCard({ product, ctaLabel }: ProductCardProps) {
   const status = productCopy?.status ?? product.status
 
   return (
-    <article className="product-card">
+    <article className={variant === 'cell' ? 'product-card product-card--cell' : 'product-card'}>
       <div className="product-card__head">
         {line && <p className="product-card__category mono">{lineCopy?.name ?? line.name}</p>}
         {status && (

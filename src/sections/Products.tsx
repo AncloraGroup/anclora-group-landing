@@ -4,24 +4,27 @@ import ProductCard from '../components/ProductCard'
 import { tier1Products, tier2Products } from '../data/products'
 import { useRevealOnScroll } from '../hooks/useRevealOnScroll'
 
+/**
+ * Un solo sistema: las cinco insignias y los cuatro módulos de infraestructura
+ * viven en el mismo chasis — la idea de "un mismo estándar" expresada como
+ * carrocería única, no como dos bloques con titulares separados.
+ */
 export default function Products() {
   const { t } = useLocale()
-  const revealRef = useRevealOnScroll<HTMLDivElement>()
-  const infraRevealRef = useRevealOnScroll<HTMLDivElement>()
+  const flagshipRevealRef = useRevealOnScroll<HTMLDivElement>()
+  const modulesRevealRef = useRevealOnScroll<HTMLDivElement>()
 
   return (
     <section id="products" className="section section--surface">
       <div className="container">
         <SectionHeader title={t.products.title} text={t.infrastructure.text} />
-        <div ref={revealRef} className="products-grid is-reveal-group is-reveal-group--stagger">
-          {tier1Products.map((product) => (
-            <ProductCard key={product.id} product={product} ctaLabel={t.products.ctaView} />
-          ))}
-        </div>
-
-        <div ref={infraRevealRef} className="infra-backbone is-reveal-group is-reveal-group--stagger">
-          <p className="infra-backbone__label mono">{t.infrastructure.title}</p>
-          <div className="infra-backbone__modules">
+        <div className="products-chassis">
+          <div ref={flagshipRevealRef} className="products-chassis__flagship is-reveal-group is-reveal-group--stagger">
+            {tier1Products.map((product) => (
+              <ProductCard key={product.id} product={product} ctaLabel={t.products.ctaView} variant="cell" />
+            ))}
+          </div>
+          <div ref={modulesRevealRef} className="products-chassis__modules is-reveal-group is-reveal-group--stagger">
             {tier2Products.map((product) => {
               const copy = t.products.items[product.id]
               return (
@@ -41,4 +44,3 @@ export default function Products() {
     </section>
   )
 }
-

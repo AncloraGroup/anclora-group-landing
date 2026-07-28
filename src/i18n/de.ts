@@ -53,7 +53,6 @@ const de: Dictionary = {
     },
   },
   infrastructure: {
-    title: 'Ein gemeinsamer Standard im gesamten Ökosystem.',
     text: 'Jedes Anclora-Produkt teilt dieselben Daten, dieselbe Sicherheit und dieselbe Arbeitsweise — deshalb passen sie von Anfang an zusammen.',
   },
   method: {

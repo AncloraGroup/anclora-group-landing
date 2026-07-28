@@ -40,15 +40,14 @@
 
 .hero__ring-layer {
   position: absolute;
-  top: 43%;
+  top: 44%;
   left: 50%;
-  /* El anillo cabe entero en el viewport: diámetro acotado por la altura
-     visible (70svh deja aire sobre la franja de estado), nunca por el ancho
-     en pantallas panorámicas */
-  width: min(70svh, 880px);
+  /* El anillo domina el hero pero cabe entero: diámetro acotado por la altura
+     visible (80svh deja aire para la franja de estado), con tope de 1000px */
+  width: min(80svh, 1000px);
   aspect-ratio: 1;
   pointer-events: none;
-  opacity: 0.6;
+  opacity: 0.75;
   transform: translate(calc(-50% + var(--px) * 1px), calc(-50% + var(--py) * 1px));
   transition: transform 620ms var(--ease-out);
 }
@@ -66,8 +65,8 @@
 
 .hero--labels-lit .hero__ring-layer text {
   fill: var(--anclora-gold);
-  filter: drop-shadow(0 0 7px rgba(197, 160, 89, 0.65));
-  transform: translateY(-2px) scale(1.12);
+  filter: drop-shadow(0 0 9px rgba(197, 160, 89, 0.8));
+  transform: translateY(-2px) scale(1.16);
 }
 
 .hero__ring-layer svg {
@@ -211,12 +210,40 @@
 }
 
 .hero__status-caption {
-  margin: 0 auto;
+  margin: 0 auto var(--space-2);
   max-width: 56ch;
   font-size: 0.75rem;
   line-height: 1.5;
   color: var(--harbor-mist);
   text-align: center;
+}
+
+/* Leyenda del anillo: los números del instrumento, traducidos a líneas de
+   negocio. Una sola fila centrada; el número en oro Anclora dialoga con el
+   destello dorado de los pulsos de sonar. */
+.hero__status-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: var(--space-3);
+  row-gap: 4px;
+  font-size: 0.8125rem;
+  color: var(--harbor-mist);
+}
+
+.hero__status-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.hero__status-list .mono {
+  color: var(--anclora-gold);
+  font-size: 0.75rem;
 }
 
 /* Viewports bajos (portátiles con zoom al 100%): el hero debe entrar entero
@@ -230,7 +257,7 @@
     font-size: clamp(2.25rem, 3.5vw + 1rem, 3.75rem);
   }
   .hero__ring-layer {
-    width: min(62svh, 880px);
+    width: min(74svh, 1000px);
   }
   .hero__status {
     margin-top: var(--space-3);
@@ -362,32 +389,11 @@
   }
 }
 
-/* Products */
-.products-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-3);
-}
-
-.products-grid > * {
-  grid-column: span 4;
-}
-
-@media (min-width: 900px) {
-  .products-grid {
-    grid-template-columns: repeat(12, 1fr);
-  }
-  .products-grid > * {
-    grid-column: span 4;
-  }
-}
-
-/* Productos — un solo sistema: las tarjetas insignia y el backbone de
-   infraestructura comparten sección, cabecera y lenguaje. El backbone es un
-   panel-instrumento con su etiqueta mono y cuatro módulos divididos: la
-   metáfora de "un mismo estándar" hecha carrocería. */
-.infra-backbone {
-  margin-top: var(--space-4);
+/* Products — un solo chasis: las cinco insignias y los cuatro módulos de
+   infraestructura comparten carrocería (la idea de "un mismo estándar" hecha
+   estructura, no titular). Las celdas se separan con hairlines de 1px; la
+   zona de módulos se tiñe de navy para leerse como la capa compartida. */
+.products-chassis {
   background:
     linear-gradient(180deg, rgba(229, 231, 235, 0.03), transparent 45%),
     var(--deep-ocean);
@@ -397,63 +403,55 @@
   overflow: hidden;
 }
 
-.infra-backbone__label {
-  padding: var(--space-2) var(--space-3);
-  border-bottom: var(--border-subtle);
-  font-size: 0.75rem;
-  letter-spacing: 0.04em;
-  color: var(--anclora-gold);
+.products-chassis__flagship {
+  display: grid;
+  gap: 1px;
+  background: rgba(229, 231, 235, 0.08);
 }
 
-.infra-backbone__modules {
-  display: grid;
+.products-chassis__flagship > * {
+  background: var(--deep-ocean);
 }
 
 @media (min-width: 700px) {
-  .infra-backbone__modules {
+  .products-chassis__flagship {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (min-width: 1100px) {
-  .infra-backbone__modules {
+  .products-chassis__flagship {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.products-chassis__modules {
+  display: grid;
+  gap: 1px;
+  background: rgba(229, 231, 235, 0.08);
+  border-top: var(--border-subtle);
+}
+
+@media (min-width: 700px) {
+  .products-chassis__modules {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1100px) {
+  .products-chassis__modules {
     grid-template-columns: repeat(4, 1fr);
   }
 }
 
 .infra-module {
   padding: var(--space-3);
-  border-top: var(--border-subtle);
+  background: rgba(10, 31, 61, 0.45);
   transition: background var(--dur-base) var(--ease-out);
 }
 
-.infra-backbone__modules > *:first-child {
-  border-top: none;
-}
-
-@media (min-width: 700px) {
-  .infra-backbone__modules > *:nth-child(-n + 2) {
-    border-top: none;
-  }
-  .infra-backbone__modules > *:nth-child(even) {
-    border-left: var(--border-subtle);
-  }
-}
-
-@media (min-width: 1100px) {
-  .infra-backbone__modules > * {
-    border-top: none;
-  }
-  .infra-backbone__modules > *:nth-child(even) {
-    border-left: none;
-  }
-  .infra-backbone__modules > *:not(:first-child) {
-    border-left: var(--border-subtle);
-  }
-}
-
 .infra-module:hover {
-  background: rgba(95, 168, 255, 0.04);
+  background: rgba(95, 168, 255, 0.09);
 }
 
 .infra-module__status {
