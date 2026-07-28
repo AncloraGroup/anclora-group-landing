@@ -27,6 +27,29 @@ const PULSE_DURATION = 4600
 const MAX_PULSES = 3
 const PARTICLE_COUNT = 26
 
+/* Recorrido cromático del pulso: nace en signal-blue, cruza command-purple y
+   muere en plata — la señal cambia de "frecuencia" al alejarse del centro. */
+const PULSE_STOPS: Array<[number, [number, number, number]]> = [
+  [0, [95, 168, 255]],
+  [0.55, [108, 99, 255]],
+  [1, [229, 231, 235]],
+]
+
+function pulseColor(t: number, alpha: number): string {
+  let a = PULSE_STOPS[0]
+  let b = PULSE_STOPS[PULSE_STOPS.length - 1]
+  for (let i = 0; i < PULSE_STOPS.length - 1; i++) {
+    if (t >= PULSE_STOPS[i][0] && t <= PULSE_STOPS[i + 1][0]) {
+      a = PULSE_STOPS[i]
+      b = PULSE_STOPS[i + 1]
+      break
+    }
+  }
+  const local = (t - a[0]) / (b[0] - a[0] || 1)
+  const mix = (i: number) => Math.round(a[1][i] + (b[1][i] - a[1][i]) * local)
+  return `rgba(${mix(0)}, ${mix(1)}, ${mix(2)}, ${alpha.toFixed(3)})`
+}
+
 /**
  * Capa atmosférica del hero: pulsos de sonar que nacen del centro del anillo y
  * partículas de profundidad a la deriva. Es atmósfera, no efecto — opacidades
@@ -91,7 +114,8 @@ export default function SonarField({ pointerRef, className }: SonarFieldProps) {
       const c = center()
       const maxR = Math.hypot(width, height) * 0.55
 
-      // Pulsos de sonar: anillo que se expande y se apaga
+      // Pulsos de sonar: anillo que se expande, cambia de color y se apaga.
+      // Doble trazo: halo ancho tenue + filo fino, para leer el degradado.
       for (let i = pulses.length - 1; i >= 0; i--) {
         const t = (now - pulses[i].born) / pulses[i].duration
         if (t >= 1) {
@@ -99,11 +123,19 @@ export default function SonarField({ pointerRef, className }: SonarFieldProps) {
           continue
         }
         const eased = 1 - Math.pow(1 - t, 3)
-        const alpha = 0.22 * (1 - eased)
+        const radius = eased * maxR
+        const fade = 1 - eased
+
         ctx.beginPath()
-        ctx.arc(c.x, c.y, eased * maxR, 0, Math.PI * 2)
-        ctx.strokeStyle = `rgba(95, 168, 255, ${alpha.toFixed(3)})`
-        ctx.lineWidth = 1.25
+        ctx.arc(c.x, c.y, radius, 0, Math.PI * 2)
+        ctx.strokeStyle = pulseColor(eased, 0.1 * fade)
+        ctx.lineWidth = 7
+        ctx.stroke()
+
+        ctx.beginPath()
+        ctx.arc(c.x, c.y, radius, 0, Math.PI * 2)
+        ctx.strokeStyle = pulseColor(eased, 0.3 * fade)
+        ctx.lineWidth = 1.5
         ctx.stroke()
       }
 
@@ -151,13 +183,19 @@ export default function SonarField({ pointerRef, className }: SonarFieldProps) {
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (reduced) {
-      // Estado asentado: tres anillos concéntricos tenues, sin movimiento
+      // Estado asentado: tres anillos concéntricos tenues, uno por color del
+      // recorrido del pulso, sin movimiento
       const c = { x: width / 2, y: height / 2 }
       const maxR = Math.hypot(width, height) * 0.55
-      for (const f of [0.35, 0.6, 0.85]) {
+      const staticRings: Array<[number, string]> = [
+        [0.35, 'rgba(95, 168, 255, 0.08)'],
+        [0.6, 'rgba(108, 99, 255, 0.07)'],
+        [0.85, 'rgba(229, 231, 235, 0.05)'],
+      ]
+      for (const [f, color] of staticRings) {
         ctx.beginPath()
         ctx.arc(c.x, c.y, f * maxR, 0, Math.PI * 2)
-        ctx.strokeStyle = 'rgba(95, 168, 255, 0.07)'
+        ctx.strokeStyle = color
         ctx.lineWidth = 1
         ctx.stroke()
       }

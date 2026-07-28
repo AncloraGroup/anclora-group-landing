@@ -103,6 +103,19 @@ export default function SystemRing({
           <stop offset="0%" stopColor="#152A4D" />
           <stop offset="100%" stopColor="#0A1F3D" />
         </radialGradient>
+        {/* Barrido con recorrido azul→púrpura: la señal cambia de frecuencia
+            al avanzar, coherente con los pulsos del SonarField */}
+        <linearGradient
+          id="systemring-sweep"
+          x1={center}
+          y1={center - outerR}
+          x2={center + outerR}
+          y2={center + outerR}
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop offset="0%" stopColor="#5FA8FF" />
+          <stop offset="100%" stopColor="#6C63FF" />
+        </linearGradient>
       </defs>
 
       <circle cx={center} cy={center} r={outerR + size * 0.02} fill="url(#systemring-field)" />
@@ -128,14 +141,14 @@ export default function SystemRing({
         />
       ))}
 
-      {/* Barrido: sector operativo activo, en signal-blue */}
+      {/* Barrido: sector operativo activo, con degradado azul→púrpura */}
       <path
         d={`M ${center} ${center - outerR} A ${outerR} ${outerR} 0 ${largeArc} 1 ${arcEnd.x} ${arcEnd.y}`}
         fill="none"
-        stroke="#5FA8FF"
+        stroke="url(#systemring-sweep)"
         strokeWidth={2.5}
         strokeLinecap="round"
-        opacity={0.85}
+        opacity={0.9}
       />
 
       {/* Las tres ondas de la medalla, reinterpretadas como líneas de estado */}

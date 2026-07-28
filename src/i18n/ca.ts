@@ -11,19 +11,19 @@ const ca: Dictionary = {
     ecosystem: 'Ecosistema',
     products: 'Productes',
     method: 'Mètode',
-    founder: 'Founder',
+    founder: 'Fundador',
     contact: 'Contacte',
     contactCta: 'Contactar',
   },
   hero: {
-    eyebrow: 'Founder-led technology group',
+    eyebrow: 'Grup tecnològic liderat pel seu founder',
     title: 'Anclora Group',
     tagline: 'Tecnologia aplicada per operar amb més claredat, control i intel·ligència.',
     subtitle:
       'Convertim processos complexos en sistemes clars: productes digitals propis, construïts per operar.',
     ctaPrimary: "Explorar l'ecosistema",
     ctaSecondary: "Contactar amb l'Antonio",
-    microcopy: 'Founder-led technology group · Built from Mallorca · Designed for practical intelligence',
+    microcopy: 'Grup tecnològic founder-led · Construït des de Mallorca · Dissenyat per a intel·ligència pràctica',
     instrumentCaption: "Cada marca de l'anell representa una línia de negoci activa de l'ecosistema Anclora.",
   },
   ecosystem: {
@@ -66,7 +66,7 @@ const ca: Dictionary = {
     ],
   },
   founder: {
-    title: 'Founder-led, product-driven.',
+    title: 'Liderat pel seu founder, impulsat per producte.',
     body:
       "Anclora Group està impulsat per Antonio Ballesteros, consultor senior especialitzat en sistemes Oracle, arquitectura tècnica, automatització i intel·ligència artificial aplicada. Des de Mallorca, desenvolupa un ecosistema de productes digitals propis amb una premissa clara: transformar processos complexos en eines útils, visuals i operatives.",
     portraitAlt: "Retrat d'Antonio Ballesteros, founder d'Anclora Group",

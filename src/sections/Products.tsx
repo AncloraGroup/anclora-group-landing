@@ -2,20 +2,12 @@ import { useLocale } from '../i18n/LocaleContext'
 import SectionHeader from '../components/SectionHeader'
 import ProductCard from '../components/ProductCard'
 import { tier1Products, tier2Products } from '../data/products'
-import { ecosystemLines } from '../data/ecosystem'
 import { useRevealOnScroll } from '../hooks/useRevealOnScroll'
 
 export default function Products() {
   const { t } = useLocale()
   const revealRef = useRevealOnScroll<HTMLDivElement>()
   const infraRevealRef = useRevealOnScroll<HTMLDivElement>()
-
-  const groups = ecosystemLines
-    .map((line) => ({
-      line,
-      products: tier2Products.filter((product) => product.lineId === line.id),
-    }))
-    .filter((group) => group.products.length > 0)
 
   return (
     <section id="products" className="section section--surface">
@@ -32,24 +24,24 @@ export default function Products() {
             <h3>{t.infrastructure.title}</h3>
             <p>{t.infrastructure.text}</p>
           </div>
-          <div ref={infraRevealRef} className="infrastructure-list is-reveal-group is-reveal-group--stagger">
-            {groups.map(({ line, products }) => (
-              <div key={line.id} className="infrastructure-group">
-                <p className="infrastructure-group__category mono">
-                  {t.ecosystem.lines[line.id]?.name ?? line.name}
-                </p>
-                <div className="infrastructure-group__rows">
-                  {products.map((product) => (
-                    <div key={product.id} className="infrastructure-row">
-                      <h4>{product.name}</h4>
-                    </div>
-                  ))}
+          <div ref={infraRevealRef} className="infra-backbone is-reveal-group is-reveal-group--stagger">
+            {tier2Products.map((product) => {
+              const copy = t.products.items[product.id]
+              return (
+                <div key={product.id} className="infra-module">
+                  <p className="infra-module__status mono">
+                    <span className="infra-module__dot" aria-hidden="true" />
+                    {copy?.status ?? product.status}
+                  </p>
+                  <h4>{product.name}</h4>
+                  <p className="infra-module__description">{copy?.description ?? product.description}</p>
                 </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </div>
       </div>
     </section>
   )
 }
+

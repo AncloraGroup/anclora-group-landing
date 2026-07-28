@@ -27,7 +27,11 @@
 }
 
 .section--surface {
-  background: var(--deep-ocean);
+  /* Superficie con matiz: el deep-ocean plano gana un velo de command-purple
+     muy tenue para diferenciar secciones sin salir de la paleta (máx. 8%) */
+  background:
+    radial-gradient(70% 50% at 85% 0%, rgba(108, 99, 255, 0.045), transparent 70%),
+    var(--deep-ocean);
 }
 
 .section-header {

@@ -10,13 +10,13 @@
   display: flex;
   flex-direction: column;
   min-height: calc(100svh - 73px);
-  padding-block: var(--space-8) var(--space-6);
+  padding-block: var(--space-4);
   overflow: hidden;
 }
 
 /* Retícula náutica: líneas finas plateadas, variación máx. 8% (sección 8 del
-   brand book). Referencia directa a una carta de navegación / panel de
-   instrumentos, no decoración libre. */
+   brand book). Doble atmósfera: signal-blue arriba, command-purple abajo a la
+   izquierda — profundidad de cabina sin salir de la paleta. */
 .hero__field {
   position: absolute;
   inset: 0;
@@ -24,8 +24,9 @@
   background-image:
     linear-gradient(rgba(229, 231, 235, 0.05) 1px, transparent 1px),
     linear-gradient(90deg, rgba(229, 231, 235, 0.05) 1px, transparent 1px),
-    var(--ambient-glow-blue);
-  background-size: 56px 56px, 56px 56px, 100% 100%;
+    var(--ambient-glow-blue),
+    radial-gradient(45% 42% at 16% 88%, rgba(108, 99, 255, 0.09), transparent 72%);
+  background-size: 56px 56px, 56px 56px, 100% 100%, 100% 100%;
   mask-image: radial-gradient(80% 70% at 50% 45%, black 40%, transparent 92%);
 }
 
@@ -138,20 +139,25 @@
 }
 
 .hero h1 {
-  margin-bottom: var(--space-3);
-  font-size: clamp(3rem, 5.5vw + 1rem, 6rem);
+  margin-bottom: var(--space-2);
+  font-size: clamp(2.75rem, 4.5vw + 1rem, 5rem);
   letter-spacing: -0.03em;
+  /* Titular con caída de luz: blanco cubierta hacia plata azulada */
+  background: linear-gradient(180deg, var(--white-deck) 35%, #A9C0E4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .hero__tagline {
   margin: 0 auto var(--space-2);
-  font-size: 1.375rem;
+  font-size: 1.25rem;
   color: var(--white-deck);
   max-width: 42ch;
 }
 
 .hero__subtitle {
-  margin: 0 auto var(--space-4);
+  margin: 0 auto var(--space-3);
   color: var(--harbor-mist);
   max-width: 56ch;
 }
@@ -161,7 +167,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: var(--space-2);
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-3);
 }
 
 .hero__microcopy {
@@ -169,13 +175,33 @@
   font-size: 0.8125rem;
 }
 
-/* Franja de estado — tira horizontal tipo HUD al pie del hero. */
+/* Franja de estado — tira horizontal tipo HUD al pie del hero. La línea
+   superior lleva un destello de oro Anclora: énfasis premium mínimo, uso
+   restringido según el brand book (sección 5.4). */
 .hero__status {
   position: relative;
   z-index: 1;
-  margin-top: var(--space-8);
-  padding-top: var(--space-4);
-  border-top: var(--border-subtle);
+  margin-top: var(--space-4);
+  padding-top: var(--space-3);
+}
+
+.hero__status::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(197, 160, 89, 0.45), rgba(229, 231, 235, 0.12) 38%, rgba(229, 231, 235, 0.12));
+}
+
+@media (min-width: 900px) {
+  .hero__status {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
 }
 
 .hero__status-caption {
@@ -185,6 +211,14 @@
   line-height: 1.5;
   color: var(--harbor-mist);
   text-align: center;
+}
+
+@media (min-width: 900px) {
+  .hero__status-caption {
+    margin: 0;
+    max-width: 34ch;
+    text-align: left;
+  }
 }
 
 .hero__status-list {
@@ -219,10 +253,28 @@
   color: var(--signal-blue);
 }
 
-@media (max-width: 899px) {
-  .hero {
-    padding-block: var(--space-6);
+@media (min-width: 900px) {
+  .hero__status-list {
+    justify-content: flex-end;
+    text-align: right;
   }
+}
+
+/* Viewports bajos (portátiles con zoom al 100%): el hero debe entrar entero
+   sin scroll — se compactan titular y respiración, nunca se recorta contenido */
+@media (max-height: 780px) {
+  .hero {
+    padding-block: var(--space-3);
+  }
+  .hero h1 {
+    font-size: clamp(2.25rem, 3.5vw + 1rem, 3.75rem);
+  }
+  .hero__status {
+    margin-top: var(--space-3);
+  }
+}
+
+@media (max-width: 899px) {
   .hero__tagline,
   .hero__subtitle,
   .hero__status-caption {
@@ -367,13 +419,12 @@
   }
 }
 
-/* Infrastructure — subbloque de la sección Products (nivel 2 del ecosistema):
-   agrupado por línea estratégica, el nombre de categoría aparece una sola vez
-   por grupo, no repetido por fila. */
+/* Infraestructura — backbone compartido: los productos de nivel 2 viven en un
+   único panel con celdas divididas, la metáfora visual de "un mismo estándar":
+   misma carrocería, cuatro módulos. Cada módulo dice qué hace, no solo cómo
+   se llama. */
 .products-infra {
   margin-top: var(--space-8);
-  padding-top: var(--space-6);
-  border-top: var(--border-subtle);
 }
 
 .products-infra__header {
@@ -388,37 +439,90 @@
   color: var(--harbor-mist);
 }
 
-.infrastructure-list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
+.infra-backbone {
+  display: grid;
+  background:
+    linear-gradient(180deg, rgba(229, 231, 235, 0.03), transparent 45%),
+    var(--deep-ocean);
+  border: var(--border-subtle);
+  border-radius: var(--radius-card);
+  box-shadow: var(--panel-depth);
+  overflow: hidden;
 }
 
-.infrastructure-group__category {
-  color: var(--harbor-mist);
+@media (min-width: 700px) {
+  .infra-backbone {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1100px) {
+  .infra-backbone {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.infra-module {
+  padding: var(--space-3);
+  border-top: var(--border-subtle);
+  transition: background var(--dur-base) var(--ease-out);
+}
+
+.infra-backbone > *:first-child {
+  border-top: none;
+}
+
+@media (min-width: 700px) {
+  .infra-backbone > *:nth-child(-n + 2) {
+    border-top: none;
+  }
+  .infra-backbone > *:nth-child(even) {
+    border-left: var(--border-subtle);
+  }
+}
+
+@media (min-width: 1100px) {
+  .infra-backbone > * {
+    border-top: none;
+  }
+  .infra-backbone > *:nth-child(even) {
+    border-left: none;
+  }
+  .infra-backbone > *:not(:first-child) {
+    border-left: var(--border-subtle);
+  }
+}
+
+.infra-module:hover {
+  background: rgba(95, 168, 255, 0.04);
+}
+
+.infra-module__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
   font-size: 0.75rem;
   letter-spacing: 0.02em;
-  margin-bottom: var(--space-1);
+  color: var(--anclora-gold);
 }
 
-.infrastructure-group__rows {
-  display: flex;
-  flex-direction: column;
+.infra-module__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
 }
 
-.infrastructure-row {
-  padding-block: var(--space-2);
-  border-bottom: var(--border-subtle);
-}
-
-.infrastructure-row h4 {
-  margin: 0;
+.infra-module h4 {
+  margin: var(--space-1) 0 4px;
   font-size: 1rem;
   font-weight: 600;
 }
 
-.infrastructure-row:last-child {
-  border-bottom: none;
+.infra-module__description {
+  color: var(--harbor-mist);
+  font-size: 0.875rem;
 }
 
 /* Method — línea de tiempo, no cajas: los cuatro pasos cuelgan de una línea
