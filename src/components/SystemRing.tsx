@@ -14,10 +14,11 @@ interface SystemRingProps {
 
 const TAU = Math.PI * 2
 
-/** Fracción del radio de etiquetas respecto al tamaño total del SVG con
-    size=1080 (labelR = size*0.4 - 26). La usa SonarField para saber cuándo el
+/** Fracción del radio de etiquetas respecto al tamaño total del SVG: los
+    números van FUERA del anillo (labelR = size*0.455), junto al borde, para
+    no solaparse nunca con el titular. La usa SonarField para saber cuándo el
     frente del pulso cruza el círculo de los números. */
-export const RING_LABEL_FRACTION = 0.4 - 26 / 1080
+export const RING_LABEL_FRACTION = 0.455
 
 /**
  * Instrumento de a bordo construido a partir de la medalla de Anclora Group:
@@ -69,8 +70,10 @@ export default function SystemRing({
   }, [])
 
   const center = size / 2
-  const outerR = size * 0.46
-  const tickR = size * 0.4
+  /* Geometría compactada hacia el centro para dejar una franja exterior libre:
+     los números se colocan fuera del campo del anillo, pegados a su borde */
+  const outerR = size * 0.4
+  const tickR = size * 0.34
   const waveBandTop = size * 0.44
   const waveBandGap = size * 0.06
 
@@ -172,7 +175,7 @@ export default function SystemRing({
 
       {labels.map((label, i) => {
         const angle = -Math.PI / 2 + (i / labels.length) * TAU
-        const labelR = tickR - 26
+        const labelR = size * RING_LABEL_FRACTION
         const x = center + labelR * Math.cos(angle)
         const y = center + labelR * Math.sin(angle)
         return (
