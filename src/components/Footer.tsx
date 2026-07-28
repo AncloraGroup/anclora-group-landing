@@ -2,7 +2,7 @@ import { useLocale } from '../i18n/LocaleContext'
 import LanguageSwitcher from './LanguageSwitcher'
 import InternalLink from './InternalLink'
 import { useCookieConsent } from './CookieConsentProvider'
-import monocromoClaro from '../assets/logo/anclora-group-monocromo-claro-48.webp'
+import lockupHorizontalDark from '../assets/logo/anclora-group-lockup-horizontal-sobre-oscuro-64.webp'
 
 export default function Footer() {
   const { t } = useLocale()
@@ -13,7 +13,7 @@ export default function Footer() {
       <div className="container">
         <div className="site-footer__top">
           <div className="site-footer__logo">
-            <img src={monocromoClaro} alt="Anclora Group" />
+            <img src={lockupHorizontalDark} alt="Anclora Group" />
           </div>
           <p className="site-footer__claim">{t.footer.claim}</p>
           <LanguageSwitcher />
