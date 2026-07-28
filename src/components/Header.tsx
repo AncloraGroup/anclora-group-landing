@@ -20,23 +20,36 @@ export default function Header() {
 
   // En una página legal (/privacy, etc.) las anclas #ecosystem, #contact... no
   // apuntan a nada: primero hay que volver a "/" y luego desplazarse al ancla.
+  const scrollToHash = useCallback((hash: string) => {
+    requestAnimationFrame(() => {
+      document.getElementById(hash.slice(1))?.scrollIntoView({ block: 'start' })
+    })
+  }, [])
+
+  const closeMenu = useCallback((restoreFocus = true) => {
+    setIsMenuOpen(false)
+    if (restoreFocus) {
+      menuToggleRef.current?.focus()
+    }
+  }, [])
+
+  // Controlamos todas las anclas: el menú móvil bloquea el scroll del body y la
+  // navegación nativa puede dispararse antes de liberar ese bloqueo.
   const handleAnchorClick = useCallback(
     (event: MouseEvent<HTMLAnchorElement>, hash: string) => {
-      if (path === '/') return
       if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
       event.preventDefault()
-      navigate('/')
-      requestAnimationFrame(() => {
-        document.getElementById(hash.slice(1))?.scrollIntoView()
-      })
-    },
-    [path, navigate],
-  )
+      closeMenu(false)
 
-  const closeMenu = useCallback(() => {
-    setIsMenuOpen(false)
-    menuToggleRef.current?.focus()
-  }, [])
+      if (path !== '/') {
+        navigate('/')
+      }
+
+      window.history.pushState({}, '', hash)
+      scrollToHash(hash)
+    },
+    [closeMenu, navigate, path, scrollToHash],
+  )
 
   const toggleMenu = () => {
     if (isMenuOpen) {
