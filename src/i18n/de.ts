@@ -53,8 +53,8 @@ const de: Dictionary = {
     },
   },
   infrastructure: {
-    title: 'Die Betriebsebene, die das Ökosystem verbindet.',
-    text: 'Unter jedem Produkt liegt eine gemeinsame Schicht aus Intake, Daten, Signalen, Automatisierung und operativer Kontrolle.',
+    title: 'Ein gemeinsamer Standard im gesamten Ökosystem.',
+    text: 'Jedes Anclora-Produkt teilt dieselben Daten, dieselbe Sicherheit und dieselbe Arbeitsweise — deshalb passen sie von Anfang an zusammen.',
   },
   method: {
     title: 'Anclora Methode',

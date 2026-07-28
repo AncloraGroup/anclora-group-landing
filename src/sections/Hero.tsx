@@ -11,6 +11,10 @@ export default function Hero() {
   return (
     <section id="top" className="hero">
       <div className="hero__field" aria-hidden="true" />
+      <div className="hero__ring-layer" aria-hidden="true">
+        <SystemRing size={760} labels={lineLabels} activeIndex={0} ariaLabel={t.hero.instrumentCaption} />
+      </div>
+
       <div className="container hero__grid">
         <div ref={revealRef} className="hero__copy is-reveal-group">
           <p className="hero__eyebrow mono">{t.hero.eyebrow}</p>
@@ -27,19 +31,18 @@ export default function Hero() {
           </div>
           <p className="hero__microcopy mono">{t.hero.microcopy}</p>
         </div>
+      </div>
 
-        <div className="hero__instrument" role="presentation">
-          <SystemRing size={400} labels={lineLabels} activeIndex={0} ariaLabel={t.hero.instrumentCaption} />
-          <ul className="hero__instrument-legend">
-            {ecosystemLines.map((line, index) => (
-              <li key={line.id} className={index === 0 ? 'is-active' : undefined}>
-                <span className="mono">{String(index + 1).padStart(2, '0')}</span>
-                {t.ecosystem.lines[line.id]?.name ?? line.name}
-              </li>
-            ))}
-          </ul>
-          <p className="hero__instrument-caption">{t.hero.instrumentCaption}</p>
-        </div>
+      <div className="hero__status container">
+        <p className="hero__status-caption">{t.hero.instrumentCaption}</p>
+        <ul className="hero__status-list">
+          {ecosystemLines.map((line, index) => (
+            <li key={line.id} className={index === 0 ? 'is-active' : undefined}>
+              <span className="mono">{String(index + 1).padStart(2, '0')}</span>
+              {t.ecosystem.lines[line.id]?.name ?? line.name}
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   )

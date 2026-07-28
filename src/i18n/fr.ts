@@ -53,8 +53,8 @@ const fr: Dictionary = {
     },
   },
   infrastructure: {
-    title: "La couche opérationnelle qui relie l'écosystème.",
-    text: "Sous chaque produit se trouve une couche commune d'intake, de données, de signaux, d'automatisation et de contrôle opérationnel.",
+    title: "Un même standard dans tout l'écosystème.",
+    text: "Chaque produit Anclora partage les mêmes données, la même sécurité et la même façon de fonctionner — ils s'articulent donc ensemble dès le premier jour.",
   },
   method: {
     title: 'Méthode Anclora',

@@ -53,8 +53,8 @@ const es: Dictionary = {
     },
   },
   infrastructure: {
-    title: 'La capa operativa que conecta el ecosistema.',
-    text: 'Bajo cada producto existe una capa común de intake, datos, señales, automatización y control operativo.',
+    title: 'Un mismo estándar en todo el ecosistema.',
+    text: 'Cada producto de Anclora comparte los mismos datos, la misma seguridad y la misma forma de trabajar — así que encajan entre sí desde el primer día.',
   },
   method: {
     title: 'Método Anclora',

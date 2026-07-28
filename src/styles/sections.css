@@ -1,7 +1,11 @@
-/* Hero */
+/* Hero — composición asimétrica: el anillo deja de ser un widget en columna
+   propia y pasa a ser una capa atmosférica sobredimensionada que sangra por
+   el borde superior derecho, con el titular por encima. Rompe el patrón
+   "texto a la izquierda, icono a la derecha" sin dejar de ser el mismo
+   instrumento naval (sección 8 del brand book: nunca decoración libre). */
 .hero {
   position: relative;
-  padding-block: var(--space-12) var(--space-8);
+  padding-block: var(--space-12) var(--space-6);
   overflow: hidden;
 }
 
@@ -20,19 +24,68 @@
   mask-image: radial-gradient(80% 70% at 60% 30%, black 40%, transparent 90%);
 }
 
-.hero__grid {
-  position: relative;
-  display: grid;
-  gap: var(--space-8);
-  align-items: center;
+.hero__ring-layer {
+  position: absolute;
+  top: -22%;
+  right: -18%;
+  width: min(62vw, 780px);
+  aspect-ratio: 1;
+  pointer-events: none;
+  opacity: 0.5;
+  mask-image: radial-gradient(65% 65% at 50% 50%, black 55%, transparent 92%);
 }
 
-@media (min-width: 900px) {
-  .hero__grid {
-    grid-template-columns: 1fr 400px;
-    gap: var(--space-6);
+.hero__ring-layer svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 899px) {
+  .hero__ring-layer {
+    top: -6%;
+    right: -46%;
+    width: 92vw;
+    opacity: 0.32;
   }
 }
+
+.hero__grid {
+  position: relative;
+  z-index: 1;
+}
+
+.hero__copy {
+  max-width: 640px;
+}
+
+/* Entrada escalonada: el único momento de movimiento cuidado del hero se
+   reparte en los hijos de .hero__copy en vez de mover el bloque entero de
+   golpe (sección 8: fade-in suave, sin parallax agresivo). El anillo tiene
+   su propio barrido (SystemRing), coreografiado por separado. */
+.hero__copy.is-reveal-group {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+.hero__copy > * {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 560ms var(--ease-out), transform 560ms var(--ease-out);
+}
+
+.hero__copy.is-revealed > * {
+  opacity: 1;
+  transform: none;
+}
+
+.hero__copy.is-revealed > *:nth-child(1) { transition-delay: 0ms; }
+.hero__copy.is-revealed > *:nth-child(2) { transition-delay: 70ms; }
+.hero__copy.is-revealed > *:nth-child(3) { transition-delay: 140ms; }
+.hero__copy.is-revealed > *:nth-child(4) { transition-delay: 210ms; }
+.hero__copy.is-revealed > *:nth-child(5) { transition-delay: 280ms; }
+.hero__copy.is-revealed > *:nth-child(6) { transition-delay: 350ms; }
 
 .hero__eyebrow {
   color: var(--signal-blue);
@@ -40,12 +93,14 @@
 }
 
 .hero h1 {
-  margin-bottom: var(--space-2);
+  margin-bottom: var(--space-3);
+  font-size: clamp(3rem, 5.5vw + 1rem, 6rem);
+  letter-spacing: -0.03em;
 }
 
 .hero__tagline {
   margin: 0 0 var(--space-2);
-  font-size: 1.25rem;
+  font-size: 1.375rem;
   color: var(--white-deck);
   max-width: 42ch;
 }
@@ -68,88 +123,76 @@
   font-size: 0.8125rem;
 }
 
-.hero__instrument {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-3);
+/* Franja de estado — el equivalente a la antigua leyenda lateral, ahora una
+   tira horizontal tipo HUD al pie del hero, con el resto del contenido. */
+.hero__status {
+  position: relative;
+  z-index: 1;
+  margin-top: var(--space-8);
+  padding-top: var(--space-4);
+  border-top: var(--border-subtle);
 }
 
-.hero__instrument svg {
-  width: 100%;
-  height: auto;
-  max-width: 340px;
-}
-
-.hero__instrument-legend {
-  display: none;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  max-width: 340px;
-  flex-direction: column;
-  gap: 6px;
-  font-size: 0.8125rem;
-  color: var(--harbor-mist);
-}
-
-.hero__instrument-legend li {
-  display: flex;
-  align-items: baseline;
-  gap: var(--space-2);
-}
-
-.hero__instrument-legend .mono {
-  color: var(--harbor-mist);
-  min-width: 1.5em;
-}
-
-.hero__instrument-legend li.is-active {
-  color: var(--white-deck);
-}
-
-.hero__instrument-legend li.is-active .mono {
-  color: var(--signal-blue);
-}
-
-@media (min-width: 640px) {
-  .hero__instrument-legend {
-    display: flex;
-  }
-}
-
-.hero__instrument-caption {
-  margin: var(--space-2) 0 0;
-  max-width: 280px;
-  text-align: center;
+.hero__status-caption {
+  margin: 0 0 var(--space-2);
+  max-width: 60ch;
   font-size: 0.75rem;
   line-height: 1.5;
   color: var(--harbor-mist);
 }
 
+.hero__status-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: var(--space-4);
+  row-gap: var(--space-1);
+  font-size: 0.8125rem;
+  color: var(--harbor-mist);
+}
+
+.hero__status-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.hero__status-list .mono {
+  color: var(--harbor-mist);
+}
+
+.hero__status-list li.is-active {
+  color: var(--white-deck);
+}
+
+.hero__status-list li.is-active .mono {
+  color: var(--signal-blue);
+}
+
 @media (max-width: 899px) {
   .hero {
     text-align: center;
-    padding-block: var(--space-8);
+    padding-block: var(--space-8) var(--space-6);
   }
   .hero__copy {
     display: flex;
     flex-direction: column;
     align-items: center;
+    max-width: none;
   }
   .hero__tagline,
-  .hero__subtitle {
+  .hero__subtitle,
+  .hero__status-caption {
     margin-inline: auto;
   }
   .hero__actions {
     justify-content: center;
   }
-  .hero__instrument {
-    order: -1;
-  }
-  .hero__instrument svg {
-    max-width: 240px;
+  .hero__status-list {
+    justify-content: center;
   }
 }
 

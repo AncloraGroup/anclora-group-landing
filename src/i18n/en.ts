@@ -52,8 +52,8 @@ const en: Dictionary = {
     },
   },
   infrastructure: {
-    title: 'The operating layer that connects the ecosystem.',
-    text: 'Under every product there is a shared layer of intake, data, signals, automation and operational control.',
+    title: 'One standard across the whole ecosystem.',
+    text: 'Every Anclora product shares the same data, the same security and the same way of working — so they fit together from day one.',
   },
   method: {
     title: 'Anclora Method',
