@@ -14,6 +14,11 @@ interface SystemRingProps {
 
 const TAU = Math.PI * 2
 
+/** Fracción del radio de etiquetas respecto al tamaño total del SVG con
+    size=1080 (labelR = size*0.4 - 26). La usa SonarField para saber cuándo el
+    frente del pulso cruza el círculo de los números. */
+export const RING_LABEL_FRACTION = 0.4 - 26 / 1080
+
 /**
  * Instrumento de a bordo construido a partir de la medalla de Anclora Group:
  * anillo metálico graduado + tres ondas plateadas convertidas en un indicador

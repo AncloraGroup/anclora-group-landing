@@ -67,20 +67,11 @@ export default function Hero() {
               {t.hero.ctaSecondary}
             </a>
           </div>
-          <p className="hero__microcopy mono">{t.hero.microcopy}</p>
         </div>
       </div>
 
       <div className="hero__status container">
         <p className="hero__status-caption">{t.hero.instrumentCaption}</p>
-        <ul className="hero__status-list">
-          {ecosystemLines.map((line, index) => (
-            <li key={line.id} className={index === 0 ? 'is-active' : undefined}>
-              <span className="mono">{String(index + 1).padStart(2, '0')}</span>
-              {t.ecosystem.lines[line.id]?.name ?? line.name}
-            </li>
-          ))}
-        </ul>
       </div>
     </section>
   )

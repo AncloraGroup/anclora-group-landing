@@ -1,4 +1,5 @@
 import { useEffect, useRef, type RefObject } from 'react'
+import { RING_LABEL_FRACTION } from './SystemRing'
 
 interface SonarFieldProps {
   /** Puntero normalizado (-1..1) compartido con el hero; el centro del sonar
@@ -22,10 +23,15 @@ interface Particle {
   blue: boolean
 }
 
-const PULSE_INTERVAL = 2800
-const PULSE_DURATION = 4600
+const PULSE_INTERVAL = 3400
+const PULSE_DURATION = 6800
 const MAX_PULSES = 3
 const PARTICLE_COUNT = 26
+
+/** Ventana (px) alrededor del círculo de números en la que el frente del
+    pulso los enciende en dorado. Dimensionada para que el encendido dure un
+    poco más que la transición CSS (260ms) y el dorado llegue a asentarse. */
+const LABEL_LIT_WINDOW = 62
 
 /* Recorrido cromático del pulso: nace en signal-blue, cruza command-purple y
    muere en plata — la señal cambia de "frecuencia" al alejarse del centro. */
@@ -77,6 +83,12 @@ export default function SonarField({ pointerRef, className }: SonarFieldProps) {
 
     const dpr = Math.min(window.devicePixelRatio || 1, 2)
 
+    /* El frente del pulso enciende los números del SystemRing al cruzar su
+       círculo: medimos el radio de ese círculo en px reales de pantalla */
+    const heroEl = canvas.closest('section')
+    const ringLayer = heroEl?.querySelector('.hero__ring-layer')
+    let labelRadiusPx = 0
+
     const resize = () => {
       const rect = canvas.getBoundingClientRect()
       width = rect.width
@@ -84,6 +96,7 @@ export default function SonarField({ pointerRef, className }: SonarFieldProps) {
       canvas.width = Math.round(width * dpr)
       canvas.height = Math.round(height * dpr)
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+      labelRadiusPx = ringLayer ? ringLayer.getBoundingClientRect().width * RING_LABEL_FRACTION : 0
     }
 
     const seedParticles = () => {
@@ -105,7 +118,7 @@ export default function SonarField({ pointerRef, className }: SonarFieldProps) {
       const p = pointerRef.current ?? { x: 0, y: 0 }
       return {
         x: width / 2 + p.x * 10,
-        y: height / 2 + p.y * 10,
+        y: height * 0.43 + p.y * 10,
       }
     }
 
@@ -113,6 +126,7 @@ export default function SonarField({ pointerRef, className }: SonarFieldProps) {
       ctx.clearRect(0, 0, width, height)
       const c = center()
       const maxR = Math.hypot(width, height) * 0.55
+      let labelsLit = false
 
       // Pulsos de sonar: anillo que se expande, cambia de color y se apaga.
       // Doble trazo: halo ancho tenue + filo fino, para leer el degradado.
@@ -126,6 +140,10 @@ export default function SonarField({ pointerRef, className }: SonarFieldProps) {
         const radius = eased * maxR
         const fade = 1 - eased
 
+        if (labelRadiusPx > 0 && Math.abs(radius - labelRadiusPx) < LABEL_LIT_WINDOW) {
+          labelsLit = true
+        }
+
         ctx.beginPath()
         ctx.arc(c.x, c.y, radius, 0, Math.PI * 2)
         ctx.strokeStyle = pulseColor(eased, 0.1 * fade)
@@ -138,6 +156,8 @@ export default function SonarField({ pointerRef, className }: SonarFieldProps) {
         ctx.lineWidth = 1.5
         ctx.stroke()
       }
+
+      heroEl?.classList.toggle('hero--labels-lit', labelsLit)
 
       // Partículas de profundidad: deriva lenta, parpadeo casi imperceptible
       for (const p of particles) {
@@ -231,6 +251,7 @@ export default function SonarField({ pointerRef, className }: SonarFieldProps) {
       resizeObserver.disconnect()
       viewObserver.disconnect()
       document.removeEventListener('visibilitychange', onVisibility)
+      heroEl?.classList.remove('hero--labels-lit')
     }
   }, [pointerRef])
 

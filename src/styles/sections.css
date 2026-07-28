@@ -40,15 +40,34 @@
 
 .hero__ring-layer {
   position: absolute;
-  top: 46%;
+  top: 43%;
   left: 50%;
-  width: min(118vmin, 1080px);
+  /* El anillo cabe entero en el viewport: diámetro acotado por la altura
+     visible (70svh deja aire sobre la franja de estado), nunca por el ancho
+     en pantallas panorámicas */
+  width: min(70svh, 880px);
   aspect-ratio: 1;
   pointer-events: none;
   opacity: 0.6;
-  mask-image: radial-gradient(65% 65% at 50% 50%, black 55%, transparent 94%);
   transform: translate(calc(-50% + var(--px) * 1px), calc(-50% + var(--py) * 1px));
   transition: transform 620ms var(--ease-out);
+}
+
+/* Los números del anillo se encienden en dorado cuando el frente de un pulso
+   de sonar cruza su círculo (lo marca SonarField con .hero--labels-lit) */
+.hero__ring-layer text {
+  transition:
+    fill 260ms var(--ease-out),
+    filter 260ms var(--ease-out),
+    transform 260ms var(--ease-out);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.hero--labels-lit .hero__ring-layer text {
+  fill: var(--anclora-gold);
+  filter: drop-shadow(0 0 7px rgba(197, 160, 89, 0.65));
+  transform: translateY(-2px) scale(1.12);
 }
 
 .hero__ring-layer svg {
@@ -89,6 +108,7 @@
     top: 42%;
     width: 150vmin;
     opacity: 0.42;
+    mask-image: radial-gradient(65% 65% at 50% 50%, black 55%, transparent 94%);
   }
 }
 
@@ -167,17 +187,12 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: var(--space-2);
-  margin-bottom: var(--space-3);
 }
 
-.hero__microcopy {
-  color: var(--harbor-mist);
-  font-size: 0.8125rem;
-}
-
-/* Franja de estado — tira horizontal tipo HUD al pie del hero. La línea
-   superior lleva un destello de oro Anclora: énfasis premium mínimo, uso
-   restringido según el brand book (sección 5.4). */
+/* Franja de estado — una sola línea de leyenda centrada al pie del hero. La
+   línea superior lleva un destello de oro Anclora: énfasis premium mínimo,
+   uso restringido según el brand book (sección 5.4). Los números del anillo
+   ya no se repiten aquí: el anillo es la leyenda. */
 .hero__status {
   position: relative;
   z-index: 1;
@@ -192,82 +207,30 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, rgba(197, 160, 89, 0.45), rgba(229, 231, 235, 0.12) 38%, rgba(229, 231, 235, 0.12));
-}
-
-@media (min-width: 900px) {
-  .hero__status {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: var(--space-4);
-  }
+  background: linear-gradient(90deg, transparent, rgba(197, 160, 89, 0.4) 30%, rgba(197, 160, 89, 0.4) 70%, transparent);
 }
 
 .hero__status-caption {
-  margin: 0 auto var(--space-2);
-  max-width: 60ch;
+  margin: 0 auto;
+  max-width: 56ch;
   font-size: 0.75rem;
   line-height: 1.5;
   color: var(--harbor-mist);
   text-align: center;
 }
 
-@media (min-width: 900px) {
-  .hero__status-caption {
-    margin: 0;
-    max-width: 34ch;
-    text-align: left;
-  }
-}
-
-.hero__status-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  column-gap: var(--space-4);
-  row-gap: var(--space-1);
-  font-size: 0.8125rem;
-  color: var(--harbor-mist);
-}
-
-.hero__status-list li {
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-  white-space: nowrap;
-}
-
-.hero__status-list .mono {
-  color: var(--harbor-mist);
-}
-
-.hero__status-list li.is-active {
-  color: var(--white-deck);
-}
-
-.hero__status-list li.is-active .mono {
-  color: var(--signal-blue);
-}
-
-@media (min-width: 900px) {
-  .hero__status-list {
-    justify-content: flex-end;
-    text-align: right;
-  }
-}
-
 /* Viewports bajos (portátiles con zoom al 100%): el hero debe entrar entero
-   sin scroll — se compactan titular y respiración, nunca se recorta contenido */
+   sin scroll — se compactan titular, anillo y respiración, nunca se recorta
+   contenido */
 @media (max-height: 780px) {
   .hero {
     padding-block: var(--space-3);
   }
   .hero h1 {
     font-size: clamp(2.25rem, 3.5vw + 1rem, 3.75rem);
+  }
+  .hero__ring-layer {
+    width: min(62svh, 880px);
   }
   .hero__status {
     margin-top: var(--space-3);
@@ -419,28 +382,12 @@
   }
 }
 
-/* Infraestructura — backbone compartido: los productos de nivel 2 viven en un
-   único panel con celdas divididas, la metáfora visual de "un mismo estándar":
-   misma carrocería, cuatro módulos. Cada módulo dice qué hace, no solo cómo
-   se llama. */
-.products-infra {
-  margin-top: var(--space-8);
-}
-
-.products-infra__header {
-  max-width: 60ch;
-  margin-bottom: var(--space-4);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-}
-
-.products-infra__header p {
-  color: var(--harbor-mist);
-}
-
+/* Productos — un solo sistema: las tarjetas insignia y el backbone de
+   infraestructura comparten sección, cabecera y lenguaje. El backbone es un
+   panel-instrumento con su etiqueta mono y cuatro módulos divididos: la
+   metáfora de "un mismo estándar" hecha carrocería. */
 .infra-backbone {
-  display: grid;
+  margin-top: var(--space-4);
   background:
     linear-gradient(180deg, rgba(229, 231, 235, 0.03), transparent 45%),
     var(--deep-ocean);
@@ -450,14 +397,26 @@
   overflow: hidden;
 }
 
+.infra-backbone__label {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: var(--border-subtle);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--anclora-gold);
+}
+
+.infra-backbone__modules {
+  display: grid;
+}
+
 @media (min-width: 700px) {
-  .infra-backbone {
+  .infra-backbone__modules {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (min-width: 1100px) {
-  .infra-backbone {
+  .infra-backbone__modules {
     grid-template-columns: repeat(4, 1fr);
   }
 }
@@ -468,27 +427,27 @@
   transition: background var(--dur-base) var(--ease-out);
 }
 
-.infra-backbone > *:first-child {
+.infra-backbone__modules > *:first-child {
   border-top: none;
 }
 
 @media (min-width: 700px) {
-  .infra-backbone > *:nth-child(-n + 2) {
+  .infra-backbone__modules > *:nth-child(-n + 2) {
     border-top: none;
   }
-  .infra-backbone > *:nth-child(even) {
+  .infra-backbone__modules > *:nth-child(even) {
     border-left: var(--border-subtle);
   }
 }
 
 @media (min-width: 1100px) {
-  .infra-backbone > * {
+  .infra-backbone__modules > * {
     border-top: none;
   }
-  .infra-backbone > *:nth-child(even) {
+  .infra-backbone__modules > *:nth-child(even) {
     border-left: none;
   }
-  .infra-backbone > *:not(:first-child) {
+  .infra-backbone__modules > *:not(:first-child) {
     border-left: var(--border-subtle);
   }
 }
