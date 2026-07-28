@@ -78,7 +78,10 @@
   display: none;
 }
 
-@media (min-width: 900px) {
+/* 1100px, no 900px: a 900px el nav completo (5 enlaces + selector + CTA) no cabe en
+   ES/DE/FR y produce overflow horizontal (verificado: hasta ~1042px de ancho mínimo
+   requerido en ES). El menú móvil ya cubre este rango sin problema. */
+@media (min-width: 1100px) {
   .site-header__nav {
     display: flex;
   }
