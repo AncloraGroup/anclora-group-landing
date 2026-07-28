@@ -37,6 +37,14 @@ const it: Dictionary = {
       'publishing-digital-knowledge': { name: 'Editoria e Conoscenza Digitale', description: 'Contenuti, conoscenza ed editoria.' },
     },
   },
+  evidence: {
+    title: 'Evidenza operativa',
+    metrics: [
+      { value: '05', label: 'linee attive', detail: 'Fiscalità, automazione, energia, immobiliare e conoscenza.' },
+      { value: '09', label: 'prodotti connessi', detail: 'Un catalogo proprietario che condivide criteri, dati e sicurezza.' },
+      { value: '01', label: 'sistema di controllo', detail: 'Un modello comune per prioritizzare, operare e scalare ogni prodotto.' },
+    ],
+  },
   products: {
     title: 'Prodotti propri.',
     ctaView: 'Vedi il prodotto',

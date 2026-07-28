@@ -1,5 +1,5 @@
 import type { AnchorHTMLAttributes, MouseEvent } from 'react'
-import { useNavigation } from '../context/Navigation'
+import { useNavigation } from '../context/useNavigation'
 
 interface InternalLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   to: string

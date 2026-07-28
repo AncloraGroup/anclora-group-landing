@@ -1,5 +1,5 @@
 import type { EcosystemLine } from '../data/ecosystem'
-import { useLocale } from '../i18n/LocaleContext'
+import { useLocale } from '../i18n/useLocale'
 
 interface EcosystemCardProps {
   line: EcosystemLine

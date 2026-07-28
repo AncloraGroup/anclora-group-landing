@@ -1,9 +1,11 @@
 import { LocaleProvider } from './i18n/LocaleContext'
-import { NavigationProvider, useNavigation } from './context/Navigation'
+import { NavigationProvider } from './context/Navigation'
+import { useNavigation } from './context/useNavigation'
 import { CookieConsentProvider } from './components/CookieConsentProvider'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import Hero from './sections/Hero'
+import Evidence from './sections/Evidence'
 import Ecosystem from './sections/Ecosystem'
 import Products from './sections/Products'
 import Method from './sections/Method'
@@ -32,6 +34,7 @@ function AppRoutes() {
         ) : (
           <>
             <Hero />
+            <Evidence />
             <Ecosystem />
             <Products />
             <Method />

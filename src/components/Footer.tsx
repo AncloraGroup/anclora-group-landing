@@ -1,7 +1,7 @@
-import { useLocale } from '../i18n/LocaleContext'
+import { useLocale } from '../i18n/useLocale'
 import LanguageSwitcher from './LanguageSwitcher'
 import InternalLink from './InternalLink'
-import { useCookieConsent } from './CookieConsentProvider'
+import { useCookieConsent } from './cookieConsentContext'
 import lockupHorizontalDark from '../assets/logo/anclora-group-lockup-horizontal-sobre-oscuro-64.webp'
 
 export default function Footer() {

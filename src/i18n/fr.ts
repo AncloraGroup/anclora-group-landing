@@ -37,6 +37,14 @@ const fr: Dictionary = {
       'publishing-digital-knowledge': { name: 'Édition & Connaissance Numérique', description: 'Contenu, connaissance et édition.' },
     },
   },
+  evidence: {
+    title: 'Preuve opérationnelle',
+    metrics: [
+      { value: '05', label: 'lignes actives', detail: 'Fiscalité, automatisation, énergie, immobilier et connaissance.' },
+      { value: '09', label: 'produits connectés', detail: 'Un catalogue propriétaire qui partage standards, données et sécurité.' },
+      { value: '01', label: 'système de contrôle', detail: 'Un modèle commun pour prioriser, opérer et faire évoluer chaque produit.' },
+    ],
+  },
   products: {
     title: 'Produits propres.',
     ctaView: 'Voir le produit',

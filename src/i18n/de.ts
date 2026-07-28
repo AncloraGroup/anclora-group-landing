@@ -37,6 +37,14 @@ const de: Dictionary = {
       'publishing-digital-knowledge': { name: 'Publishing & Digitales Wissen', description: 'Inhalte, Wissen und Publishing.' },
     },
   },
+  evidence: {
+    title: 'Operative Evidenz',
+    metrics: [
+      { value: '05', label: 'aktive Linien', detail: 'Steuern, Automatisierung, Energie, Immobilien und Wissen.' },
+      { value: '09', label: 'verbundene Produkte', detail: 'Ein eigener Katalog mit gemeinsamen Standards, Daten und Sicherheit.' },
+      { value: '01', label: 'Kontrollsystem', detail: 'Ein gemeinsames Modell, um jedes Produkt zu priorisieren, zu betreiben und zu skalieren.' },
+    ],
+  },
   products: {
     title: 'Eigene Produkte.',
     ctaView: 'Produkt ansehen',

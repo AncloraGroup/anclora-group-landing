@@ -1,4 +1,4 @@
-import { useLocale } from '../i18n/LocaleContext'
+import { useLocale } from '../i18n/useLocale'
 import SectionHeader from '../components/SectionHeader'
 import ProductCard from '../components/ProductCard'
 import { tier1Products, tier2Products } from '../data/products'

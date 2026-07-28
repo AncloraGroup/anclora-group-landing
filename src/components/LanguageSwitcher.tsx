@@ -1,4 +1,4 @@
-import { useLocale } from '../i18n/LocaleContext'
+import { useLocale } from '../i18n/useLocale'
 import { LOCALES, LOCALE_LABELS, type Locale } from '../i18n'
 
 export default function LanguageSwitcher() {

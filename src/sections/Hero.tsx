@@ -1,5 +1,5 @@
 import { useCallback, useRef } from 'react'
-import { useLocale } from '../i18n/LocaleContext'
+import { useLocale } from '../i18n/useLocale'
 import { ecosystemLines } from '../data/ecosystem'
 import SystemRing from '../components/SystemRing'
 import SonarField from '../components/SonarField'

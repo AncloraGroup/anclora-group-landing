@@ -8,6 +8,12 @@ export interface Principle {
   description: string
 }
 
+export interface EvidenceMetric {
+  value: string
+  label: string
+  detail: string
+}
+
 export interface Dictionary {
   meta: {
     title: string
@@ -35,6 +41,10 @@ export interface Dictionary {
     title: string
     text: string
     lines: Record<string, { name: string; description: string }>
+  }
+  evidence: {
+    title: string
+    metrics: EvidenceMetric[]
   }
   products: {
     title: string

@@ -121,7 +121,7 @@
 }
 
 .hero__copy > * {
-  opacity: 0;
+  opacity: 0.82;
   transform: translateY(14px);
   transition: opacity 560ms var(--ease-out), transform 560ms var(--ease-out);
 }
@@ -269,6 +269,49 @@
   .hero__subtitle,
   .hero__status-caption {
     margin-inline: auto;
+  }
+}
+
+/* Evidence — proof strip: tres señales concretas antes del catálogo. Refuerza
+   valor sin crear otra hero ni ralentizar el primer viewport. */
+.evidence {
+  position: relative;
+  border-block: var(--border-subtle);
+  background:
+    linear-gradient(90deg, rgba(95, 168, 255, 0.07), transparent 34%, rgba(197, 160, 89, 0.05)),
+    rgba(17, 24, 39, 0.62);
+}
+
+.evidence__inner {
+  display: grid;
+  gap: 1px;
+  padding-block: var(--space-3);
+  background: rgba(229, 231, 235, 0.08);
+}
+
+.evidence-metric {
+  padding: var(--space-3);
+  background: rgba(10, 31, 61, 0.78);
+}
+
+.evidence-metric__value {
+  color: var(--anclora-gold);
+}
+
+.evidence-metric h3 {
+  margin-top: 4px;
+  color: var(--white-deck);
+}
+
+.evidence-metric p:last-child {
+  margin-top: 4px;
+  color: var(--harbor-mist);
+  font-size: 0.9375rem;
+}
+
+@media (min-width: 800px) {
+  .evidence__inner {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 

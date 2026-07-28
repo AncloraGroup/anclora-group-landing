@@ -37,6 +37,14 @@ const es: Dictionary = {
       'publishing-digital-knowledge': { name: 'Publicaciones y Conocimiento Digital', description: 'Contenido, conocimiento y editorial.' },
     },
   },
+  evidence: {
+    title: 'Evidencia operativa',
+    metrics: [
+      { value: '05', label: 'líneas activas', detail: 'Fiscalidad, automatización, energía, inmobiliario y conocimiento.' },
+      { value: '09', label: 'productos conectados', detail: 'Un catálogo propio que comparte criterios, datos y seguridad.' },
+      { value: '01', label: 'sistema de control', detail: 'Una forma común de operar, priorizar y escalar cada producto.' },
+    ],
+  },
   products: {
     title: 'Productos propios.',
     ctaView: 'Ver producto',

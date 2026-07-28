@@ -1,22 +1,9 @@
-import { createContext, useContext, useEffect, useRef, useState, type ReactNode } from 'react'
-import { useLocale } from '../i18n/LocaleContext'
+import { useEffect, useRef, useState, type ReactNode } from 'react'
+import { useLocale } from '../i18n/useLocale'
+import { CookieConsentContext } from './cookieConsentContext'
 
 const STORAGE_KEY = 'anclora-cookie-notice-ack'
 const FOCUSABLE_SELECTOR = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
-
-interface CookieConsentContextValue {
-  openPreferences: () => void
-}
-
-const CookieConsentContext = createContext<CookieConsentContextValue | undefined>(undefined)
-
-export function useCookieConsent(): CookieConsentContextValue {
-  const ctx = useContext(CookieConsentContext)
-  if (!ctx) {
-    throw new Error('useCookieConsent must be used within a CookieConsentProvider')
-  }
-  return ctx
-}
 
 // El sitio solo usa cookies técnicas (sesión, seguridad, idioma) — no hay categorías
 // de analítica ni marketing que activar, así que no hay nada que "aceptar/rechazar".

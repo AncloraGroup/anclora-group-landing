@@ -36,6 +36,14 @@ const en: Dictionary = {
       'publishing-digital-knowledge': { name: 'Publishing & Digital Knowledge', description: 'Content, knowledge and publishing.' },
     },
   },
+  evidence: {
+    title: 'Operational evidence',
+    metrics: [
+      { value: '05', label: 'active lines', detail: 'Tax, automation, energy, real estate and knowledge.' },
+      { value: '09', label: 'connected products', detail: 'A proprietary catalogue sharing standards, data and security.' },
+      { value: '01', label: 'control system', detail: 'One operating model to prioritize, run and scale every product.' },
+    ],
+  },
   products: {
     title: 'Proprietary products.',
     ctaView: 'View product',

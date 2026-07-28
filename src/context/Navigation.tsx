@@ -1,11 +1,5 @@
-import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from 'react'
-
-interface NavigationContextValue {
-  path: string
-  navigate: (path: string) => void
-}
-
-const NavigationContext = createContext<NavigationContextValue | undefined>(undefined)
+import { useCallback, useEffect, useState, type ReactNode } from 'react'
+import { NavigationContext } from './navigationContext'
 
 export function NavigationProvider({ children }: { children: ReactNode }) {
   const [path, setPath] = useState(() => window.location.pathname)
@@ -25,12 +19,4 @@ export function NavigationProvider({ children }: { children: ReactNode }) {
   }, [])
 
   return <NavigationContext.Provider value={{ path, navigate }}>{children}</NavigationContext.Provider>
-}
-
-export function useNavigation(): NavigationContextValue {
-  const ctx = useContext(NavigationContext)
-  if (!ctx) {
-    throw new Error('useNavigation must be used within a NavigationProvider')
-  }
-  return ctx
 }

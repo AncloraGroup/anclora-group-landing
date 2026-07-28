@@ -1,7 +1,8 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { LocaleProvider, useLocale } from '../i18n/LocaleContext'
+import { LocaleProvider } from '../i18n/LocaleContext'
+import { useLocale } from '../i18n/useLocale'
 import LanguageSwitcher from './LanguageSwitcher'
 
 function LocaleProbe() {

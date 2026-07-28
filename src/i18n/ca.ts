@@ -37,6 +37,14 @@ const ca: Dictionary = {
       'publishing-digital-knowledge': { name: 'Publicacions i Coneixement Digital', description: 'Contingut, coneixement i editorial.' },
     },
   },
+  evidence: {
+    title: 'Evidència operativa',
+    metrics: [
+      { value: '05', label: 'línies actives', detail: 'Fiscalitat, automatització, energia, immobiliari i coneixement.' },
+      { value: '09', label: 'productes connectats', detail: 'Un catàleg propi que comparteix criteris, dades i seguretat.' },
+      { value: '01', label: 'sistema de control', detail: 'Una manera comuna d’operar, prioritzar i escalar cada producte.' },
+    ],
+  },
   products: {
     title: 'Productes propis.',
     ctaView: 'Veure producte',

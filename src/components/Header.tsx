@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState, type MouseEvent } from 'react'
-import { useLocale } from '../i18n/LocaleContext'
-import { useNavigation } from '../context/Navigation'
+import { useLocale } from '../i18n/useLocale'
+import { useNavigation } from '../context/useNavigation'
 import LanguageSwitcher from './LanguageSwitcher'
 import lockupHorizontalDark from '../assets/logo/anclora-group-lockup-horizontal-sobre-oscuro-64.webp'
 
@@ -48,11 +48,15 @@ export default function Header() {
 
   useEffect(() => {
     if (!isMenuOpen) return
+    document.body.classList.add('is-mobile-nav-open')
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') closeMenu()
     }
     document.addEventListener('keydown', onKeyDown)
-    return () => document.removeEventListener('keydown', onKeyDown)
+    return () => {
+      document.body.classList.remove('is-mobile-nav-open')
+      document.removeEventListener('keydown', onKeyDown)
+    }
   }, [isMenuOpen, closeMenu])
 
   return (

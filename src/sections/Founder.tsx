@@ -1,4 +1,4 @@
-import { useLocale } from '../i18n/LocaleContext'
+import { useLocale } from '../i18n/useLocale'
 import SectionHeader from '../components/SectionHeader'
 import { useRevealOnScroll } from '../hooks/useRevealOnScroll'
 

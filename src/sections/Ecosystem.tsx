@@ -1,4 +1,4 @@
-import { useLocale } from '../i18n/LocaleContext'
+import { useLocale } from '../i18n/useLocale'
 import SectionHeader from '../components/SectionHeader'
 import EcosystemCard from '../components/EcosystemCard'
 import { ecosystemLines } from '../data/ecosystem'

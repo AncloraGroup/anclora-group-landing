@@ -1,6 +1,6 @@
 import type { Product } from '../data/products'
 import { ecosystemLines } from '../data/ecosystem'
-import { useLocale } from '../i18n/LocaleContext'
+import { useLocale } from '../i18n/useLocale'
 
 interface ProductCardProps {
   product: Product

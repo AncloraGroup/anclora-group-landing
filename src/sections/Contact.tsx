@@ -1,4 +1,4 @@
-import { useLocale } from '../i18n/LocaleContext'
+import { useLocale } from '../i18n/useLocale'
 import { useRevealOnScroll } from '../hooks/useRevealOnScroll'
 
 export default function Contact() {
