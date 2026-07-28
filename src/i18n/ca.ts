@@ -20,14 +20,14 @@ const ca: Dictionary = {
     title: 'Anclora Group',
     tagline: 'Tecnologia aplicada per operar amb més claredat, control i intel·ligència.',
     subtitle:
-      'Creem productes digitals propis per transformar processos complexos en sistemes clars, útils i escalables.',
+      'Convertim processos complexos en sistemes clars: productes digitals propis, construïts per operar.',
     ctaPrimary: "Explorar l'ecosistema",
     ctaSecondary: "Contactar amb l'Antonio",
     microcopy: 'Founder-led technology group · Built from Mallorca · Designed for practical intelligence',
     instrumentCaption: "Cada marca de l'anell representa una línia de negoci activa de l'ecosistema Anclora.",
   },
   ecosystem: {
-    title: "Un ecosistema de productes connectats per una mateixa idea: reduir fricció real.",
+    title: 'Cinc línies d\'operació. Un sol sistema de control.',
     text: 'Anclora Group combina producte, automatització, dades i intel·ligència aplicada per construir eines pràctiques en àrees on la claredat operativa marca la diferència.',
     lines: {
       'fiscal-compliance': { name: 'Fiscalitat i Compliment', description: 'Fiscalitat, facturació i compliment.' },
@@ -38,7 +38,7 @@ const ca: Dictionary = {
     },
   },
   products: {
-    title: 'Productes destacats',
+    title: 'Productes propis.',
     ctaView: 'Veure producte',
     items: {
       'anclora-fiscal': { description: 'Fiscalitat, facturació i compliment per a operacions digitals.', status: 'ecosistema intern' },
@@ -92,7 +92,7 @@ const ca: Dictionary = {
   },
   contact: {
     title: 'Construïm amb claredat.',
-    body: "Per a col·laboracions, producte, pilots o converses estratègiques sobre l'ecosistema Anclora, contacta directament amb l'Antonio.",
+    body: 'Col·laboracions, pilots o converses estratègiques sobre l\'ecosistema Anclora. Parla directament amb l\'Antonio — sense intermediaris.',
     email: 'antonio@anclora.com',
     cta: "Contactar amb l'Antonio",
     subject: 'Consulta des d’Anclora Group',

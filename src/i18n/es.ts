@@ -20,14 +20,14 @@ const es: Dictionary = {
     title: 'Anclora Group',
     tagline: 'Tecnología aplicada para operar con más claridad, control e inteligencia.',
     subtitle:
-      'Creamos productos digitales propios para transformar procesos complejos en sistemas claros, útiles y escalables.',
+      'Convertimos procesos complejos en sistemas claros: productos digitales propios, construidos para operar.',
     ctaPrimary: 'Explorar el ecosistema',
     ctaSecondary: 'Contactar con Antonio',
     microcopy: 'Founder-led technology group · Built from Mallorca · Designed for practical intelligence',
     instrumentCaption: 'Cada marca del anillo representa una línea de negocio activa del ecosistema Anclora.',
   },
   ecosystem: {
-    title: 'Un ecosistema de productos conectados por una misma idea: reducir fricción real.',
+    title: 'Cinco líneas de operación. Un solo sistema de control.',
     text: 'Anclora Group combina producto, automatización, datos e inteligencia aplicada para construir herramientas prácticas en áreas donde la claridad operativa marca la diferencia.',
     lines: {
       'fiscal-compliance': { name: 'Fiscalidad y Cumplimiento', description: 'Fiscalidad, facturación y cumplimiento.' },
@@ -38,7 +38,7 @@ const es: Dictionary = {
     },
   },
   products: {
-    title: 'Productos destacados',
+    title: 'Productos propios.',
     ctaView: 'Ver producto',
     items: {
       'anclora-fiscal': { description: 'Fiscalidad, facturación y cumplimiento para operaciones digitales.', status: 'ecosistema interno' },
@@ -77,7 +77,7 @@ const es: Dictionary = {
   },
   contact: {
     title: 'Construyamos con claridad.',
-    body: 'Para colaboraciones, producto, pilotos o conversaciones estratégicas sobre el ecosistema Anclora, contacta directamente con Antonio.',
+    body: 'Colaboraciones, pilotos o conversaciones estratégicas sobre el ecosistema Anclora. Habla directamente con Antonio — sin intermediarios.',
     email: 'antonio@anclora.com',
     cta: 'Contactar con Antonio',
     subject: 'Consulta desde Anclora Group',

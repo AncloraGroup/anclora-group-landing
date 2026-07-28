@@ -20,14 +20,14 @@ const de: Dictionary = {
     title: 'Anclora Group',
     tagline: 'Angewandte Technologie für klarere Abläufe, mehr Kontrolle und intelligentere Entscheidungen.',
     subtitle:
-      'Wir entwickeln eigene digitale Produkte, um komplexe Prozesse in klare, nützliche und skalierbare Systeme zu verwandeln.',
+      'Wir verwandeln komplexe Prozesse in klare Systeme: eigene digitale Produkte, gebaut für den operativen Einsatz.',
     ctaPrimary: 'Ökosystem entdecken',
     ctaSecondary: 'Antonio kontaktieren',
     microcopy: 'Founder-led technology group · Built from Mallorca · Designed for practical intelligence',
     instrumentCaption: 'Jede Markierung auf dem Ring steht für eine aktive Geschäftslinie im Anclora-Ökosystem.',
   },
   ecosystem: {
-    title: 'Ein Ökosystem von Produkten, verbunden durch eine Idee: echte Reibung reduzieren.',
+    title: 'Fünf Betriebslinien. Ein einziges Kontrollsystem.',
     text: 'Anclora Group verbindet Produkt, Automatisierung, Daten und angewandte Intelligenz zu praktischen Werkzeugen, dort wo operative Klarheit den Unterschied macht.',
     lines: {
       'fiscal-compliance': { name: 'Steuern & Compliance', description: 'Steuern, Rechnungsstellung und Compliance.' },
@@ -38,7 +38,7 @@ const de: Dictionary = {
     },
   },
   products: {
-    title: 'Ausgewählte Produkte',
+    title: 'Eigene Produkte.',
     ctaView: 'Produkt ansehen',
     items: {
       'anclora-fiscal': { description: 'Steuern, Rechnungsstellung und Compliance für digitale Abläufe.', status: 'internes Ökosystem' },
@@ -92,7 +92,7 @@ const de: Dictionary = {
   },
   contact: {
     title: 'Lass uns mit Klarheit bauen.',
-    body: 'Für Kooperationen, Produkt, Pilotprojekte oder strategische Gespräche über das Anclora-Ökosystem wende dich direkt an Antonio.',
+    body: 'Kooperationen, Pilotprojekte oder strategische Gespräche über das Anclora-Ökosystem. Sprich direkt mit Antonio — ohne Umwege.',
     email: 'antonio@anclora.com',
     cta: 'Antonio kontaktieren',
     subject: 'Anfrage von Anclora Group',

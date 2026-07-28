@@ -19,14 +19,14 @@ const en: Dictionary = {
     title: 'Anclora Group',
     tagline: 'Applied technology for clearer operations, greater control and smarter decisions.',
     subtitle:
-      'We build our own digital products to turn complex processes into clear, useful and scalable systems.',
+      'We turn complex processes into clear systems: our own digital products, built to operate.',
     ctaPrimary: 'Explore the ecosystem',
     ctaSecondary: 'Contact Antonio',
     microcopy: 'Founder-led technology group · Built from Mallorca · Designed for practical intelligence',
     instrumentCaption: 'Each mark on the ring represents an active business line in the Anclora ecosystem.',
   },
   ecosystem: {
-    title: 'An ecosystem of products connected by one idea: reducing real friction.',
+    title: 'Five lines of operation. One system of control.',
     text: 'Anclora Group combines product, automation, data and applied intelligence to build practical tools where operational clarity makes the difference.',
     lines: {
       'fiscal-compliance': { name: 'Fiscal & Compliance', description: 'Taxation, invoicing and compliance.' },
@@ -37,7 +37,7 @@ const en: Dictionary = {
     },
   },
   products: {
-    title: 'Featured products',
+    title: 'Proprietary products.',
     ctaView: 'View product',
     items: {
       'anclora-fiscal': { description: 'Taxation, invoicing and compliance for digital operations.', status: 'internal ecosystem' },
@@ -91,7 +91,7 @@ const en: Dictionary = {
   },
   contact: {
     title: "Let's build with clarity.",
-    body: 'For collaborations, product, pilots or strategic conversations about the Anclora ecosystem, contact Antonio directly.',
+    body: 'Collaborations, pilots or strategic conversations about the Anclora ecosystem. Talk directly with Antonio — no intermediaries.',
     email: 'antonio@anclora.com',
     cta: 'Contact Antonio',
     subject: 'Inquiry from Anclora Group',

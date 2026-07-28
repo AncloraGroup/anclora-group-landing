@@ -20,14 +20,14 @@ const fr: Dictionary = {
     title: 'Anclora Group',
     tagline: 'Une technologie appliquée pour des opérations plus claires, plus de contrôle et des décisions plus intelligentes.',
     subtitle:
-      'Nous créons nos propres produits numériques pour transformer des processus complexes en systèmes clairs, utiles et évolutifs.',
+      'Nous transformons des processus complexes en systèmes clairs : des produits numériques propres, construits pour opérer.',
     ctaPrimary: "Explorer l'écosystème",
     ctaSecondary: 'Contacter Antonio',
     microcopy: 'Founder-led technology group · Built from Mallorca · Designed for practical intelligence',
     instrumentCaption: "Chaque repère de l'anneau représente une ligne d'activité active de l'écosystème Anclora.",
   },
   ecosystem: {
-    title: 'Un écosystème de produits reliés par une même idée : réduire la friction réelle.',
+    title: 'Cinq lignes d’opération. Un seul système de contrôle.',
     text: "Anclora Group combine produit, automatisation, données et intelligence appliquée pour créer des outils pratiques là où la clarté opérationnelle fait la différence.",
     lines: {
       'fiscal-compliance': { name: 'Fiscalité & Conformité', description: 'Fiscalité, facturation et conformité.' },
@@ -38,7 +38,7 @@ const fr: Dictionary = {
     },
   },
   products: {
-    title: 'Produits phares',
+    title: 'Produits propres.',
     ctaView: 'Voir le produit',
     items: {
       'anclora-fiscal': { description: 'Fiscalité, facturation et conformité pour les opérations numériques.', status: 'écosystème interne' },
@@ -92,7 +92,7 @@ const fr: Dictionary = {
   },
   contact: {
     title: 'Construisons avec clarté.',
-    body: "Pour des collaborations, du produit, des pilotes ou des conversations stratégiques sur l'écosystème Anclora, contactez directement Antonio.",
+    body: "Collaborations, pilotes ou conversations stratégiques sur l'écosystème Anclora. Écrivez directement à Antonio — sans intermédiaires.",
     email: 'antonio@anclora.com',
     cta: 'Contacter Antonio',
     subject: 'Demande depuis Anclora Group',
