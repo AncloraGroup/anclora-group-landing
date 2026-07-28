@@ -12,7 +12,7 @@ export default function Ecosystem() {
     <section id="ecosystem" className="section">
       <div className="container">
         <SectionHeader title={t.ecosystem.title} text={t.ecosystem.text} />
-        <div ref={revealRef} className="ecosystem-rail-list is-reveal-group">
+        <div ref={revealRef} className="ecosystem-rail-list is-reveal-group is-reveal-group--stagger">
           {ecosystemLines.map((line, index) => (
             <EcosystemCard key={line.id} line={line} index={index} />
           ))}

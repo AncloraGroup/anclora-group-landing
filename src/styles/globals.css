@@ -104,8 +104,48 @@ select:focus-visible,
   transform: translateY(0);
 }
 
+/* Variante escalonada: la misma secuencia orquestada repartida entre los
+   hijos directos (una por sección, delays de 70ms). El grupo en sí no se
+   mueve; solo sus hijos entran en cadena. */
+.is-reveal-group--stagger {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+.is-reveal-group--stagger > * {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 520ms var(--ease-out), transform 520ms var(--ease-out);
+}
+
+.is-reveal-group--stagger.is-revealed > * {
+  opacity: 1;
+  transform: none;
+}
+
+.is-reveal-group--stagger.is-revealed > *:nth-child(1) { transition-delay: 0ms; }
+.is-reveal-group--stagger.is-revealed > *:nth-child(2) { transition-delay: 70ms; }
+.is-reveal-group--stagger.is-revealed > *:nth-child(3) { transition-delay: 140ms; }
+.is-reveal-group--stagger.is-revealed > *:nth-child(4) { transition-delay: 210ms; }
+.is-reveal-group--stagger.is-revealed > *:nth-child(5) { transition-delay: 280ms; }
+.is-reveal-group--stagger.is-revealed > *:nth-child(6) { transition-delay: 350ms; }
+.is-reveal-group--stagger.is-revealed > *:nth-child(7) { transition-delay: 420ms; }
+.is-reveal-group--stagger.is-revealed > *:nth-child(8) { transition-delay: 490ms; }
+.is-reveal-group--stagger.is-revealed > *:nth-child(9) { transition-delay: 560ms; }
+.is-reveal-group--stagger.is-revealed > *:nth-child(10) { transition-delay: 630ms; }
+
+/* Pulso de señal: indicadores vivos de cabina (puntos de estado, nodos).
+   Lento y de baja amplitud — atmósfera, no alarma. */
+@keyframes signal-pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(95, 168, 255, 0.35); }
+  50% { opacity: 0.55; box-shadow: 0 0 0 4px rgba(95, 168, 255, 0); }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .is-reveal-group {
+  .is-reveal-group,
+  .is-reveal-group--stagger,
+  .is-reveal-group--stagger > * {
     opacity: 1;
     transform: none;
     transition: none;

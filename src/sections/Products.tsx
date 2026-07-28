@@ -21,7 +21,7 @@ export default function Products() {
     <section id="products" className="section section--surface">
       <div className="container">
         <SectionHeader title={t.products.title} />
-        <div ref={revealRef} className="products-grid is-reveal-group">
+        <div ref={revealRef} className="products-grid is-reveal-group is-reveal-group--stagger">
           {tier1Products.map((product) => (
             <ProductCard key={product.id} product={product} ctaLabel={t.products.ctaView} />
           ))}
@@ -32,7 +32,7 @@ export default function Products() {
             <h3>{t.infrastructure.title}</h3>
             <p>{t.infrastructure.text}</p>
           </div>
-          <div ref={infraRevealRef} className="infrastructure-list is-reveal-group">
+          <div ref={infraRevealRef} className="infrastructure-list is-reveal-group is-reveal-group--stagger">
             {groups.map(({ line, products }) => (
               <div key={line.id} className="infrastructure-group">
                 <p className="infrastructure-group__category mono">

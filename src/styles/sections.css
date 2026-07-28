@@ -134,6 +134,7 @@
   border-radius: 50%;
   background: var(--signal-blue);
   box-shadow: var(--glow-signal);
+  animation: signal-pulse 3.2s var(--ease-out) infinite;
 }
 
 .hero h1 {
