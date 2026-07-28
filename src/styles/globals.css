@@ -15,6 +15,8 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background: var(--anchor-navy);
+  background-image: var(--ambient-horizon);
+  background-attachment: fixed;
   color: var(--white-deck);
   font-family: var(--font-sans);
   font-size: 16px;

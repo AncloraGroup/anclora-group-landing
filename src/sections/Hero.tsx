@@ -1,18 +1,56 @@
+import { useCallback, useRef } from 'react'
 import { useLocale } from '../i18n/LocaleContext'
 import { ecosystemLines } from '../data/ecosystem'
 import SystemRing from '../components/SystemRing'
+import SonarField from '../components/SonarField'
 import { useRevealOnScroll } from '../hooks/useRevealOnScroll'
 
+/**
+ * Hero "portal": el SystemRing deja de ser una ilustración lateral y pasa a ser
+ * el campo gravitatorio de la sección — centrado, sobredimensionado, con el
+ * titular flotando en el vacío interior del anillo. El puntero deriva el
+ * conjunto unos píxeles (paralaje en capas, máx. ~10px) y el sonar pulsa desde
+ * el centro. Impacto moderado: un solo momento de movimiento cuidado.
+ */
 export default function Hero() {
   const { t } = useLocale()
   const revealRef = useRevealOnScroll<HTMLDivElement>()
+  const sectionRef = useRef<HTMLElement | null>(null)
+  const pointerRef = useRef({ x: 0, y: 0 })
   const lineLabels = ecosystemLines.map((line) => t.ecosystem.lines[line.id]?.name ?? line.name)
 
+  const handlePointerMove = useCallback((event: React.PointerEvent<HTMLElement>) => {
+    const section = sectionRef.current
+    if (!section || event.pointerType === 'touch') return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const rect = section.getBoundingClientRect()
+    const x = ((event.clientX - rect.left) / rect.width) * 2 - 1
+    const y = ((event.clientY - rect.top) / rect.height) * 2 - 1
+    pointerRef.current = { x, y }
+    section.style.setProperty('--px', (x * 10).toFixed(2))
+    section.style.setProperty('--py', (y * 10).toFixed(2))
+  }, [])
+
+  const handlePointerLeave = useCallback(() => {
+    const section = sectionRef.current
+    if (!section) return
+    pointerRef.current = { x: 0, y: 0 }
+    section.style.setProperty('--px', '0')
+    section.style.setProperty('--py', '0')
+  }, [])
+
   return (
-    <section id="top" className="hero">
+    <section
+      id="top"
+      ref={sectionRef}
+      className="hero"
+      onPointerMove={handlePointerMove}
+      onPointerLeave={handlePointerLeave}
+    >
       <div className="hero__field" aria-hidden="true" />
+      <SonarField pointerRef={pointerRef} className="hero__sonar" />
       <div className="hero__ring-layer" aria-hidden="true">
-        <SystemRing size={760} labels={lineLabels} activeIndex={0} ariaLabel={t.hero.instrumentCaption} />
+        <SystemRing size={1080} labels={lineLabels} activeIndex={0} ariaLabel={t.hero.instrumentCaption} />
       </div>
 
       <div className="container hero__grid">

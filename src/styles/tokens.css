@@ -26,11 +26,21 @@
 
   /* Movimiento */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-press: cubic-bezier(0.34, 1.56, 0.64, 1);
   --dur-fast: 160ms;
   --dur-base: 220ms;
+  --dur-slow: 640ms;
 
   /* Elevación (una sola declaración: borde O sombra, no ambas) */
   --border-subtle: 1px solid rgba(229, 231, 235, 0.12);
+
+  /* Profundidad atmosférica (brand book sección 8: gradientes con variación
+     máx. 8%; la profundidad se sugiere con luz, no con sombras duras) */
+  --ambient-horizon: radial-gradient(120% 90% at 50% -10%, #12294E 0%, var(--anchor-navy) 55%);
+  --ambient-glow-blue: radial-gradient(50% 50% at 50% 50%, rgba(95, 168, 255, 0.08), transparent 70%);
+  --ambient-glow-purple: radial-gradient(50% 50% at 50% 50%, rgba(108, 99, 255, 0.07), transparent 70%);
+  --panel-depth: inset 0 1px 0 rgba(229, 231, 235, 0.06), inset 0 -18px 32px -28px rgba(0, 0, 0, 0.55);
+  --glow-signal: 0 0 24px -6px rgba(95, 168, 255, 0.45);
 
   /* Tipografía */
   --font-sans: 'DM Sans', system-ui, -apple-system, sans-serif;

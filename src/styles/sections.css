@@ -1,11 +1,16 @@
-/* Hero — composición asimétrica: el anillo deja de ser un widget en columna
-   propia y pasa a ser una capa atmosférica sobredimensionada que sangra por
-   el borde superior derecho, con el titular por encima. Rompe el patrón
-   "texto a la izquierda, icono a la derecha" sin dejar de ser el mismo
-   instrumento naval (sección 8 del brand book: nunca decoración libre). */
+/* Hero "portal" — el SystemRing es el campo gravitatorio: centrado y
+   sobredimensionado, con el titular flotando en el vacío interior del anillo.
+   El puntero deriva las capas unos píxeles (--px/--py, máx. 10px) con una
+   transición que actúa de inercia; el sonar pulsa desde el centro (SonarField).
+   Un solo momento de movimiento cuidado (brand book, sección 8). */
 .hero {
+  --px: 0;
+  --py: 0;
   position: relative;
-  padding-block: var(--space-12) var(--space-6);
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100svh - 73px);
+  padding-block: var(--space-8) var(--space-6);
   overflow: hidden;
 }
 
@@ -19,20 +24,30 @@
   background-image:
     linear-gradient(rgba(229, 231, 235, 0.05) 1px, transparent 1px),
     linear-gradient(90deg, rgba(229, 231, 235, 0.05) 1px, transparent 1px),
-    radial-gradient(70% 60% at 78% 30%, rgba(95, 168, 255, 0.07), transparent);
+    var(--ambient-glow-blue);
   background-size: 56px 56px, 56px 56px, 100% 100%;
-  mask-image: radial-gradient(80% 70% at 60% 30%, black 40%, transparent 90%);
+  mask-image: radial-gradient(80% 70% at 50% 45%, black 40%, transparent 92%);
+}
+
+.hero__sonar {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
 
 .hero__ring-layer {
   position: absolute;
-  top: -22%;
-  right: -18%;
-  width: min(62vw, 780px);
+  top: 46%;
+  left: 50%;
+  width: min(118vmin, 1080px);
   aspect-ratio: 1;
   pointer-events: none;
-  opacity: 0.5;
-  mask-image: radial-gradient(65% 65% at 50% 50%, black 55%, transparent 92%);
+  opacity: 0.6;
+  mask-image: radial-gradient(65% 65% at 50% 50%, black 55%, transparent 94%);
+  transform: translate(calc(-50% + var(--px) * 1px), calc(-50% + var(--py) * 1px));
+  transition: transform 620ms var(--ease-out);
 }
 
 .hero__ring-layer svg {
@@ -41,22 +56,39 @@
   display: block;
 }
 
-@media (max-width: 899px) {
-  .hero__ring-layer {
-    top: -6%;
-    right: -46%;
-    width: 92vw;
-    opacity: 0.32;
-  }
-}
-
 .hero__grid {
   position: relative;
   z-index: 1;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .hero__copy {
-  max-width: 640px;
+  position: relative;
+  max-width: 680px;
+  margin-inline: auto;
+  text-align: center;
+  transform: translate(calc(var(--px) * -0.35px), calc(var(--py) * -0.35px));
+  transition: transform 620ms var(--ease-out);
+}
+
+/* Velo de legibilidad: el anillo queda detrás del texto sin competir con él */
+.hero__copy::before {
+  content: '';
+  position: absolute;
+  inset: -12% -18%;
+  z-index: -1;
+  background: radial-gradient(50% 50% at 50% 50%, rgba(10, 31, 61, 0.72), transparent 75%);
+}
+
+@media (max-width: 899px) {
+  .hero__ring-layer {
+    top: 42%;
+    width: 150vmin;
+    opacity: 0.42;
+  }
 }
 
 /* Entrada escalonada: el único momento de movimiento cuidado del hero se
@@ -65,8 +97,7 @@
    su propio barrido (SystemRing), coreografiado por separado. */
 .hero__copy.is-reveal-group {
   opacity: 1;
-  transform: none;
-  transition: none;
+  transform: translate(calc(var(--px) * -0.35px), calc(var(--py) * -0.35px));
 }
 
 .hero__copy > * {
@@ -88,8 +119,21 @@
 .hero__copy.is-revealed > *:nth-child(6) { transition-delay: 350ms; }
 
 .hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
   color: var(--signal-blue);
   margin-bottom: var(--space-2);
+}
+
+/* Punto de señal: la cabina está operativa */
+.hero__eyebrow::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--signal-blue);
+  box-shadow: var(--glow-signal);
 }
 
 .hero h1 {
@@ -99,14 +143,14 @@
 }
 
 .hero__tagline {
-  margin: 0 0 var(--space-2);
+  margin: 0 auto var(--space-2);
   font-size: 1.375rem;
   color: var(--white-deck);
   max-width: 42ch;
 }
 
 .hero__subtitle {
-  margin: 0 0 var(--space-4);
+  margin: 0 auto var(--space-4);
   color: var(--harbor-mist);
   max-width: 56ch;
 }
@@ -114,6 +158,7 @@
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: var(--space-2);
   margin-bottom: var(--space-4);
 }
@@ -123,8 +168,7 @@
   font-size: 0.8125rem;
 }
 
-/* Franja de estado — el equivalente a la antigua leyenda lateral, ahora una
-   tira horizontal tipo HUD al pie del hero, con el resto del contenido. */
+/* Franja de estado — tira horizontal tipo HUD al pie del hero. */
 .hero__status {
   position: relative;
   z-index: 1;
@@ -134,11 +178,12 @@
 }
 
 .hero__status-caption {
-  margin: 0 0 var(--space-2);
+  margin: 0 auto var(--space-2);
   max-width: 60ch;
   font-size: 0.75rem;
   line-height: 1.5;
   color: var(--harbor-mist);
+  text-align: center;
 }
 
 .hero__status-list {
@@ -147,6 +192,7 @@
   padding: 0;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   column-gap: var(--space-4);
   row-gap: var(--space-1);
   font-size: 0.8125rem;
@@ -174,25 +220,12 @@
 
 @media (max-width: 899px) {
   .hero {
-    text-align: center;
-    padding-block: var(--space-8) var(--space-6);
-  }
-  .hero__copy {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: none;
+    padding-block: var(--space-6);
   }
   .hero__tagline,
   .hero__subtitle,
   .hero__status-caption {
     margin-inline: auto;
-  }
-  .hero__actions {
-    justify-content: center;
-  }
-  .hero__status-list {
-    justify-content: center;
   }
 }
 
