@@ -1,12 +1,14 @@
 import { useLocale } from '../i18n/LocaleContext'
+import { useRevealOnScroll } from '../hooks/useRevealOnScroll'
 
 export default function Contact() {
   const { t } = useLocale()
+  const revealRef = useRevealOnScroll<HTMLDivElement>()
   const mailto = `mailto:${t.contact.email}?subject=${encodeURIComponent(t.contact.subject)}`
 
   return (
     <section id="contact" className="section">
-      <div className="container contact">
+      <div ref={revealRef} className="container contact is-reveal-group">
         <h2>{t.contact.title}</h2>
         <p>{t.contact.body}</p>
         <p className="contact__email mono">{t.contact.email}</p>

@@ -1,27 +1,44 @@
 import { useLocale } from '../i18n/LocaleContext'
-import medalla from '../assets/logo/anclora-group-medalla-1024-192.webp'
+import { ecosystemLines } from '../data/ecosystem'
+import SystemRing from '../components/SystemRing'
+import { useRevealOnScroll } from '../hooks/useRevealOnScroll'
 
 export default function Hero() {
   const { t } = useLocale()
+  const revealRef = useRevealOnScroll<HTMLDivElement>()
+  const lineLabels = ecosystemLines.map((line) => line.name)
 
   return (
     <section id="top" className="hero">
-      <div className="container">
-        <div className="hero__medallion">
-          <img src={medalla} alt="Medalla Anclora Group" width={96} height={96} />
+      <div className="hero__field" aria-hidden="true" />
+      <div className="container hero__grid">
+        <div ref={revealRef} className="hero__copy is-reveal-group">
+          <p className="hero__eyebrow mono">{t.hero.eyebrow}</p>
+          <h1>{t.hero.title}</h1>
+          <p className="hero__tagline">{t.hero.tagline}</p>
+          <p className="hero__subtitle">{t.hero.subtitle}</p>
+          <div className="hero__actions">
+            <a href="#ecosystem" className="btn btn-primary">
+              {t.hero.ctaPrimary}
+            </a>
+            <a href="#contact" className="btn btn-secondary">
+              {t.hero.ctaSecondary}
+            </a>
+          </div>
+          <p className="hero__microcopy mono">{t.hero.microcopy}</p>
         </div>
-        <h1>{t.hero.title}</h1>
-        <p className="hero__tagline">{t.hero.tagline}</p>
-        <p className="hero__subtitle">{t.hero.subtitle}</p>
-        <div className="hero__actions">
-          <a href="#ecosystem" className="btn btn-primary">
-            {t.hero.ctaPrimary}
-          </a>
-          <a href="#contact" className="btn btn-secondary">
-            {t.hero.ctaSecondary}
-          </a>
+
+        <div className="hero__instrument" role="presentation">
+          <SystemRing size={400} labels={lineLabels} activeIndex={0} />
+          <ul className="hero__instrument-legend">
+            {ecosystemLines.map((line, index) => (
+              <li key={line.id} className={index === 0 ? 'is-active' : undefined}>
+                <span className="mono">{String(index + 1).padStart(2, '0')}</span>
+                {line.name}
+              </li>
+            ))}
+          </ul>
         </div>
-        <p className="hero__microcopy mono">{t.hero.microcopy}</p>
       </div>
     </section>
   )

@@ -87,3 +87,25 @@ select:focus-visible,
     scroll-behavior: auto !important;
   }
 }
+
+/* Reveal-on-scroll: un único observer por sección (ver useRevealOnScroll).
+   Nunca se aplica por tarjeta individual: es la secuencia orquestada, no un
+   efecto disperso. */
+.is-reveal-group {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 640ms var(--ease-out), transform 640ms var(--ease-out);
+}
+
+.is-reveal-group.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .is-reveal-group {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

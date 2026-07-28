@@ -12,11 +12,18 @@ export default function ProductCard({ product, ctaLabel, compact = false }: Prod
 
   return (
     <article className={compact ? 'product-card product-card--compact' : 'product-card'}>
-      <div>
-        <h3>{product.name}</h3>
+      <div className="product-card__head">
         {line && <p className="product-card__category mono">{line.name}</p>}
+        {product.status && (
+          <p className="product-card__status mono">
+            <span className="product-card__status-dot" aria-hidden="true" />
+            {product.status}
+          </p>
+        )}
+      </div>
+      <div className="product-card__body">
+        <h3>{product.name}</h3>
         {!compact && <p>{product.description}</p>}
-        {product.status && <p className="product-card__status mono">{product.status}</p>}
       </div>
       {ctaLabel && !compact && (
         <a className="product-card__cta" href="#contact">
