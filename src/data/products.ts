@@ -11,7 +11,9 @@ export interface Product {
   status?: ProductStatus
 }
 
-// Productos — sección 10 del brand book. Descripciones y jerarquía brand-locked, usar tal cual.
+// Productos — sección 10 del brand book. `name` (marca) y jerarquía (`tier`) son fijos en todos
+// los idiomas. `description`/`status` son el fallback ES; la traducción real vive en
+// src/i18n/*.ts (products.items).
 // Nivel 3 deliberadamente ausente: no debe mostrarse bajo ninguna circunstancia (sección 10).
 export const products: Product[] = [
   {

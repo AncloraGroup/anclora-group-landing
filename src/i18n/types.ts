@@ -29,14 +29,17 @@ export interface Dictionary {
     ctaPrimary: string
     ctaSecondary: string
     microcopy: string
+    instrumentCaption: string
   }
   ecosystem: {
     title: string
     text: string
+    lines: Record<string, { name: string; description: string }>
   }
   products: {
     title: string
     ctaView: string
+    items: Record<string, { description: string; status: string }>
   }
   infrastructure: {
     title: string
@@ -64,5 +67,30 @@ export interface Dictionary {
   footer: {
     claim: string
     copyright: string
+    legalLinks: {
+      privacy: string
+      terms: string
+      legal: string
+      cookies: string
+    }
+  }
+  cookies: {
+    bannerText: string
+    understood: string
+    moreInfo: string
+    modalTitle: string
+    modalIntro: string
+    closeLabel: string
+    necessaryTitle: string
+    necessaryDescription: string
+    necessaryAlwaysOn: string
+  }
+  legal: {
+    pendingNotice: string
+    backHome: string
+    privacy: { title: string; body: string }
+    terms: { title: string; body: string }
+    legal: { title: string; body: string }
+    cookiesPage: { title: string; body: string }
   }
 }

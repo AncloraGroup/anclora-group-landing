@@ -1,12 +1,18 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { LocaleProvider } from '../i18n/LocaleContext'
+import { NavigationProvider } from '../context/Navigation'
+import { CookieConsentProvider } from './CookieConsentProvider'
 import Footer from './Footer'
 
 function renderFooter() {
   return render(
     <LocaleProvider>
-      <Footer />
+      <NavigationProvider>
+        <CookieConsentProvider>
+          <Footer />
+        </CookieConsentProvider>
+      </NavigationProvider>
     </LocaleProvider>,
   )
 }

@@ -24,14 +24,33 @@ const ca: Dictionary = {
     ctaPrimary: "Explorar l'ecosistema",
     ctaSecondary: "Contactar amb l'Antonio",
     microcopy: 'Founder-led technology group · Built from Mallorca · Designed for practical intelligence',
+    instrumentCaption: "Cada marca de l'anell representa una línia de negoci activa de l'ecosistema Anclora.",
   },
   ecosystem: {
     title: "Un ecosistema de productes connectats per una mateixa idea: reduir fricció real.",
     text: 'Anclora Group combina producte, automatització, dades i intel·ligència aplicada per construir eines pràctiques en àrees on la claredat operativa marca la diferència.',
+    lines: {
+      'fiscal-compliance': { name: 'Fiscalitat i Compliment', description: 'Fiscalitat, facturació i compliment.' },
+      'operational-automation': { name: 'Automatització Operativa', description: 'Automatització documental i operativa.' },
+      'energy-efficiency': { name: 'Energia i Eficiència', description: 'Eficiència energètica i anàlisi.' },
+      'real-estate-intelligence': { name: 'Intel·ligència Immobiliària', description: 'Intel·ligència immobiliària i actius premium.' },
+      'publishing-digital-knowledge': { name: 'Publicacions i Coneixement Digital', description: 'Contingut, coneixement i editorial.' },
+    },
   },
   products: {
     title: 'Productes destacats',
     ctaView: 'Veure producte',
+    items: {
+      'anclora-fiscal': { description: 'Fiscalitat, facturació i compliment per a operacions digitals.', status: 'ecosistema intern' },
+      'anclora-syncxml': { description: "Automatització documental per a allotjaments i generació d'XML oficial.", status: 'ecosistema intern' },
+      'anclora-energyscan': { description: "Informes digitals per analitzar l'estalvi i l'eficiència energètica.", status: 'ecosistema intern' },
+      'anclora-private-estates': { description: 'Línia immobiliària premium centrada a Mallorca i actius selectes.', status: 'ecosistema intern' },
+      'anclora-insights': { description: 'Segell editorial i productes digitals de coneixement aplicat.', status: 'ecosistema intern' },
+      'anclora-nexus': { description: "Capa d'intake, senyals i orquestració de l'ecosistema.", status: 'ecosistema intern' },
+      'anclora-command-center': { description: 'Cabina central per visualitzar operacions, productes i prioritats.', status: 'ecosistema intern' },
+      'anclora-synergi': { description: "Intel·ligència comercial i automatització aplicada a l'entorn immobiliari.", status: 'ecosistema intern' },
+      'anclora-data-lab': { description: 'Anàlisi de dades i intel·ligència aplicada per a decisions estratègiques.', status: 'ecosistema intern' },
+    },
   },
   infrastructure: {
     title: "La capa operativa que connecta l'ecosistema.",
@@ -79,7 +98,47 @@ const ca: Dictionary = {
   },
   footer: {
     claim: 'Anclora Group · Tecnologia aplicada per operar amb claredat.',
-    copyright: `© ${new Date().getFullYear()} Anclora Group. Tots els drets reservats.`,
+    copyright: `© ${new Date().getFullYear()} Anclora Group — Tots els drets reservats.`,
+    legalLinks: {
+      privacy: 'Privacitat',
+      terms: 'Termes',
+      legal: 'Avís legal',
+      cookies: 'Cookies',
+    },
+  },
+  cookies: {
+    bannerText:
+      "Aquest lloc només utilitza cookies tècniques necessàries per al seu funcionament. No fem servir cookies d'analítica ni de màrqueting.",
+    understood: 'Entès',
+    moreInfo: 'Més informació',
+    modalTitle: 'Gestió de cookies',
+    modalIntro:
+      "Anclora Group només utilitza cookies tècniques, imprescindibles per al funcionament del lloc. No fem servir cookies d'analítica ni de màrqueting.",
+    closeLabel: 'Tanca',
+    necessaryTitle: 'Cookies necessàries',
+    necessaryDescription:
+      'Imprescindibles per al funcionament del lloc: gestió de sessió, seguretat i preferència d’idioma. No requereixen consentiment i no es poden desactivar.',
+    necessaryAlwaysOn: 'Sempre actives',
+  },
+  legal: {
+    pendingNotice: 'Aquest contingut està pendent de revisió legal definitiva. S’actualitzarà abans del llançament públic.',
+    backHome: "Torna a l'inici",
+    privacy: {
+      title: 'Política de Privacitat',
+      body: 'Aquest document descriurà com Anclora Group recull, utilitza i protegeix les dades personals de les persones que visiten group.anclora.com. Per a qualsevol consulta sobre privacitat, escriu a antonio@anclora.com.',
+    },
+    terms: {
+      title: 'Termes i Condicions',
+      body: 'Aquest document descriurà les condicions d’ús del lloc group.anclora.com i dels serveis oferts per Anclora Group. Per a qualsevol consulta, escriu a antonio@anclora.com.',
+    },
+    legal: {
+      title: 'Avís Legal',
+      body: "Aquest document inclourà la informació legal d'identificació d'Anclora Group com a titular d'aquest lloc web, d'acord amb la normativa aplicable. Per a qualsevol consulta, escriu a antonio@anclora.com.",
+    },
+    cookiesPage: {
+      title: 'Política de Cookies',
+      body: "Aquest document descriurà amb detall l'ús de cookies a group.anclora.com. Actualment el lloc només utilitza cookies tècniques necessàries per al seu funcionament; no s'utilitzen cookies d'analítica ni de màrqueting. Per a qualsevol consulta, escriu a antonio@anclora.com.",
+    },
   },
 }
 

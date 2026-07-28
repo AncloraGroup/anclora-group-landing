@@ -6,7 +6,7 @@ import { useRevealOnScroll } from '../hooks/useRevealOnScroll'
 export default function Hero() {
   const { t } = useLocale()
   const revealRef = useRevealOnScroll<HTMLDivElement>()
-  const lineLabels = ecosystemLines.map((line) => line.name)
+  const lineLabels = ecosystemLines.map((line) => t.ecosystem.lines[line.id]?.name ?? line.name)
 
   return (
     <section id="top" className="hero">
@@ -29,15 +29,16 @@ export default function Hero() {
         </div>
 
         <div className="hero__instrument" role="presentation">
-          <SystemRing size={400} labels={lineLabels} activeIndex={0} />
+          <SystemRing size={400} labels={lineLabels} activeIndex={0} ariaLabel={t.hero.instrumentCaption} />
           <ul className="hero__instrument-legend">
             {ecosystemLines.map((line, index) => (
               <li key={line.id} className={index === 0 ? 'is-active' : undefined}>
                 <span className="mono">{String(index + 1).padStart(2, '0')}</span>
-                {line.name}
+                {t.ecosystem.lines[line.id]?.name ?? line.name}
               </li>
             ))}
           </ul>
+          <p className="hero__instrument-caption">{t.hero.instrumentCaption}</p>
         </div>
       </div>
     </section>

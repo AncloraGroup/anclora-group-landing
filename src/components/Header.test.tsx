@@ -2,12 +2,15 @@ import { describe, it, expect } from 'vitest'
 import { render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { LocaleProvider } from '../i18n/LocaleContext'
+import { NavigationProvider } from '../context/Navigation'
 import Header from './Header'
 
 function renderHeader() {
   return render(
     <LocaleProvider>
-      <Header />
+      <NavigationProvider>
+        <Header />
+      </NavigationProvider>
     </LocaleProvider>,
   )
 }

@@ -23,14 +23,33 @@ const en: Dictionary = {
     ctaPrimary: 'Explore the ecosystem',
     ctaSecondary: 'Contact Antonio',
     microcopy: 'Founder-led technology group · Built from Mallorca · Designed for practical intelligence',
+    instrumentCaption: 'Each mark on the ring represents an active business line in the Anclora ecosystem.',
   },
   ecosystem: {
     title: 'An ecosystem of products connected by one idea: reducing real friction.',
     text: 'Anclora Group combines product, automation, data and applied intelligence to build practical tools where operational clarity makes the difference.',
+    lines: {
+      'fiscal-compliance': { name: 'Fiscal & Compliance', description: 'Taxation, invoicing and compliance.' },
+      'operational-automation': { name: 'Operational Automation', description: 'Document and operational automation.' },
+      'energy-efficiency': { name: 'Energy & Efficiency', description: 'Energy efficiency and analysis.' },
+      'real-estate-intelligence': { name: 'Real Estate Intelligence', description: 'Real estate intelligence and premium assets.' },
+      'publishing-digital-knowledge': { name: 'Publishing & Digital Knowledge', description: 'Content, knowledge and publishing.' },
+    },
   },
   products: {
     title: 'Featured products',
     ctaView: 'View product',
+    items: {
+      'anclora-fiscal': { description: 'Taxation, invoicing and compliance for digital operations.', status: 'internal ecosystem' },
+      'anclora-syncxml': { description: 'Document automation for accommodation providers and official XML generation.', status: 'internal ecosystem' },
+      'anclora-energyscan': { description: 'Digital reports to analyze energy savings and efficiency.', status: 'internal ecosystem' },
+      'anclora-private-estates': { description: 'Premium real estate line focused on Mallorca and select assets.', status: 'internal ecosystem' },
+      'anclora-insights': { description: 'Editorial imprint and digital products for applied knowledge.', status: 'internal ecosystem' },
+      'anclora-nexus': { description: 'Intake, signals and orchestration layer for the ecosystem.', status: 'internal ecosystem' },
+      'anclora-command-center': { description: 'Central cockpit to visualize operations, products and priorities.', status: 'internal ecosystem' },
+      'anclora-synergi': { description: 'Commercial intelligence and automation applied to the real estate environment.', status: 'internal ecosystem' },
+      'anclora-data-lab': { description: 'Data analysis and applied intelligence for strategic decisions.', status: 'internal ecosystem' },
+    },
   },
   infrastructure: {
     title: 'The operating layer that connects the ecosystem.',
@@ -78,7 +97,46 @@ const en: Dictionary = {
   },
   footer: {
     claim: 'Anclora Group · Applied technology to operate with clarity.',
-    copyright: `© ${new Date().getFullYear()} Anclora Group. All rights reserved.`,
+    copyright: `© ${new Date().getFullYear()} Anclora Group — All rights reserved.`,
+    legalLinks: {
+      privacy: 'Privacy',
+      terms: 'Terms',
+      legal: 'Legal notice',
+      cookies: 'Cookies',
+    },
+  },
+  cookies: {
+    bannerText: "This site only uses technical cookies necessary for it to work. We don't use analytics or marketing cookies.",
+    understood: 'Got it',
+    moreInfo: 'More information',
+    modalTitle: 'Cookie management',
+    modalIntro:
+      "Anclora Group only uses technical cookies, essential for the site to work. We don't use analytics or marketing cookies.",
+    closeLabel: 'Close',
+    necessaryTitle: 'Necessary cookies',
+    necessaryDescription:
+      'Essential for the site to work: session management, security and language preference. They require no consent and cannot be disabled.',
+    necessaryAlwaysOn: 'Always active',
+  },
+  legal: {
+    pendingNotice: 'This content is pending final legal review. It will be updated before public launch.',
+    backHome: 'Back to home',
+    privacy: {
+      title: 'Privacy Policy',
+      body: 'This document will describe how Anclora Group collects, uses and protects the personal data of people who visit group.anclora.com. For any privacy question, write to antonio@anclora.com.',
+    },
+    terms: {
+      title: 'Terms & Conditions',
+      body: 'This document will describe the terms of use of group.anclora.com and the services offered by Anclora Group. For any question, write to antonio@anclora.com.',
+    },
+    legal: {
+      title: 'Legal Notice',
+      body: 'This document will include the legal identification information of Anclora Group as the owner of this website, in accordance with applicable regulations. For any question, write to antonio@anclora.com.',
+    },
+    cookiesPage: {
+      title: 'Cookie Policy',
+      body: 'This document will describe in detail the use of cookies on group.anclora.com. The site currently only uses technical cookies necessary for it to work; no analytics or marketing cookies are used. For any question, write to antonio@anclora.com.',
+    },
   },
 }
 

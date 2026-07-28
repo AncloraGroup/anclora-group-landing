@@ -119,6 +119,15 @@
   }
 }
 
+.hero__instrument-caption {
+  margin: var(--space-2) 0 0;
+  max-width: 280px;
+  text-align: center;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--harbor-mist);
+}
+
 @media (max-width: 899px) {
   .hero {
     text-align: center;
@@ -232,11 +241,39 @@
   }
 }
 
-/* Infrastructure */
+/* Infrastructure — agrupado por línea estratégica: el nombre de categoría aparece una sola
+   vez por grupo, no repetido por fila (evita el efecto de lista rota con etiquetas duplicadas). */
 .infrastructure-list {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
+  gap: var(--space-4);
+}
+
+.infrastructure-group__category {
+  color: var(--harbor-mist);
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  margin-bottom: var(--space-1);
+}
+
+.infrastructure-group__rows {
+  display: flex;
+  flex-direction: column;
+}
+
+.infrastructure-row {
+  padding-block: var(--space-2);
+  border-bottom: var(--border-subtle);
+}
+
+.infrastructure-row h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.infrastructure-row:last-child {
+  border-bottom: none;
 }
 
 /* Method */

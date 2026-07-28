@@ -8,6 +8,8 @@ interface SystemRingProps {
   /** Índice de la etiqueta activa (resalta ese sector del anillo). */
   activeIndex?: number
   className?: string
+  /** Texto accesible del SVG (role="img"); debe venir traducido al idioma activo. */
+  ariaLabel?: string
 }
 
 const TAU = Math.PI * 2
@@ -27,6 +29,7 @@ export default function SystemRing({
   labels = [],
   activeIndex = 0,
   className,
+  ariaLabel = 'Instrumento del ecosistema Anclora Group',
 }: SystemRingProps) {
   const [sweepProgress, setSweepProgress] = useState(0)
   const rafRef = useRef<number | undefined>(undefined)
@@ -93,7 +96,7 @@ export default function SystemRing({
       height={size}
       viewBox={`0 0 ${size} ${size}`}
       role="img"
-      aria-label="Instrumento del ecosistema Anclora Group"
+      aria-label={ariaLabel}
     >
       <defs>
         <radialGradient id="systemring-field" cx="50%" cy="42%" r="65%">

@@ -1,5 +1,6 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState, type MouseEvent } from 'react'
 import { useLocale } from '../i18n/LocaleContext'
+import { useNavigation } from '../context/Navigation'
 import LanguageSwitcher from './LanguageSwitcher'
 import lockupHorizontalDark from '../assets/logo/anclora-group-lockup-horizontal-sobre-oscuro-64.webp'
 
@@ -13,8 +14,24 @@ const NAV_ITEMS = [
 
 export default function Header() {
   const { t } = useLocale()
+  const { path, navigate } = useNavigation()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const menuToggleRef = useRef<HTMLButtonElement>(null)
+
+  // En una página legal (/privacy, etc.) las anclas #ecosystem, #contact... no
+  // apuntan a nada: primero hay que volver a "/" y luego desplazarse al ancla.
+  const handleAnchorClick = useCallback(
+    (event: MouseEvent<HTMLAnchorElement>, hash: string) => {
+      if (path === '/') return
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+      event.preventDefault()
+      navigate('/')
+      requestAnimationFrame(() => {
+        document.getElementById(hash.slice(1))?.scrollIntoView()
+      })
+    },
+    [path, navigate],
+  )
 
   const closeMenu = useCallback(() => {
     setIsMenuOpen(false)
@@ -41,13 +58,13 @@ export default function Header() {
   return (
     <header className="site-header">
       <div className="container site-header__inner">
-        <a href="#top" className="site-header__logo">
+        <a href="#top" className="site-header__logo" onClick={(event) => handleAnchorClick(event, '#top')}>
           <img src={lockupHorizontalDark} alt="Anclora Group" />
         </a>
 
         <nav className="site-header__nav" aria-label="Navegación principal">
           {NAV_ITEMS.map((item) => (
-            <a key={item.key} href={item.href}>
+            <a key={item.key} href={item.href} onClick={(event) => handleAnchorClick(event, item.href)}>
               {t.nav[item.key]}
             </a>
           ))}
@@ -55,7 +72,11 @@ export default function Header() {
 
         <div className="site-header__actions">
           <LanguageSwitcher />
-          <a href="#contact" className="btn btn-primary site-header__cta">
+          <a
+            href="#contact"
+            className="btn btn-primary site-header__cta"
+            onClick={(event) => handleAnchorClick(event, '#contact')}
+          >
             {t.nav.contactCta}
           </a>
           <button
@@ -75,7 +96,14 @@ export default function Header() {
       {isMenuOpen && (
         <nav id="mobile-nav" className="site-header__mobile-nav container" aria-label="Navegación móvil">
           {NAV_ITEMS.map((item) => (
-            <a key={item.key} href={item.href} onClick={closeMenu}>
+            <a
+              key={item.key}
+              href={item.href}
+              onClick={(event) => {
+                handleAnchorClick(event, item.href)
+                closeMenu()
+              }}
+            >
               {t.nav[item.key]}
             </a>
           ))}

@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import ProductCard from './ProductCard'
 import type { Product } from '../data/products'
+import { LocaleProvider } from '../i18n/LocaleContext'
 
 const product: Product = {
   id: 'test-product',
@@ -14,28 +15,27 @@ const product: Product = {
 
 describe('ProductCard', () => {
   it('renders the product name, description and status', () => {
-    render(<ProductCard product={product} />)
+    render(<LocaleProvider><ProductCard product={product} /></LocaleProvider>)
 
     expect(screen.getByRole('heading', { name: 'Anclora Test' })).toBeInTheDocument()
     expect(screen.getByText('Descripción de prueba del producto.')).toBeInTheDocument()
     expect(screen.getByText('en piloto')).toBeInTheDocument()
   })
 
-  it('renders a CTA link when ctaLabel is provided and not compact', () => {
-    render(<ProductCard product={product} ctaLabel="Ver producto" />)
+  it('renders a CTA link when ctaLabel is provided', () => {
+    render(<LocaleProvider><ProductCard product={product} ctaLabel="Ver producto" /></LocaleProvider>)
 
     expect(screen.getByRole('link', { name: 'Ver producto' })).toBeInTheDocument()
   })
 
-  it('hides the description and CTA in compact mode', () => {
-    render(<ProductCard product={product} ctaLabel="Ver producto" compact />)
+  it('does not render a CTA link when ctaLabel is omitted', () => {
+    render(<LocaleProvider><ProductCard product={product} /></LocaleProvider>)
 
-    expect(screen.queryByText('Descripción de prueba del producto.')).not.toBeInTheDocument()
-    expect(screen.queryByRole('link', { name: 'Ver producto' })).not.toBeInTheDocument()
+    expect(screen.queryByRole('link')).not.toBeInTheDocument()
   })
 
   it('does not render a status when the product has none', () => {
-    render(<ProductCard product={{ ...product, status: undefined }} />)
+    render(<LocaleProvider><ProductCard product={{ ...product, status: undefined }} /></LocaleProvider>)
 
     expect(screen.queryByText('en piloto')).not.toBeInTheDocument()
   })

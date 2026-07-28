@@ -1,31 +1,36 @@
 import type { Product } from '../data/products'
 import { ecosystemLines } from '../data/ecosystem'
+import { useLocale } from '../i18n/LocaleContext'
 
 interface ProductCardProps {
   product: Product
   ctaLabel?: string
-  compact?: boolean
 }
 
-export default function ProductCard({ product, ctaLabel, compact = false }: ProductCardProps) {
+export default function ProductCard({ product, ctaLabel }: ProductCardProps) {
+  const { t } = useLocale()
   const line = ecosystemLines.find((candidate) => candidate.id === product.lineId)
+  const lineCopy = line ? t.ecosystem.lines[line.id] : undefined
+  const productCopy = t.products.items[product.id]
+  const description = productCopy?.description ?? product.description
+  const status = productCopy?.status ?? product.status
 
   return (
-    <article className={compact ? 'product-card product-card--compact' : 'product-card'}>
+    <article className="product-card">
       <div className="product-card__head">
-        {line && <p className="product-card__category mono">{line.name}</p>}
-        {product.status && (
+        {line && <p className="product-card__category mono">{lineCopy?.name ?? line.name}</p>}
+        {status && (
           <p className="product-card__status mono">
             <span className="product-card__status-dot" aria-hidden="true" />
-            {product.status}
+            {status}
           </p>
         )}
       </div>
       <div className="product-card__body">
         <h3>{product.name}</h3>
-        {!compact && <p>{product.description}</p>}
+        <p>{description}</p>
       </div>
-      {ctaLabel && !compact && (
+      {ctaLabel && (
         <a className="product-card__cta" href="#contact">
           {ctaLabel}
         </a>
