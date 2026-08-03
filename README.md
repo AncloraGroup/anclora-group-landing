@@ -2,95 +2,82 @@
 
 <div align="center">
 
-<img src="./public/logo.png" alt="Anclora Group" width="120" />
+<img src="./public/anclora-group-landing.png" alt="Anclora Group Landing" width="132" />
 
-# Anclora Group — Landing
+# Anclora Group Landing
 
-### Landing page publica del ecosistema Anclora Group, documentada como repositorio de familia portfolio showcase
+### Landing pública corporativa del ecosistema Anclora Group
+
+Landing pública que presenta el ecosistema completo de productos Anclora, con brand book propio (navy/signal-blue/command-purple) e interfaz multilingüe.
 
 **Español** · [English](./README.en.md)
 
 <br />
 
 ![Anclora](https://img.shields.io/badge/Anclora-ecosystem-111827)
-![Landing](https://img.shields.io/badge/landing-React%20%2B%20Vite-BFA46A)
-![Languages](https://img.shields.io/badge/i18n-6%20idiomas-047857)
+![Categoría](https://img.shields.io/badge/categoría-Portfolio%20(excepción)-5FA8FF)
+![Idiomas](https://img.shields.io/badge/idiomas-ES%20%7C%20EN-047857)
 
 </div>
 
 ---
 
 > [!IMPORTANT]
-> Repositorio publico reducido. Describe la landing y su arquitectura conceptual; no expone logica operativa, secretos ni datos reales.
+> Repositorio público reducido. Describe la landing y su arquitectura conceptual; no expone lógica operativa, secretos ni datos reales.
 
-## Vista rapida
+## Qué es
 
-| Problema | Respuesta de producto |
-| --- | --- |
-| Ecosistema disperso | Landing unica que ordena y presenta todos los productos Anclora |
-| Marca inconsistente | Sistema de marca aplicado con tokens, logo y paleta unificados |
-| Audiencia multilingue | Interfaz en 6 idiomas con selector nativo |
-| Confianza y credibilidad | Narrativa founder-led, metodo y principios expuestos con claridad |
+Anclora Group Landing es la landing pública corporativa del ecosistema. A diferencia del resto de portfolio/showcase, implementa el brand book completo de Anclora Group (navy/signal-blue/command-purple) en lugar del tema editorial genérico — es la única app portfolio gobernada por el Master Contract de branding en vez del contrato de portfolio/showcase.
 
-## Flujo conceptual
+## Categoría en el ecosistema
 
-```text
-Brand book / tokens de marca
-        ↓
-Landing React + Vite (src/)
-        ↓
-Secciones: Hero, Ecosistema, Productos, Metodo, Founder, Contacto
-        ↓
-Build estatico
-        ↓
-Despliegue publico (group.anclora.com)
+| Campo | Valor |
+|---|---|
+| Categoría | Portfolio — excepción con brand book propio |
+| Acento de marca | `#5FA8FF` (signal blue) + `#6C63FF` (command purple) |
+| Tipografía | DM Sans + JetBrains Mono |
+| Repositorio canónico | `anclora-group-landing` |
+
+## Funcionalidades principales
+
+- Presentación unificada de todo el ecosistema de productos Anclora
+- Sistema de marca aplicado con tokens, logo y paleta unificados
+- Interfaz multilingüe con selector nativo (6 idiomas en producto: ES, EN, CA, DE, FR, IT)
+- Narrativa founder-led, método y principios
+
+## Stack tecnológico
+
+| Área | Tecnología |
+|---|---|
+| Framework | React 19, Vite, TypeScript |
+| Testing | Vitest, Testing Library |
+| i18n | Sistema propio, 6 idiomas |
+
+## Arranque local
+
+```bash
+npm install
+npm run dev
 ```
 
-## Que muestra este repositorio
+## Idiomas soportados
 
-Landing page publica del ecosistema Anclora Group, documentada como repositorio de familia portfolio showcase.
+- Español (predeterminado)
+- English
 
-El README presenta el alcance publico del producto, su posicionamiento dentro del ecosistema
-Anclora y los limites de exposicion adecuados para un repositorio abierto.
+> El producto en producción soporta 6 idiomas (ES/EN/CA/DE/FR/IT); esta documentación se mantiene en ES/EN.
 
-## Estructura
-
-| Carpeta | Contenido |
-| --- | --- |
-| [`src/`](./src) | Codigo React + Vite de la landing (componentes, secciones, i18n, estilos) |
-| [`public/`](./public) | Assets estaticos servidos tal cual (logo, og-image) |
-| [`brand/`](./brand) | Brand book, prompt maestro, assets de logo/favicons y render de referencia del brand book |
-| [`.claude/`](./.claude) | Memoria y configuracion local de agentes |
-
-## Tecnologia
-
-| Area | Detalle |
-| --- | --- |
-| React 19 | Interfaz de la landing |
-| Vite | Build y dev server |
-| TypeScript | Tipado estricto en componentes, secciones e i18n |
-| Vitest + Testing Library | Cobertura de componentes clave |
-| i18n propio | 6 idiomas: ES, EN, CA, DE, FR, IT |
-
-## Documentacion
+## Documentación y gobernanza
 
 - [Brand book v2](./brand/anclora-group-brand-book-v2.md)
 - [Prompt maestro de landing](./brand/anclora-group-prompt-maestro-landing-v3.md)
-- [Render de referencia del brand book](./brand/render/index.html)
-
-## Marca
-
-- Producto canonico: `anclora-group-landing`
-- Familia: `portfolio_showcase`
-- Visibilidad objetivo: `public`
-- Asset de marca: `presente`
+- Contratos de marca y gobernanza: [`docs/standards/`](./docs/standards/)
+- Bóveda Anclora (fuente de verdad): `contracts/` y `docs/governance/`
 
 ---
 
 <div align="center">
 
-### Antonio Ballesteros · Anclora Group
-
-Software, IA generativa y automatizacion para productos digitales trazables.
+### Anclora Group
 
 </div>
