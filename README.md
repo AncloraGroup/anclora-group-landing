@@ -10,13 +10,13 @@
 
 Landing pública que presenta el ecosistema completo de productos Anclora, con brand book propio (navy/signal-blue/command-purple) e interfaz multilingüe.
 
-**Español** · [English](./README.en.md)
+**Español** · [Català](./README.ca.md) · [English](./README.en.md) · [Deutsch](./README.de.md) · [Français](./README.fr.md) · [Italiano](./README.it.md)
 
 <br />
 
 ![Anclora](https://img.shields.io/badge/Anclora-ecosystem-111827)
 ![Categoría](https://img.shields.io/badge/categoría-Portfolio%20(excepción)-5FA8FF)
-![Idiomas](https://img.shields.io/badge/idiomas-ES%20%7C%20EN-047857)
+![Idiomas](https://img.shields.io/badge/idiomas%20producto-6-047857)
 
 </div>
 
@@ -62,10 +62,7 @@ npm run dev
 
 ## Idiomas soportados
 
-- Español (predeterminado)
-- English
-
-> El producto en producción soporta 6 idiomas (ES/EN/CA/DE/FR/IT); esta documentación se mantiene en ES/EN.
+El producto en producción soporta 6 idiomas: Español (predeterminado), Català, English, Deutsch, Français, Italiano (`LOCALES`, `src/i18n/index.ts`). Esta documentación se mantiene en los 6 idiomas del producto.
 
 ## Documentación y gobernanza
 
